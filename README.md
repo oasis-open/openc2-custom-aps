@@ -1,5 +1,3 @@
-=== README.md ===
-
 # README
 
 ## <a id="readme-general">OASIS TC Open Repository: openc2-custom-aps</a>
