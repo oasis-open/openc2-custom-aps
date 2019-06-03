@@ -10,7 +10,7 @@ Content accepted as "contributions" to this TC Open Repository, as [defined](#op
 
 ## <a id="distinctLicenses">Licensing Distinct from OASIS IPR Policy</a>
 
-Because different licenses apply to the OASIS TC's specification work, and this TC Open Repository, there is no guarantee that the licensure of specific repository material will be compatible with licensing requirements of an implementation of a TC's specification.  Please refer to the [LICENSE](https://github.com/oasis-open/openc2-custom-aps/blob/master/LICENSE) for the terms of this material, and to the OASIS IPR Policy for the terms applicable to the TC's specifications ( [Non-Assertion Mode](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode), including any applicable [IP declarations](https://www.oasis-open.org/committees/openc2/ipr.php).
+Because different licenses apply to the OASIS TC's specification work, and this TC Open Repository, there is no guarantee that the licensure of specific repository material will be compatible with licensing requirements of an implementation of a TC's specification.  Please refer to the [LICENSE](https://github.com/oasis-open/openc2-custom-aps/blob/master/LICENSE.md) for the terms of this material, and to the OASIS IPR Policy for the terms applicable to the TC's specifications ( [Non-Assertion Mode](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode), including any applicable [IP declarations](https://www.oasis-open.org/committees/openc2/ipr.php).
 
 ## <a id="contributionDefined">Contributions Subject to Individual CLA</a>
 
