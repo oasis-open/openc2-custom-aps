@@ -17,3 +17,11 @@ Other specifications MAY refer to a Namespace using the suggested ID or Name val
 | http://oasis-open.org/openc2/cap/egas/v1.0      | 2005 | x_egas   | Email Gateway Anti-Spam Solutions Custom Profile |
 | http://oasis-open.org/openc2/cap/sfpf/v1.0      | 2006 | x_sfpf   | U. of Oslo: Stateful Packet Filtering Custom Profile |
 | http://oasis-open.org/openc2/cap/route/v1.0     | 2007 | x_route  | DoD: Packet Routing Custom Profile |
+
+
+Specifications, including but not limited to Actuator Profiles, may refer to types defined in the OpenC2 Language Specification using the following Namespaces.  ID/Name values for referenced types are defined by the referencing specifications; no suggested values are provided here.
+
+| Namespace                                  | Description |
+| ------------------------------------------ | ----------- |
+| http://oasis-open.org/openc2/oc2ls/v1.0    | OpenC2 Language Specification, Committee Spec v1.0 |
+| http://oasis-open.org/openc2/oc2ls/v1.0.1  | OpenC2 Language Specification, Committee Spec v1.0, Errata #1 |
