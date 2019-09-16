@@ -1,6 +1,10 @@
 # OpenC2 Actuatory Profile Registry
 
-An actuator profile defines the OpenC2 commands and responses used to perform the profile's functions.  Each profile has a *Namespace*, a URI that identifies the profile but does not necessarily refer to a network-accessible resource.  For consistency, an object property with a type defined in another namespace SHOULD have the ID and Name shown here.
+An actuator profile defines the OpenC2 commands and responses used to perform the profile's functions.  Each profile has a *Namespace*, a URI that identifies the profile.  The URI acts only as an identifier, it does not necessarily refer to a network-accessible resource.
+
+Standard actuator profile namespaces are defined by the OpenC2 Technical Committee.  Custom actuator profile namespaces are chosen by the profile sponsor and MUST NOT conflict with namespaces registered here.  Profile sponsors MAY register Namespaces under oasis-open.org/openc2/cap but are not required to do so.
+
+Other specifications MAY refer to a Namespace using the suggested ID or Name values shown here as map keys or property names.  The actual ID/Name value used in a map/object is defined by the referencing specification, and values in this document are not registered or reserved.  Using suggested values may make it easier to view protocol data without referring to the protocol specification.
 
 | Namespace                                       |  ID  |   Name   | Description |
 | ----------------------------------------------- | ---- | -------- | ----------- |
@@ -13,6 +17,3 @@ An actuator profile defines the OpenC2 commands and responses used to perform th
 | http://oasis-open.org/openc2/cap/egas/v1.0      | 2005 | x_egas   | Email Gateway Anti-Spam Solutions Custom Profile |
 | http://oasis-open.org/openc2/cap/sfpf/v1.0      | 2006 | x_sfpf   | U. of Oslo: Stateful Packet Filtering Custom Profile |
 | http://oasis-open.org/openc2/cap/route/v1.0     | 2007 | x_route  | DoD: Packet Routing Custom Profile |
-
-*Note: Custom actuator profile namespaces are chosen by the profile sponsor.  Namespaces under openc2/cap
-are available for sponsors to use but are not required.*
