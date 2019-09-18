@@ -4,7 +4,7 @@ An actuator profile defines the OpenC2 commands and responses used to perform th
 
 Standard actuator profile namespaces are defined by the OpenC2 Technical Committee.  Custom actuator profile namespaces are chosen by the profile sponsor and MUST NOT conflict with namespaces registered here.  Profile sponsors MAY register Namespaces under oasis-open.org/openc2/cap but are not required to do so.
 
-Other specifications MAY refer to a Namespace using the suggested ID or Name values shown here as map keys or property names.  The actual ID/Name value used in a map/object is defined by the referencing specification, and values in this document are not registered or reserved. Specifications that use suggested values may make it easier to view protocol data without referring to the specification, but applications MUST NOT assume that ID/Name values shown here override values defined in a specification.  
+Other specifications MAY refer to a Namespace using the ID or Name values shown here as map keys or property names.  The actual ID/Name value used in a map/object is defined by the referencing specification, and values suggested here are neither registered nor reserved.
 
 | Namespace                                       |  ID  |   Name   | Description |
 | ----------------------------------------------- | ---- | -------- | ----------- |
