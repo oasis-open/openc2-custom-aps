@@ -1,4 +1,4 @@
-# OpenC2 Actuatory Profile Registry
+# Namespace Registry for OpenC2 Specifications
 
 An actuator profile defines the OpenC2 commands and responses used to perform the profile's functions.  Each profile has a *Namespace*, a URI that identifies the profile.  The URI acts only as an identifier, it does not necessarily refer to a network-accessible resource.
 
