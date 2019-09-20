@@ -210,6 +210,8 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Bradner, S. and V. Paxson, "IANA Allocation Guidelines For Values In the Internet Protocol and Related Headers", BCP 37, RFC 2780, DOI 10.17487/RFC2780, March 2000, <https://www.rfc-editor.org/info/rfc2780>.
 ###### [RFC4443]
 Conta, A., Deering, S., and M. Gupta, Ed., "Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification", STD 89, RFC 4443, DOI 10.17487/RFC4443, March 2006, <https://www.rfc-editor.org/info/rfc4443>.
+###### [RFC5890]
+Klensin, J., "Internationalized Domain Names for Applications (IDNA): Definitions and Document Framework", RFC 5890, DOI 10.17487/RFC5890, August 2010, <https://www.rfc-editor.org/info/rfc5890>.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 ###### [RFC8259]
@@ -421,7 +423,8 @@ Table 2.1.2-1 lists the Targets defined in the OpenC2 Language Specification tha
 | ID | Name | Type | Description |
 | :--- | :--- | :--- | :--- |
 | 3 | **device** | The properties of a hardware device. | 
-| 7 | **domain_name | Domain-Name | A network domain name. |
+| 7 | **domain_name** | Domain-Name | A network domain name.
+| 8 | **idn_domain_name** | IDN-Domain-Name | A internatiolized domain name as defined in [[RFC5890]](#rfc5890) |
 | 9 | **features** | Features | A set of items such as Action/Target pairs, profiles versions, options that are supported by the Actuator. The Target is used with the query Action to determine an Actuator's capabilities |
 | 10 | **file** | File | Properties of a file |
 | 13 | **ipv4_net** | IPv4-Net | The representation of one or more IPv4 addresses expressed using CIDR notation |
