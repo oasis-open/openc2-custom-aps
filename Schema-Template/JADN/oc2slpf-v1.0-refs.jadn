@@ -1,7 +1,7 @@
 {
  "meta": {
   "module": "http://oasis-open.org/openc2/oc2slpf/v1.0.1",
-  "patch": "0-refs",
+  "patch": "0-csprd03",
   "title": "Stateless Packet Filtering",
   "description": "Data definitions for Stateless Packet Filtering (SLPF) functions",
   "imports": {"ls": "http://oasis-open.org/openc2/oc2ls/v1.0.1"},

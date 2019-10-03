@@ -1,0 +1,100 @@
+/* Generated from schema\oc2slpf-v1.0-refs.jadn, Thu Oct  3 10:22:43 2019 */
+
+       title: Stateless Packet Filtering
+      module: http://oasis-open.org/openc2/oc2slpf/v1.0.1
+       patch: 0-csprd03
+ description: Data definitions for Stateless Packet Filtering (SLPF) functions
+     exports: ['OpenC2-Command', 'OpenC2-Response', 'P-Target', 'P-Specifiers', 'P-Args', 'P-Results']
+     imports: {'ls': 'http://oasis-open.org/openc2/oc2ls/v1.0.1'}
+
+OpenC2-Command = Record {
+     1 action          Action,                   // The task or activity to be performed
+     2 target          Target,                   // The object referenced by the Action
+     3 args            Args optional,            // Additional information that applies to the Command
+     4 actuator        Actuator optional,        // The profile that defines the Command
+     5 command_id      ls:Command-ID optional    // An identifier of this Command
+}
+
+OpenC2-Response = Map {
+     1 status          ls:Status-Code,           // Integer status code
+     2 status_text     String optional,          // Free-form description of the Response status
+     3 results         Results optional          // Results returned by the invoked Command
+}
+
+Action = Enumerated {                        // Actions used in this profile
+     3 query,                                    // Initiate a request for information
+     6 deny,                                     // Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access
+     8 allow,                                    // Permit access to or execution of a Target
+    16 update,                                   // Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update
+    20 delete                                    // Remove an entity (e.g., data, files, flows)
+}
+
+Target = Choice {                            // Targets used in this profile
+     9 features        ls:Features,              // A set of items used with the query Action to determine an Actuator's capabilities
+    10 file            ls:File,                  // Properties of a file
+    13 ipv4_net        ls:IPv4-Net,              // An IPv4 address range including CIDR prefix length
+    14 ipv6_net        ls:IPv6-Net,              // An IPv6 address range including prefix length
+    15 ipv4_connection ls:IPv4-Connection,       // A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol
+    16 ipv6_connection ls:IPv6-Connection,       // A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol
+  1024 slpf/           P-Target                  // Targets defined in this profile
+}
+
+Actuator = Map{1..*} {
+  1024 slpf            P-Specifiers optional     // Actuator Specifiers defined in this profile
+}
+
+Args = Map{1..*} {
+     1 start_time      ls:Date-Time optional,    // The specific date/time to initiate the Command
+     2 stop_time       ls:Date-Time optional,    // The specific date/time to terminate the Command
+     3 duration        ls:Duration optional,     // The length of time for an Command to be in effect
+     4 response_requested ls:Response-Type optional, // The type of Response required for the Command: none, ack, status, complete
+  1024 slpf            P-Args optional           // Command Arguments defined in this profile
+}
+
+Results = Map{1..*} {                        // Response Results
+     1 versions        ls:Version optional,      // List of OpenC2 language versions supported by this Actuator
+     2 profiles        ls:Namespace [0..*] unique, // List of profiles supported by this Actuator
+     3 pairs           Action-Targets optional,  // List of targets applicable to each supported Action
+     4 rate_limit      Number{0..*} optional,    // Maximum number of requests per minute supported by design or policy
+  1024 slpf            P-Results optional        // Results defined in this profile
+}
+
+Action-Targets = MapOf(Action, Targets){1..*} // Targets applicable to each action
+
+Targets = ArrayOf(Enum(Target)){1..0} unique // List of Target fields
+
+P-Target = Choice {                          // SLPF targets
+     1 rule_number     Rule-ID                   // Immutable identifier assigned when a rule is created. Identifies a rule to be deleted
+}
+
+P-Specifiers = Map {                         // SLPF actuator specifiers
+     1 hostname        String optional,          // RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality
+     2 named_group     String optional,          // User defined collection of devices with SLPF functionality
+     3 asset_id        String optional,          // Unique identifier for a particular SLPF
+     4 asset_tuple     String [0..10]            // Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings
+}
+
+P-Args = Map {                               // SLPF command arguments
+     1 drop_process    Drop-Process optional,    // Specifies how to handle denied packets
+     2 persistent      Boolean optional,         // Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart
+     3 direction       Direction optional,       // Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both
+     4 insert_rule     Rule-ID optional          // Specifies the identifier of the rule within a list, typically used in a top-down rule list
+}
+
+P-Results = Map {                            // SLPF results defined in this profile
+     1 rule_number     Rule-ID optional          // Rule identifier returned from allow or deny Command.
+}
+
+Drop-Process = Enumerated {
+     1 none,                                     // Drop the packet and do not send a notification to the source of the packet
+     2 reject,                                   // Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet
+     3 false_ack                                 // Drop the traffic and send a false acknowledgement
+}
+
+Direction = Enumerated {
+     1 both,                                     // Apply rules to all traffic
+     2 ingress,                                  // Apply rules to incoming traffic only
+     3 egress                                    // Apply rules to outgoing traffic only
+}
+
+Rule-ID = Integer                            // Access rule identifier
