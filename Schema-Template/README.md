@@ -20,11 +20,12 @@ to **oneOf** the supported profile schemas.
 ![Resolver](images/resolver.png)
 *Fig. 1 - Language, Profiles, and Product Schemas*
 ## 2. Schema Template
-The Language Specification includes two parts: a *Profile Template* that is copied verbatim
+The Language Specification includes two parts: a *Language Profile* that is copied verbatim
 into every Actuator Profile and then tailored to support the profile's function, and the
 *Common Types* schema that can be either referenced by or copied into each Profile schema.
-The Profile Template can be considered a "language profile" in that it validates everything
-defined in the Language Spec and nothing else.
+The "Language Profile" validates everything defined in the Language Spec and nothing else.
+It is also possible to define a "Language+* (language-star) Profile" that validates everything
+defined in the Language Spec plus everything that might be defined in future actuator profiles.
 
 The steps to create a new actuator profile are:
 ### 2.1 Namespace
