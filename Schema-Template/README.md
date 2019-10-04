@@ -19,8 +19,9 @@ is illustrated in Figure 1:
 *Fig. 1 - Language, Profiles, and Product Schemas*
 ## 2. Schema Template
 The Language Specification schema includes two parts: a *Template* that is copied verbatim
-into every Actuator Profile and then tailored, and the common *Types* that can be either
-referenced by or copied into the Component schema.
+into every Actuator Profile and then tailored to support the profile's needs, and the common
+*Types* that can be either referenced by or copied into each Component schema that implements
+the Profile.
 ## 3. Actuator Profile
 The steps to create a new actuator profile are:
 ### 3.1 Namespace
