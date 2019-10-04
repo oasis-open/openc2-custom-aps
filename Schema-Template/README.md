@@ -15,7 +15,7 @@ the subset of common elements plus custom elements needed to perform a Profile's
 and the schema for the one or more Profiles supported by a Cyber-defense Component
 is illustrated in Figure 1.  The schema implemented by a Component is the union of the profile
 schemas supported by that Component, i.e, a data instance is valid iff it is valid according
-to *oneOf* the supported profile schemas.
+to **oneOf** the supported profile schemas.
 
 ![Resolver](images/resolver.png)
 *Fig. 1 - Language, Profiles, and Product Schemas*
