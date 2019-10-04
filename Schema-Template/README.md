@@ -22,9 +22,9 @@ The Language Specification schema includes two parts: a *Template* that is copie
 into every Actuator Profile and then tailored to support the profile's needs, and the common
 *Types* that can be either referenced by or copied into each Component schema that implements
 the Profile.
-## 3. Actuator Profile
+
 The steps to create a new actuator profile are:
-### 3.1 Namespace
+### 2.1 Namespace
 Select a Namespace (unique name) for the profile schema. This name is in the form of a URI as
 defined by JSON Schema, but it does not necessarily refer to a network-accessible resource.
 
@@ -34,5 +34,5 @@ authors MUST NOT select a Namespace that is already registered, but there are no
 restrictions on what URI a profile author may use.  The Namespace is the **$id** value
 of the profile's JSON Schema, and may be used in the **$ref** value of other JSON Schemas
 to refer to the profile.
-## 3.2 Template
+### 2.2 Template
 Copy the *Template* section of the Language Specification into the profile.
