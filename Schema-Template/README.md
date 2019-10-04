@@ -19,8 +19,8 @@ to **oneOf** the supported profile schemas.
 
 ![Resolver](images/resolver.png)
 *Fig. 1 - Language, Profiles, and Product Schemas*
-## 2. Schema Template
-The Language Specification includes two parts: a *Language Profile* that is copied verbatim
+## 2. Profile Template
+The Language Specification includes two schemas: a *Language Profile* that is copied verbatim
 into every Actuator Profile and then tailored to support the profile's function, and the
 *Common Types* schema that can be either referenced by or copied into each Profile schema.
 The "Language Profile" validates everything defined in the Language Spec and nothing else.
@@ -39,4 +39,8 @@ restrictions on what URI a profile author may use.  The Namespace is the **$id**
 of the profile's JSON Schema, and may be used in the **$ref** value of other JSON Schemas
 to refer to the profile.
 ### 2.2 Template
-Copy the *Template* section of the Language Specification into the profile.
+1. Copy the *Language Profile* schema from the Language Specification into the profile.
+2. From the Action, Target, Args, and Results lists, delete every field that is not
+needed by the profile.  Do not modify any other fiels in these lists.  Do not modify
+any other type definitions.
+3. 
