@@ -1,11 +1,11 @@
-/* Generated from schema\oc2slpf-v1.0-refs.jadn, Thu Oct  3 10:22:43 2019 */
+/* Generated from schema\oc2slpf-v1.1.jadn, Sat Oct  5 11:58:12 2019 */
 
-       title: Stateless Packet Filtering
-      module: http://oasis-open.org/openc2/oc2slpf/v1.0.1
-       patch: 0-csprd03
+       title: Stateless Packet Filtering Profile
+      module: http://oasis-open.org/openc2/oc2slpf/v1.1
+       patch: 0-wd01
  description: Data definitions for Stateless Packet Filtering (SLPF) functions
      exports: ['OpenC2-Command', 'OpenC2-Response', 'P-Target', 'P-Specifiers', 'P-Args', 'P-Results']
-     imports: {'ls': 'http://oasis-open.org/openc2/oc2ls/v1.0.1'}
+     imports: {'ls': 'http://oasis-open.org/openc2/oc2ls-types/v1.1'}
 
 OpenC2-Command = Record {
      1 action          Action,                   // The task or activity to be performed

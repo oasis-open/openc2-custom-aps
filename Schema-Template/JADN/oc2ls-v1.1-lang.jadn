@@ -1,10 +1,10 @@
 {
  "meta": {
-  "module": "http://oasis-open.org/openc2/cap/my-actuator-profile/v1.0",
-  "patch": "0",
-  "title": "My OpenC2 Custom Actuator Profile",
-  "description": "",
-  "imports": ["ls", "http://oasis-open.org/openc2/oc2ls/v1.0.1"],
+  "module": "http://oasis-open.org/openc2/oc2ls/v1.1",
+  "patch": "0-wd01",
+  "title": "OpenC2 Language Profile",
+  "description": "Language Profile from the OpenC2 Language Specification version 1.1",
+  "imports": {"ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1"},
   "exports": ["OpenC2-Command", "OpenC2-Response"]
  },
 
@@ -64,49 +64,29 @@
     [17, "mac_addr", "ls:MAC-Addr", [], "A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [EUI]."],
     [18, "process", "ls:Process", [], "Common properties of an instance of a computer program as executed on an operating system."],
     [25, "properties", "ls:Properties", [], "Data attribute associated with an Actuator."],
-    [19, "uri", "ls:URI", [], "A uniform resource identifier (URI)."],
-    [9999, "new", "P-Target", [], "Profile-defined Target types."]
+    [19, "uri", "ls:URI", [], "A uniform resource identifier (URI)."]
+  ]],
+
+  ["Actuator", "Map", ["{1"], "", [
   ]],
 
   ["Args", "Map", ["{1"], "", [
     [1, "start_time", "ls:Date-Time", ["[0"], "The specific date/time to initiate the Command"],
     [2, "stop_time", "ls:Date-Time", ["[0"], "The specific date/time to terminate the Command"],
     [3, "duration", "ls:Duration", ["[0"], "The length of time for an Command to be in effect"],
-    [4, "response_requested", "ls:Response-Type", ["[0"], "The type of Response required for the Command: none, ack, status, complete"],
-    [9999, "new", "P-Args", [], "Profile-defined command arguments."]
-  ]],
-
-  ["Actuator", "Map", ["{1"], "", [
-      [9999, "new", "P-Actuator", [], "Profile-defined actuator specifiers."]
+    [4, "response_requested", "ls:Response-Type", ["[0"], "The type of Response required for the Command: none, ack, status, complete"]
   ]],
 
   ["Results", "Map", ["{1"], "Response Results", [
     [1, "versions", "ls:Version", ["[0", "]10", "q"], "List of OpenC2 language versions supported by this Actuator"],
     [2, "profiles", "ls:Namespace", ["[0", "]0", "q"], "List of profiles supported by this Actuator"],
     [3, "pairs", "Action-Targets", ["[0"], "List of targets applicable to each supported Action"],
-    [4, "rate_limit", "Number", ["{0", "[0"], "Maximum number of requests per minute supported by design or policy"],
-    [9999, "new", "P-Results", [], "Profile-defined results."]
+    [4, "rate_limit", "Number", ["{0", "[0"], "Maximum number of requests per minute supported by design or policy"]
   ]],
 
   ["Action-Targets", "MapOf", ["{1", "+Action", "*Targets"], "Map of each action supported by this actuator to the list of targets applicable to that action"],
 
-  ["Targets", "ArrayOf", ["*Enum(Target)", "{1", "}0", "q"], "List of Target fields"],
+  ["Targets", "ArrayOf", ["*Enum(Target)", "{1", "}0", "q"], "List of Target fields"]
 
-
-  ["P-Target", "Choice", [], "My targets", [
-    [1, "foo", "String", ""]
-  ]],
-
-  ["P-Args", "Map", [], "My command arguments", [
-    [1, "foo", "String", ""]
-  ]],
-
-  ["P-Actuator", "Map", [], "My actuator specifiers", [
-    [1, "foo", "String", ""]
-  ]],
-
-  ["P-Results", "Map", [], "My results", [
-    [1, "foo", "String", ""]
-  ]]
  ]
 }

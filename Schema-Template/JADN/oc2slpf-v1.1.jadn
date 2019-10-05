@@ -1,10 +1,10 @@
 {
  "meta": {
-  "module": "http://oasis-open.org/openc2/oc2slpf/v1.0.1",
-  "patch": "0-csprd03",
-  "title": "Stateless Packet Filtering",
+  "module": "http://oasis-open.org/openc2/oc2slpf/v1.1",
+  "patch": "0-wd01",
+  "title": "Stateless Packet Filtering Profile",
   "description": "Data definitions for Stateless Packet Filtering (SLPF) functions",
-  "imports": {"ls": "http://oasis-open.org/openc2/oc2ls/v1.0.1"},
+  "imports": {"ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1"},
   "exports": ["OpenC2-Command", "OpenC2-Response", "P-Target", "P-Specifiers", "P-Args", "P-Results"]
  },
 

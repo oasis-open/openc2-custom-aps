@@ -1,8 +1,8 @@
-/* Generated from schema\oc2slpf-v1.0-refs_resolved.jadn, Thu Oct  3 10:22:43 2019 */
+/* Generated from schema\oc2slpf-v1.1_resolved.jadn, Sat Oct  5 11:58:12 2019 */
 
-       title: Stateless Packet Filtering
-      module: http://oasis-open.org/openc2/oc2slpf/v1.0.1
-       patch: 0-csprd03
+       title: Stateless Packet Filtering Profile
+      module: http://oasis-open.org/openc2/oc2slpf/v1.1
+       patch: 0-wd01
  description: Data definitions for Stateless Packet Filtering (SLPF) functions
      exports: ['OpenC2-Command', 'OpenC2-Response', 'P-Target', 'P-Specifiers', 'P-Args', 'P-Results']
 
@@ -114,14 +114,14 @@ Ls$Status-Code = Enumerated.ID {
 Ls$Features = ArrayOf(Ls$Feature){0..10} unique // An array of zero to ten names used to query an Actuator for its supported capabilities.
 
 Ls$File = Map{1..*} {
-     1 name            Ls$String optional,       // The name of the file as defined in the file system
-     2 path            Ls$String optional,       // The absolute path to the location of the file in the file system
+     1 name            String optional,          // The name of the file as defined in the file system
+     2 path            String optional,          // The absolute path to the location of the file in the file system
      3 hashes          Ls$Hashes optional        // One or more cryptographic hash codes of the file contents
 }
 
 Ls$IPv4-Net = Array /ipv4-net {              // IPv4 address and prefix length
      1 Ls$IPv4-Addr,                             // ipv4_addr:: IPv4 address as defined in [RFC0791]
-     2 Ls$Integer optional                       // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
+     2 Integer optional                          // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
 }
 
 Ls$IPv4-Connection = Record{1..*} {          // 5-tuple that specifies a tcp/ip connection
@@ -134,7 +134,7 @@ Ls$IPv4-Connection = Record{1..*} {          // 5-tuple that specifies a tcp/ip 
 
 Ls$IPv6-Net = Array /ipv6-net {              // IPv6 address and prefix length
      1 Ls$IPv6-Addr,                             // ipv6_addr:: IPv6 address as defined in [RFC8200]
-     2 Ls$Integer optional                       // prefix_length:: prefix length. If omitted, refers to a single host address
+     2 Integer optional                          // prefix_length:: prefix length. If omitted, refers to a single host address
 }
 
 Ls$IPv6-Connection = Record{1..*} {          // 5-tuple that specifies a tcp/ip connection
@@ -157,9 +157,9 @@ Ls$Feature = Enumerated {                    // Specifies the results to be retu
 }
 
 Ls$Hashes = Map{1..*} {                      // Cryptographic Hash values
-     1 md5             Ls$Binary /x optional,    // MD5 hash as defined in [RFC1321]
-     2 sha1            Ls$Binary /x optional,    // SHA1 hash as defined in [RFC6234]
-     3 sha256          Ls$Binary /x optional     // SHA256 hash as defined in [RFC6234]
+     1 md5             Binary /x optional,       // MD5 hash as defined in [RFC1321]
+     2 sha1            Binary /x optional,       // SHA1 hash as defined in [RFC6234]
+     3 sha256          Binary /x optional        // SHA256 hash as defined in [RFC6234]
 }
 
 Ls$IPv4-Addr = Binary /ipv4-addr             // 32 bit IPv4 address as defined in [RFC0791]
@@ -186,4 +186,4 @@ Ls$Version = String                          // Major.Minor version number
 
 Ls$Namespace = String /uri                   // Unique name of an Actuator Profile
 
-Ls$Command-ID = String(%^\S{0,32}$%)         // Command Identifier
+Ls$Command-ID = String(%^\S{0,36}$%)         // Command Identifier

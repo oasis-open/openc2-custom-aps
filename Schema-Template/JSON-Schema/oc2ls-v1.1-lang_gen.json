@@ -1,10 +1,10 @@
-/* Generated from schema\oc2slpf-v1.0-refs.jadn, Thu Oct  3 10:22:43 2019 */
+/* Generated from schema\oc2ls-v1.1-lang.jadn, Sat Oct  5 11:53:48 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://oasis-open.org/openc2/oc2slpf/v1.0.1",
-  "title": "Stateless Packet Filtering",
-  "description": "Data definitions for Stateless Packet Filtering (SLPF) functions",
+  "$id": "http://oasis-open.org/openc2/oc2ls/v1.1",
+  "title": "OpenC2 Language Profile",
+  "description": "Language Profile from the OpenC2 Language Specification version 1.1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -13,24 +13,13 @@
     },
     "openc2_response": {
       "$ref": "#/definitions/OpenC2-Response"
-    },
-    "p_target": {
-      "$ref": "#/definitions/P-Target"
-    },
-    "p_specifiers": {
-      "$ref": "#/definitions/P-Specifiers"
-    },
-    "p_args": {
-      "$ref": "#/definitions/P-Args"
-    },
-    "p_results": {
-      "$ref": "#/definitions/P-Results"
     }
   },
   "definitions": {
     "OpenC2-Command": {
       "title": "OpenC2 Command",
       "type": "object",
+      "description": "The Command defines an Action to be performed on a Target",
       "additionalProperties": false,
       "required": [
         "action",
@@ -39,23 +28,23 @@
       "properties": {
         "action": {
           "$ref": "#/definitions/Action",
-          "description": "The task or activity to be performed"
+          "description": "The task or activity to be performed (i.e., the 'verb')."
         },
         "target": {
           "$ref": "#/definitions/Target",
-          "description": "The object referenced by the Action"
+          "description": "The object of the Action. The Action is performed on the Target."
         },
         "args": {
           "$ref": "#/definitions/Args",
-          "description": "Additional information that applies to the Command"
+          "description": "Additional information that applies to the Command."
         },
         "actuator": {
           "$ref": "#/definitions/Actuator",
-          "description": "The profile that defines the Command"
+          "description": "The subject of the Action. The Actuator executes the Action on the Target."
         },
         "command_id": {
           "$ref": "#/definitions/Ls$Command-ID",
-          "description": "An identifier of this Command"
+          "description": "An identifier of this Command."
         }
       }
     },
@@ -69,145 +58,122 @@
       "properties": {
         "status": {
           "$ref": "#/definitions/Ls$Status-Code",
-          "description": "Integer status code"
+          "description": "An integer status code."
         },
         "status_text": {
           "type": "string",
-          "description": "Free-form description of the Response status"
+          "description": "A free-form human-readable description of the Response status."
         },
         "results": {
           "$ref": "#/definitions/Results",
-          "description": "Results returned by the invoked Command"
-        }
-      }
-    },
-    "P-Target": {
-      "title": "P Target",
-      "type": "object",
-      "description": "SLPF targets",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "maxProperties": 1,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
-        }
-      }
-    },
-    "P-Specifiers": {
-      "title": "P Specifiers",
-      "type": "object",
-      "description": "SLPF actuator specifiers",
-      "additionalProperties": false,
-      "properties": {
-        "hostname": {
-          "type": "string",
-          "description": "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"
-        },
-        "named_group": {
-          "type": "string",
-          "description": "User defined collection of devices with SLPF functionality"
-        },
-        "asset_id": {
-          "type": "string",
-          "description": "Unique identifier for a particular SLPF"
-        },
-        "asset_tuple": {
-          "type": "array",
-          "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings",
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "type": "string",
-            "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"
-          }
-        }
-      }
-    },
-    "P-Args": {
-      "title": "P Args",
-      "type": "object",
-      "description": "SLPF command arguments",
-      "additionalProperties": false,
-      "properties": {
-        "drop_process": {
-          "$ref": "#/definitions/Drop-Process",
-          "description": "Specifies how to handle denied packets"
-        },
-        "persistent": {
-          "type": "boolean",
-          "description": "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"
-        },
-        "direction": {
-          "$ref": "#/definitions/Direction",
-          "description": "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"
-        },
-        "insert_rule": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Specifies the identifier of the rule within a list, typically used in a top-down rule list"
-        }
-      }
-    },
-    "P-Results": {
-      "title": "P Results",
-      "type": "object",
-      "description": "SLPF results defined in this profile",
-      "additionalProperties": false,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Rule identifier returned from allow or deny Command."
+          "description": "Map of key:value pairs that contain additional results based on the invoking Command."
         }
       }
     },
     "Action": {
       "title": "Action",
       "type": "string",
-      "description": "Actions used in this profile",
       "enum": [
+        "scan",
+        "locate",
         "query",
         "deny",
+        "contain",
         "allow",
+        "start",
+        "stop",
+        "restart",
+        "cancel",
+        "set",
         "update",
-        "delete"
+        "redirect",
+        "create",
+        "delete",
+        "detonate",
+        "restore",
+        "copy",
+        "investigate",
+        "remediate"
       ]
     },
     "Target": {
       "title": "Target",
       "type": "object",
-      "description": "Targets used in this profile",
       "additionalProperties": false,
       "minProperties": 1,
       "maxProperties": 1,
       "properties": {
+        "artifact": {
+          "$ref": "#/definitions/Ls$Artifact",
+          "description": "An array of bytes representing a file-like object or a link to that object."
+        },
+        "command": {
+          "$ref": "#/definitions/Ls$Command-ID",
+          "description": "A reference to a previously issued Command."
+        },
+        "device": {
+          "$ref": "#/definitions/Ls$Device",
+          "description": "The properties of a hardware device."
+        },
+        "domain_name": {
+          "$ref": "#/definitions/Ls$Domain-Name",
+          "description": "A network domain name."
+        },
+        "email_addr": {
+          "$ref": "#/definitions/Ls$Email-Addr",
+          "description": "A single email address."
+        },
         "features": {
           "$ref": "#/definitions/Ls$Features",
-          "description": "A set of items used with the query Action to determine an Actuator's capabilities"
+          "description": "A set of items used with the query Action to determine an Actuator's capabilities."
         },
         "file": {
           "$ref": "#/definitions/Ls$File",
-          "description": "Properties of a file"
+          "description": "Properties of a file."
+        },
+        "idn_domain_name": {
+          "$ref": "#/definitions/Ls$IDN-Domain-Name",
+          "description": "An internationalized domain name."
+        },
+        "idn_email_addr": {
+          "$ref": "#/definitions/Ls$IDN-Email-Addr",
+          "description": "A single internationalized email address."
         },
         "ipv4_net": {
           "$ref": "#/definitions/Ls$IPv4-Net",
-          "description": "An IPv4 address range including CIDR prefix length"
+          "description": "An IPv4 address range including CIDR prefix length."
         },
         "ipv6_net": {
           "$ref": "#/definitions/Ls$IPv6-Net",
-          "description": "An IPv6 address range including prefix length"
+          "description": "An IPv6 address range including prefix length."
         },
         "ipv4_connection": {
           "$ref": "#/definitions/Ls$IPv4-Connection",
-          "description": "A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol"
+          "description": "A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol."
         },
         "ipv6_connection": {
           "$ref": "#/definitions/Ls$IPv6-Connection",
-          "description": "A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol"
+          "description": "A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol."
         },
-        "slpf": {
-          "$ref": "#/definitions/P-Target",
-          "description": "Targets defined in this profile"
+        "iri": {
+          "$ref": "#/definitions/Ls$IRI",
+          "description": "An internationalized resource identifier (IRI)."
+        },
+        "mac_addr": {
+          "$ref": "#/definitions/Ls$MAC-Addr",
+          "description": "A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [EUI]."
+        },
+        "process": {
+          "$ref": "#/definitions/Ls$Process",
+          "description": "Common properties of an instance of a computer program as executed on an operating system."
+        },
+        "properties": {
+          "$ref": "#/definitions/Ls$Properties",
+          "description": "Data attribute associated with an Actuator."
+        },
+        "uri": {
+          "$ref": "#/definitions/Ls$URI",
+          "description": "A uniform resource identifier (URI)."
         }
       }
     },
@@ -216,12 +182,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
-      "properties": {
-        "slpf": {
-          "$ref": "#/definitions/P-Specifiers",
-          "description": "Actuator Specifiers defined in this profile"
-        }
-      }
+      "properties": {}
     },
     "Args": {
       "title": "Args",
@@ -244,10 +205,6 @@
         "response_requested": {
           "$ref": "#/definitions/Ls$Response-Type",
           "description": "The type of Response required for the Command: none, ack, status, complete"
-        },
-        "slpf": {
-          "$ref": "#/definitions/P-Args",
-          "description": "Command Arguments defined in this profile"
         }
       }
     },
@@ -259,8 +216,15 @@
       "minProperties": 1,
       "properties": {
         "versions": {
-          "$ref": "#/definitions/Ls$Version",
-          "description": "List of OpenC2 language versions supported by this Actuator"
+          "type": "array",
+          "description": "List of OpenC2 language versions supported by this Actuator",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Ls$Version",
+            "description": "List of OpenC2 language versions supported by this Actuator"
+          }
         },
         "profiles": {
           "type": "array",
@@ -280,33 +244,74 @@
           "type": "number",
           "description": "Maximum number of requests per minute supported by design or policy",
           "minimum": 0
-        },
-        "slpf": {
-          "$ref": "#/definitions/P-Results",
-          "description": "Results defined in this profile"
         }
       }
     },
     "Action-Targets": {
       "title": "Action Targets",
       "type": "object",
-      "description": "Targets applicable to each action",
+      "description": "Map of each action supported by this actuator to the list of targets applicable to that action",
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
+        "scan": {
+          "$ref": "#/definitions/Targets"
+        },
+        "locate": {
+          "$ref": "#/definitions/Targets"
+        },
         "query": {
           "$ref": "#/definitions/Targets"
         },
         "deny": {
           "$ref": "#/definitions/Targets"
         },
+        "contain": {
+          "$ref": "#/definitions/Targets"
+        },
         "allow": {
+          "$ref": "#/definitions/Targets"
+        },
+        "start": {
+          "$ref": "#/definitions/Targets"
+        },
+        "stop": {
+          "$ref": "#/definitions/Targets"
+        },
+        "restart": {
+          "$ref": "#/definitions/Targets"
+        },
+        "cancel": {
+          "$ref": "#/definitions/Targets"
+        },
+        "set": {
           "$ref": "#/definitions/Targets"
         },
         "update": {
           "$ref": "#/definitions/Targets"
         },
+        "redirect": {
+          "$ref": "#/definitions/Targets"
+        },
+        "create": {
+          "$ref": "#/definitions/Targets"
+        },
         "delete": {
+          "$ref": "#/definitions/Targets"
+        },
+        "detonate": {
+          "$ref": "#/definitions/Targets"
+        },
+        "restore": {
+          "$ref": "#/definitions/Targets"
+        },
+        "copy": {
+          "$ref": "#/definitions/Targets"
+        },
+        "investigate": {
+          "$ref": "#/definitions/Targets"
+        },
+        "remediate": {
           "$ref": "#/definitions/Targets"
         }
       }
@@ -320,38 +325,26 @@
       "maxItems": 100,
       "items": {
         "enum": [
+          "artifact",
+          "command",
+          "device",
+          "domain_name",
+          "email_addr",
           "features",
           "file",
+          "idn_domain_name",
+          "idn_email_addr",
           "ipv4_net",
           "ipv6_net",
           "ipv4_connection",
           "ipv6_connection",
-          "slpf"
+          "iri",
+          "mac_addr",
+          "process",
+          "properties",
+          "uri"
         ]
       }
-    },
-    "Drop-Process": {
-      "title": "Drop Process",
-      "type": "string",
-      "enum": [
-        "none",
-        "reject",
-        "false_ack"
-      ]
-    },
-    "Direction": {
-      "title": "Direction",
-      "type": "string",
-      "enum": [
-        "both",
-        "ingress",
-        "egress"
-      ]
-    },
-    "Rule-ID": {
-      "title": "Rule ID",
-      "type": "integer",
-      "description": "Access rule identifier"
     },
     "Ls$Status-Code": {
       "title": "Ls$Status Code",
@@ -368,6 +361,58 @@
         501,
         503
       ]
+    },
+    "Ls$Artifact": {
+      "title": "Ls$Artifact",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "mime_type": {
+          "type": "string",
+          "description": "Permitted values specified in the IANA Media Types registry, [RFC6838]"
+        },
+        "payload": {
+          "$ref": "#/definitions/Ls$Payload",
+          "description": "Choice of literal content or URL"
+        },
+        "hashes": {
+          "$ref": "#/definitions/Ls$Hashes",
+          "description": "Hashes of the payload content"
+        }
+      }
+    },
+    "Ls$Device": {
+      "title": "Ls$Device",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "hostname": {
+          "$ref": "#/definitions/Ls$Hostname",
+          "description": "A hostname that can be used to connect to this device over a network"
+        },
+        "idn_hostname": {
+          "$ref": "#/definitions/Ls$IDN-Hostname",
+          "description": "An internationalized hostname that can be used to connect to this device over a network"
+        },
+        "device_id": {
+          "type": "string",
+          "description": "An identifier that refers to this device within an inventory or management system"
+        }
+      }
+    },
+    "Ls$Domain-Name": {
+      "title": "Ls$Domain Name",
+      "type": "string",
+      "description": "[RFC1034], Section 3.5",
+      "format": "hostname"
+    },
+    "Ls$Email-Addr": {
+      "title": "Ls$Email Addr",
+      "type": "string",
+      "description": "Email address - [RFC5322], Section 3.4.1",
+      "format": "email"
     },
     "Ls$Features": {
       "title": "Ls$Features",
@@ -386,11 +431,11 @@
       "minProperties": 1,
       "properties": {
         "name": {
-          "$ref": "#/definitions/Ls$String",
+          "type": "string",
           "description": "The name of the file as defined in the file system"
         },
         "path": {
-          "$ref": "#/definitions/Ls$String",
+          "type": "string",
           "description": "The absolute path to the location of the file in the file system"
         },
         "hashes": {
@@ -398,6 +443,18 @@
           "description": "One or more cryptographic hash codes of the file contents"
         }
       }
+    },
+    "Ls$IDN-Domain-Name": {
+      "title": "Ls$IDN Domain Name",
+      "type": "string",
+      "description": "Internationalized Domain Name - [RFC5890], Section 2.3.2.3",
+      "format": "idn-hostname"
+    },
+    "Ls$IDN-Email-Addr": {
+      "title": "Ls$IDN Email Addr",
+      "type": "string",
+      "description": "Internationalized email address - [RFC6531]",
+      "format": "idn-email"
     },
     "Ls$IPv4-Net": {
       "title": "Ls$IPv4 Net",
@@ -469,6 +526,67 @@
         }
       }
     },
+    "Ls$IRI": {
+      "title": "Ls$IRI",
+      "type": "string",
+      "description": "Internationalized Resource Identifier, [RFC3987]",
+      "format": "iri"
+    },
+    "Ls$MAC-Addr": {
+      "title": "Ls$MAC Addr",
+      "type": "string",
+      "description": "Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI]",
+      "pattern": "^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$"
+    },
+    "Ls$Process": {
+      "title": "Ls$Process",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "description": "Process ID of the process",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the process"
+        },
+        "cwd": {
+          "type": "string",
+          "description": "Current working directory of the process"
+        },
+        "executable": {
+          "$ref": "#/definitions/Ls$File",
+          "description": "Executable that was executed to start the process"
+        },
+        "parent": {
+          "$ref": "#/definitions/Ls$Process",
+          "description": "Process that spawned this one"
+        },
+        "command_line": {
+          "type": "string",
+          "description": "The full command line invocation used to start this process, including all arguments"
+        }
+      }
+    },
+    "Ls$Properties": {
+      "title": "Ls$Properties",
+      "type": "array",
+      "description": "A list of names that uniquely identify properties of an Actuator.",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "Ls$URI": {
+      "title": "Ls$URI",
+      "type": "string",
+      "description": "Uniform Resource Identifier, [RFC3986]",
+      "format": "uri"
+    },
     "Ls$Date-Time": {
       "title": "Ls$Date Time",
       "type": "integer",
@@ -500,18 +618,33 @@
       "minProperties": 1,
       "properties": {
         "md5": {
-          "$ref": "#/definitions/Ls$Binary",
-          "description": "MD5 hash as defined in [RFC1321]"
+          "type": "string",
+          "description": "MD5 hash as defined in [RFC1321]",
+          "contentEncoding": "base16"
         },
         "sha1": {
-          "$ref": "#/definitions/Ls$Binary",
-          "description": "SHA1 hash as defined in [RFC6234]"
+          "type": "string",
+          "description": "SHA1 hash as defined in [RFC6234]",
+          "contentEncoding": "base16"
         },
         "sha256": {
-          "$ref": "#/definitions/Ls$Binary",
-          "description": "SHA256 hash as defined in [RFC6234]"
+          "type": "string",
+          "description": "SHA256 hash as defined in [RFC6234]",
+          "contentEncoding": "base16"
         }
       }
+    },
+    "Ls$Hostname": {
+      "title": "Ls$Hostname",
+      "type": "string",
+      "description": "Internet host name as specified in [RFC1123]",
+      "format": "hostname"
+    },
+    "Ls$IDN-Hostname": {
+      "title": "Ls$IDN Hostname",
+      "type": "string",
+      "description": "Internationalized Internet host name as specified in [RFC5890], Section 2.3.2.3",
+      "format": "idn-hostname"
     },
     "Ls$IPv4-Addr": {
       "title": "Ls$IPv4 Addr",
@@ -535,6 +668,24 @@
         "udp",
         "sctp"
       ]
+    },
+    "Ls$Payload": {
+      "title": "Ls$Payload",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "bin": {
+          "type": "string",
+          "description": "Specifies the data contained in the artifact",
+          "contentEncoding": "base64url"
+        },
+        "url": {
+          "$ref": "#/definitions/Ls$URI",
+          "description": "MUST be a valid URL that resolves to the un-encoded content"
+        }
+      }
     },
     "Ls$Port": {
       "title": "Ls$Port",
@@ -568,7 +719,7 @@
       "title": "Ls$Command ID",
       "type": "string",
       "description": "Command Identifier",
-      "pattern": "^\\S{0,32}$"
+      "pattern": "^\\S{0,36}$"
     }
   }
 }

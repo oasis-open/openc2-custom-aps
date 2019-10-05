@@ -1,10 +1,10 @@
-<!-- Generated from schema\oc2slpf-v1.0-refs_resolved.jadn, Thu Oct  3 10:22:43 2019-->
+<!-- Generated from schema\oc2slpf-v1.1_resolved.jadn, Sat Oct  5 11:58:12 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
-| **title:** | Stateless Packet Filtering |
-| **module:** | http://oasis-open.org/openc2/oc2slpf/v1.0.1 |
-| **patch:** | 0-csprd03 |
+| **title:** | Stateless Packet Filtering Profile |
+| **module:** | http://oasis-open.org/openc2/oc2slpf/v1.1 |
+| **patch:** | 0-wd01 |
 | **description:** | Data definitions for Stateless Packet Filtering (SLPF) functions |
 | **exports:** | OpenC2-Command, OpenC2-Response, P-Target, P-Specifiers, P-Args, P-Results |
 
@@ -159,8 +159,8 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **name** | Ls$String | 0..1 | The name of the file as defined in the file system |
-| 2 | **path** | Ls$String | 0..1 | The absolute path to the location of the file in the file system |
+| 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
+| 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Ls$Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
 **_Type: Ls$IPv4-Net (Array /ipv4-net)_**
@@ -168,7 +168,7 @@
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
 | 1 | Ls$IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
-| 2 | Ls$Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
+| 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
 
 **_Type: Ls$IPv4-Connection (Record{1..*})_**
 
@@ -185,7 +185,7 @@
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
 | 1 | Ls$IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
-| 2 | Ls$Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
+| 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
 
 **_Type: Ls$IPv6-Connection (Record{1..*})_**
 
@@ -220,9 +220,9 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **md5** | Ls$Binary /x | 0..1 | MD5 hash as defined in [RFC1321] |
-| 2 | **sha1** | Ls$Binary /x | 0..1 | SHA1 hash as defined in [RFC6234] |
-| 3 | **sha256** | Ls$Binary /x | 0..1 | SHA256 hash as defined in [RFC6234] |
+| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC1321] |
+| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC6234] |
+| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [RFC6234] |
 
 
 | Type Name | Type Definition | Description |
@@ -270,4 +270,4 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Command-ID** | String(%^\S{0,32}$%) | Command Identifier |
+| **Ls$Command-ID** | String(%^\S{0,36}$%) | Command Identifier |
