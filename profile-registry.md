@@ -21,7 +21,9 @@ Other specifications MAY refer to a Namespace using the ID or Name values shown 
 
 Specifications, including but not limited to Actuator Profiles, may refer to types defined in the OpenC2 Language Specification using the following Namespaces.  ID/Name values for referenced types are defined by the referencing specifications; no suggested values are provided here.
 
-| Namespace                                  | Description |
-| ------------------------------------------ | ----------- |
-| http://oasis-open.org/openc2/oc2ls/v1.0    | OpenC2 Language Specification, Committee Spec v1.0 |
-| http://oasis-open.org/openc2/oc2ls/v1.0.1  | OpenC2 Language Specification, Committee Spec v1.0, Errata #1 |
+| Namespace                                      | Description |
+| ---------------------------------------------- | ----------- |
+| http://oasis-open.org/openc2/oc2ls/v1.0        | OpenC2 Language Specification, Committee Spec v1.0 |
+| http://oasis-open.org/openc2/oc2ls/v1.0.1      | OpenC2 Language Specification, Committee Spec v1.0, Errata #1 |
+| http://oasis-open.org/openc2/oc2ls/v1.1        | OpenC2 Language Profile, v1.1 |
+| http://oasis-open.org/openc2/oc2ls-types/v1.1  | OpenC2 Language Types, v1.1 |
