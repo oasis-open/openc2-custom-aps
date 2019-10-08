@@ -106,7 +106,7 @@
 | 14 | number.json | Fail: 3.14159 is not of type 'object'|
 | 15 | number_integer.json | Fail: 100 is not of type 'object'|
 | 16 | openc2_response.json | Fail: Additional properties are not allowed ('status' was unexpected)|
-| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status', 'status_text' were unexpected)|
+| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status_text', 'status' were unexpected)|
 | 18 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements|
 | 19 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit']|
 | 20 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties|
@@ -179,43 +179,42 @@
 ### slpf-acme/commands-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('uri' was unexpected)|
-| 2 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('properties' was unexpected)|
-| 3 | query_features_ext_args.json | Fail: Additional properties are not allowed ('x-mycompany' was unexpected)|
-| 4 | query_features_ext_args_all.json | Fail: Additional properties are not allowed ('x-0123456789_ABCDEFG_abcdefg___' was unexpected)|
-| 5 | query_features_ext_args_underscore.json | Fail: Additional properties are not allowed ('x-mycompany_with_underscore' was unexpected)|
-| 6 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x-acme:features' was unexpected)|
-| 7 | query_features_extension_args_number.json | Fail: Additional properties are not allowed ('x-395' was unexpected)|
-| 8 | set_properties_firewall_status.json | Fail: 'set' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 9 | start_container_ext_target.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 10 | start_container_ext_target_ext_actuator.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 11 | start_container_ext_target_ext_actuator_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 12 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 13 | stop_container_ext_target.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 1 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('x_acme' was unexpected)|
+| 2 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x_esm' was unexpected)|
+| 3 | query_features_all_badprofile.json | Fail: Additional properties are not allowed ('status_text', 'results', 'status' were unexpected)|
+| 4 | query_features_ext_args.json | Fail: Additional properties are not allowed ('x_mycompany' was unexpected)|
+| 5 | query_features_ext_args_all.json | Fail: Additional properties are not allowed ('x_0123456789_ABCDEFG_abcdefg___' was unexpected)|
+| 6 | query_features_ext_args_underscore.json | Fail: Additional properties are not allowed ('x_mycompany_with_underscore' was unexpected)|
+| 7 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x_acme:features' was unexpected)|
+| 8 | query_features_extension_args_number.json | Fail: Additional properties are not allowed ('x_395' was unexpected)|
+| 9 | results_unknown_profile.json | Fail: Additional properties are not allowed ('status_text', 'results', 'status' were unexpected)|
+| 10 | set_properties_firewall_status.json | Fail: Additional properties are not allowed ('x_acme' was unexpected)|
+| 11 | start_container_ext_target.json | Fail: Additional properties are not allowed ('x_acme:container' was unexpected)|
+| 12 | start_container_ext_target_ext_actuator.json | Fail: Additional properties are not allowed ('x_acme:container' was unexpected)|
+| 13 | start_container_ext_target_ext_actuator_ext_args.json | Fail: Additional properties are not allowed ('x_acme:container' was unexpected)|
+| 14 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: Additional properties are not allowed ('x_acme:container' was unexpected)|
+| 15 | stop_container_ext_target.json | Fail: Additional properties are not allowed ('x_acme:container' was unexpected)|
 ### slpf-acme/commands-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X-mycompany' was unexpected)|
-| 2 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected)|
+| 1 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X_mycompany' was unexpected)|
+| 2 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x_mycompany.example.com' was unexpected)|
 | 3 | query_features_ext_args_nox-.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
-| 4 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected)|
-| 5 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected)|
-| 6 | start_container_ext_specialchar1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 7 | start_container_ext_specialchar2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 8 | start_container_ext_underscore_first1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-| 9 | start_container_ext_underscore_first2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 4 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x_mycompany/foo;bar' was unexpected)|
+| 5 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x_mycompany:features', 'x_acme:features' were unexpected)|
+| 6 | start_container_ext_specialchar1.json | Fail: Additional properties are not allowed ('x_acm&e:container' was unexpected)|
+| 7 | start_container_ext_specialchar2.json | Fail: Additional properties are not allowed ('x_acme:conta$iner' was unexpected)|
+| 8 | start_container_ext_underscore_first1.json | Fail: Additional properties are not allowed ('x__acme:container' was unexpected)|
+| 9 | start_container_ext_underscore_first2.json | Fail: Additional properties are not allowed ('x_acme:_container' was unexpected)|
 ### slpf-acme/responses-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x-esm' was unexpected)|
-| 2 | results_ext_empty.json | Fail: Additional properties are not allowed ('x-acme' was unexpected)|
-| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'x-mycompany' were unexpected)|
-| 4 | results_ext_single.json | Fail: Additional properties are not allowed ('x-mycompany' was unexpected)|
+| 1 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x_esm' was unexpected)|
+| 2 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x_acme', 'x_mycompany' were unexpected)|
+| 3 | results_ext_single.json | Fail: Additional properties are not allowed ('x_mycompany' was unexpected)|
 ### slpf-acme/responses-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | query_features_all_badprofile.json | Fail: ['1.0-draft-2019-02'] is not of type 'string'|
-| 2 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
+| 1 | results_ext_empty.json | Fail: Additional properties are not allowed ('x_acme' was unexpected)|
 
-### Validation Errors: {'cg': '14/102', 'cb': '0/33', 'rg': '5/22', 'rb': '2/18'}
-
+### Validation Errors: {'cg': '16/104', 'cb': '0/33', 'rg': '4/21', 'rb': '2/17'}
