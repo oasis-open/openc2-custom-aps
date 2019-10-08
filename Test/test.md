@@ -150,8 +150,6 @@
 | 11 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
 | 12 | statustext_nostatus.json | Fail: 'status' is a required property|
 | 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
-  Merge http://oasis-open.org/openc2/oc2ls-types/v1.1 into http://oasis-open.org/openc2/oc2slpf/v1.1
-*
 
 ### slpf/commands-good/, Schema=oc2slpf-v1.1.jadn
 |  #  | Name | Results |
