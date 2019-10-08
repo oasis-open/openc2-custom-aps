@@ -1,6 +1,7 @@
 ## Auto-generated JSON Schema oc2ls-v1.1-lang.jadn test results
 ### bberliner test suite
 
+JADN Schema: oc2ls-v1.1-lang.jadn
 ### commands/good/
 |  #  | Name |     |
 | --- | ---- | --- |
@@ -75,7 +76,7 @@
 | 69 | deny_file_hashes_sha1_sha256.json | |
 | 70 | deny_file_hashes_sha256.json | |
 | 71 | deny_macaddr.json | |
-| 72 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('slpf', 'x-acme' were unexpected) |
+| 72 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'slpf' were unexpected) |
 | 73 | https_example_deny_file_hashes.json | |
 | 74 | ls_example_contain_device.json | |
 | 75 | ls_example_deny_ipv4connection.json | Fail: Additional properties are not allowed ('slpf' was unexpected) |
@@ -112,12 +113,12 @@
 | 1 | action_notarget.json | Fail: 'target' is a required property |
 | 2 | action_notarget_id.json | Fail: 'target' is a required property |
 | 3 | action_unknown.json | Fail: 'unknown' is not one of ['scan', 'locate', 'query', 'deny', 'contain', 'allow', 'start', 'stop', 'restart', 'cancel', 'set', 'update', 'redirect', 'create', 'delete', 'detonate', 'restore', 'copy', 'investigate', 'remediate'] |
-| 4 | allow_ipv4net_badcidr.json | |
-| 5 | allow_ipv4net_badip.json | |
-| 6 | allow_ipv6net_wikipedia3.json | |
+| 4 | allow_ipv4net_badcidr.json | Fail: '127.0.0.1/64' does not match '^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])(\\/(3[0-2]|[0-2]?[0-9]))?$' |
+| 5 | allow_ipv4net_badip.json | Fail: '127.0.0.300' does not match '^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])(\\/(3[0-2]|[0-2]?[0-9]))?$' |
+| 6 | allow_ipv6net_wikipedia3.json | Fail: '2001::85a3::8a2e:370:7334' does not match '^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(%.+)?s*(\\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$' |
 | 7 | args_empty.json | Fail: {} does not have enough properties |
-| 8 | deny_file_hashes_empty.json | |
-| 9 | deny_file_hashes_sha512.json | |
+| 8 | deny_file_hashes_empty.json | Fail: {} does not have enough properties |
+| 9 | deny_file_hashes_sha512.json | Fail: Additional properties are not allowed ('sha512' was unexpected) |
 | 10 | deny_uri_actuator_empty.json | Fail: {} does not have enough properties |
 | 11 | empty.json | Bad JSON: Expecting value '' |
 | 12 | empty_array.json | Fail: [] is not of type 'object' |
@@ -125,14 +126,14 @@
 | 14 | number.json | Fail: 3.14159 is not of type 'object' |
 | 15 | number_integer.json | Fail: 100 is not of type 'object' |
 | 16 | openc2_response.json | Fail: Additional properties are not allowed ('status' was unexpected) |
-| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status', 'status_text' were unexpected) |
+| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status_text', 'status' were unexpected) |
 | 18 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X-mycompany' was unexpected) |
 | 19 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected) |
 | 20 | query_features_ext_args_nox-.json | Fail: Additional properties are not allowed ('mycompany' was unexpected) |
 | 21 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected) |
-| 22 | query_features_notunique.json | |
-| 23 | query_features_unknown.json | |
-| 24 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected) |
+| 22 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements |
+| 23 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit'] |
+| 24 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-mycompany:features', 'x-acme:features' were unexpected) |
 | 25 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties |
 | 26 | start_container_ext_nocolon.json | Fail: Additional properties are not allowed ('container' was unexpected) |
 | 27 | start_container_ext_noprofile.json | Fail: Additional properties are not allowed (':container' was unexpected) |
@@ -173,16 +174,16 @@
 | 1 | empty.json | Bad JSON: Expecting value '' |
 | 2 | empty_array.json | Fail: [] is not of type 'object' |
 | 3 | empty_object.json | Fail: 'status' is a required property |
-| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected) |
+| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('action', 'target' were unexpected) |
 | 5 | query_features_all_badprofile.json | |
 | 6 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected) |
-| 7 | status_asbool.json | |
+| 7 | status_asbool.json | Fail: True is not of type 'integer' |
 | 8 | status_asdouble.json | |
-| 9 | status_asstring.json | |
-| 10 | status_negative.json | |
-| 11 | status_too_high.json | |
-| 12 | status_too_low.json | |
+| 9 | status_asstring.json | Fail: '200' is not of type 'integer' |
+| 10 | status_negative.json | Fail: -201 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503] |
+| 11 | status_too_high.json | Fail: 5555 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503] |
+| 12 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503] |
 | 13 | statustext_nostatus.json | Fail: 'status' is a required property |
 | 14 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected) |
 
-  Validation Errors: {'cg': '20/102', 'cb': '7/33', 'rg': '8/22', 'rb': '7/14'}
+  Validation Errors: {'cg': '20/102', 'cb': '0/33', 'rg': '8/22', 'rb': '2/14'}

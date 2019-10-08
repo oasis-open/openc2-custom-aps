@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.1_resolved.jadn, Sat Oct  5 11:58:12 2019 */
+/* Generated from schema\oc2slpf-v1.1_resolved.jadn, Tue Oct  8 11:35:29 2019 */
 
        title: Stateless Packet Filtering Profile
       module: http://oasis-open.org/openc2/oc2slpf/v1.1
@@ -11,11 +11,11 @@ OpenC2-Command = Record {
      2 target          Target,                   // The object referenced by the Action
      3 args            Args optional,            // Additional information that applies to the Command
      4 actuator        Actuator optional,        // The profile that defines the Command
-     5 command_id      Ls$Command-ID optional    // An identifier of this Command
+     5 command_id      Command-ID optional       // An identifier of this Command
 }
 
 OpenC2-Response = Map {
-     1 status          Ls$Status-Code,           // Integer status code
+     1 status          Status-Code,              // Integer status code
      2 status_text     String optional,          // Free-form description of the Response status
      3 results         Results optional          // Results returned by the invoked Command
 }
@@ -29,12 +29,12 @@ Action = Enumerated {                        // Actions used in this profile
 }
 
 Target = Choice {                            // Targets used in this profile
-     9 features        Ls$Features,              // A set of items used with the query Action to determine an Actuator's capabilities
-    10 file            Ls$File,                  // Properties of a file
-    13 ipv4_net        Ls$IPv4-Net,              // An IPv4 address range including CIDR prefix length
-    14 ipv6_net        Ls$IPv6-Net,              // An IPv6 address range including prefix length
-    15 ipv4_connection Ls$IPv4-Connection,       // A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol
-    16 ipv6_connection Ls$IPv6-Connection,       // A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol
+     9 features        Features,                 // A set of items used with the query Action to determine an Actuator's capabilities
+    10 file            File,                     // Properties of a file
+    13 ipv4_net        IPv4-Net,                 // An IPv4 address range including CIDR prefix length
+    14 ipv6_net        IPv6-Net,                 // An IPv6 address range including prefix length
+    15 ipv4_connection IPv4-Connection,          // A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol
+    16 ipv6_connection IPv6-Connection,          // A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol
   1024 slpf/           P-Target                  // Targets defined in this profile
 }
 
@@ -43,16 +43,16 @@ Actuator = Map{1..*} {
 }
 
 Args = Map{1..*} {
-     1 start_time      Ls$Date-Time optional,    // The specific date/time to initiate the Command
-     2 stop_time       Ls$Date-Time optional,    // The specific date/time to terminate the Command
-     3 duration        Ls$Duration optional,     // The length of time for an Command to be in effect
-     4 response_requested Ls$Response-Type optional, // The type of Response required for the Command: none, ack, status, complete
+     1 start_time      Date-Time optional,       // The specific date/time to initiate the Command
+     2 stop_time       Date-Time optional,       // The specific date/time to terminate the Command
+     3 duration        Duration optional,        // The length of time for an Command to be in effect
+     4 response_requested Response-Type optional, // The type of Response required for the Command: none, ack, status, complete
   1024 slpf            P-Args optional           // Command Arguments defined in this profile
 }
 
 Results = Map{1..*} {                        // Response Results
-     1 versions        Ls$Version optional,      // List of OpenC2 language versions supported by this Actuator
-     2 profiles        Ls$Namespace [0..*] unique, // List of profiles supported by this Actuator
+     1 versions        Version optional,         // List of OpenC2 language versions supported by this Actuator
+     2 profiles        Namespace [0..*] unique,  // List of profiles supported by this Actuator
      3 pairs           Action-Targets optional,  // List of targets applicable to each supported Action
      4 rate_limit      Number{0..*} optional,    // Maximum number of requests per minute supported by design or policy
   1024 slpf            P-Results optional        // Results defined in this profile
@@ -98,7 +98,7 @@ Direction = Enumerated {
 
 Rule-ID = Integer                            // Access rule identifier
 
-Ls$Status-Code = Enumerated.ID {
+Status-Code = Enumerated.ID {
    102                                           // Processing:: an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it
    200                                           // OK:: the Command has succeeded
    201                                           // Created:: the Command has succeeded and a new resource has been created as a result of it
@@ -111,79 +111,79 @@ Ls$Status-Code = Enumerated.ID {
    503                                           // Service Unavailable:: the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer
 }
 
-Ls$Features = ArrayOf(Ls$Feature){0..10} unique // An array of zero to ten names used to query an Actuator for its supported capabilities.
+Features = ArrayOf(Feature){0..10} unique    // An array of zero to ten names used to query an Actuator for its supported capabilities.
 
-Ls$File = Map{1..*} {
+File = Map{1..*} {
      1 name            String optional,          // The name of the file as defined in the file system
      2 path            String optional,          // The absolute path to the location of the file in the file system
-     3 hashes          Ls$Hashes optional        // One or more cryptographic hash codes of the file contents
+     3 hashes          Hashes optional           // One or more cryptographic hash codes of the file contents
 }
 
-Ls$IPv4-Net = Array /ipv4-net {              // IPv4 address and prefix length
-     1 Ls$IPv4-Addr,                             // ipv4_addr:: IPv4 address as defined in [RFC0791]
+IPv4-Net = Array /ipv4-net {                 // IPv4 address and prefix length
+     1 IPv4-Addr,                                // ipv4_addr:: IPv4 address as defined in [RFC0791]
      2 Integer optional                          // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
 }
 
-Ls$IPv4-Connection = Record{1..*} {          // 5-tuple that specifies a tcp/ip connection
-     1 src_addr        Ls$IPv4-Net optional,     // IPv4 source address range
-     2 src_port        Ls$Port optional,         // Source service per [RFC6335]
-     3 dst_addr        Ls$IPv4-Net optional,     // IPv4 destination address range
-     4 dst_port        Ls$Port optional,         // Destination service per [RFC6335]
-     5 protocol        Ls$L4-Protocol optional   // Layer 4 protocol (e.g., TCP) - see L4-Protocol section
+IPv4-Connection = Record{1..*} {             // 5-tuple that specifies a tcp/ip connection
+     1 src_addr        IPv4-Net optional,        // IPv4 source address range
+     2 src_port        Port optional,            // Source service per [RFC6335]
+     3 dst_addr        IPv4-Net optional,        // IPv4 destination address range
+     4 dst_port        Port optional,            // Destination service per [RFC6335]
+     5 protocol        L4-Protocol optional      // Layer 4 protocol (e.g., TCP) - see L4-Protocol section
 }
 
-Ls$IPv6-Net = Array /ipv6-net {              // IPv6 address and prefix length
-     1 Ls$IPv6-Addr,                             // ipv6_addr:: IPv6 address as defined in [RFC8200]
+IPv6-Net = Array /ipv6-net {                 // IPv6 address and prefix length
+     1 IPv6-Addr,                                // ipv6_addr:: IPv6 address as defined in [RFC8200]
      2 Integer optional                          // prefix_length:: prefix length. If omitted, refers to a single host address
 }
 
-Ls$IPv6-Connection = Record{1..*} {          // 5-tuple that specifies a tcp/ip connection
-     1 src_addr        Ls$IPv6-Net optional,     // IPv6 source address range
-     2 src_port        Ls$Port optional,         // Source service per [RFC6335]
-     3 dst_addr        Ls$IPv6-Net optional,     // IPv6 destination address range
-     4 dst_port        Ls$Port optional,         // Destination service per [RFC6335]
-     5 protocol        Ls$L4-Protocol optional   // Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10]
+IPv6-Connection = Record{1..*} {             // 5-tuple that specifies a tcp/ip connection
+     1 src_addr        IPv6-Net optional,        // IPv6 source address range
+     2 src_port        Port optional,            // Source service per [RFC6335]
+     3 dst_addr        IPv6-Net optional,        // IPv6 destination address range
+     4 dst_port        Port optional,            // Destination service per [RFC6335]
+     5 protocol        L4-Protocol optional      // Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10]
 }
 
-Ls$Date-Time = Integer{0..*}                 // Date and Time
+Date-Time = Integer{0..*}                    // Date and Time
 
-Ls$Duration = Integer{0..*}                  // A length of time
+Duration = Integer{0..*}                     // A length of time
 
-Ls$Feature = Enumerated {                    // Specifies the results to be returned from a query features Command
+Feature = Enumerated {                       // Specifies the results to be returned from a query features Command
      1 versions,                                 // List of OpenC2 Language versions supported by this Actuator
      2 profiles,                                 // List of profiles supported by this Actuator
      3 pairs,                                    // List of supported Actions and applicable Targets
      4 rate_limit                                // Maximum number of Commands per minute supported by design or policy
 }
 
-Ls$Hashes = Map{1..*} {                      // Cryptographic Hash values
+Hashes = Map{1..*} {                         // Cryptographic Hash values
      1 md5             Binary /x optional,       // MD5 hash as defined in [RFC1321]
      2 sha1            Binary /x optional,       // SHA1 hash as defined in [RFC6234]
      3 sha256          Binary /x optional        // SHA256 hash as defined in [RFC6234]
 }
 
-Ls$IPv4-Addr = Binary /ipv4-addr             // 32 bit IPv4 address as defined in [RFC0791]
+IPv4-Addr = Binary /ipv4-addr                // 32 bit IPv4 address as defined in [RFC0791]
 
-Ls$IPv6-Addr = Binary /ipv6-addr             // 128 bit IPv6 address as defined in [RFC8200]
+IPv6-Addr = Binary /ipv6-addr                // 128 bit IPv6 address as defined in [RFC8200]
 
-Ls$L4-Protocol = Enumerated {                // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC5237]
+L4-Protocol = Enumerated {                   // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC5237]
      1 icmp,                                     // Internet Control Message Protocol - [RFC0792]
      6 tcp,                                      // Transmission Control Protocol - [RFC0793]
     17 udp,                                      // User Datagram Protocol - [RFC0768]
    132 sctp                                      // Stream Control Transmission Protocol - [RFC4960]
 }
 
-Ls$Port = Integer{0..65535}                  // Transport Protocol Port Number, [RFC6335]
+Port = Integer{0..65535}                     // Transport Protocol Port Number, [RFC6335]
 
-Ls$Response-Type = Enumerated {
+Response-Type = Enumerated {
      0 none,                                     // No response
      1 ack,                                      // Respond when Command received
      2 status,                                   // Respond with progress toward Command completion
      3 complete                                  // Respond when all aspects of Command completed
 }
 
-Ls$Version = String                          // Major.Minor version number
+Version = String                             // Major.Minor version number
 
-Ls$Namespace = String /uri                   // Unique name of an Actuator Profile
+Namespace = String /uri                      // Unique name of an Actuator Profile
 
-Ls$Command-ID = String(%^\S{0,36}$%)         // Command Identifier
+Command-ID = String(%^\S{0,36}$%)            // Command Identifier

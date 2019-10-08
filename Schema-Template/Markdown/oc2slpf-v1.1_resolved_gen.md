@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2slpf-v1.1_resolved.jadn, Sat Oct  5 11:58:12 2019-->
+<!-- Generated from schema\oc2slpf-v1.1_resolved.jadn, Tue Oct  8 11:35:29 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -16,13 +16,13 @@
 | 2 | **target** | Target | 1 | The object referenced by the Action |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command |
 | 4 | **actuator** | Actuator | 0..1 | The profile that defines the Command |
-| 5 | **command_id** | Ls$Command-ID | 0..1 | An identifier of this Command |
+| 5 | **command_id** | Command-ID | 0..1 | An identifier of this Command |
 
 **_Type: OpenC2-Response (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **status** | Ls$Status-Code | 1 | Integer status code |
+| 1 | **status** | Status-Code | 1 | Integer status code |
 | 2 | **status_text** | String | 0..1 | Free-form description of the Response status |
 | 3 | **results** | Results | 0..1 | Results returned by the invoked Command |
 
@@ -40,12 +40,12 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 9 | **features** | Ls$Features | 1 | A set of items used with the query Action to determine an Actuator's capabilities |
-| 10 | **file** | Ls$File | 1 | Properties of a file |
-| 13 | **ipv4_net** | Ls$IPv4-Net | 1 | An IPv4 address range including CIDR prefix length |
-| 14 | **ipv6_net** | Ls$IPv6-Net | 1 | An IPv6 address range including prefix length |
-| 15 | **ipv4_connection** | Ls$IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
-| 16 | **ipv6_connection** | Ls$IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
+| 9 | **features** | Features | 1 | A set of items used with the query Action to determine an Actuator's capabilities |
+| 10 | **file** | File | 1 | Properties of a file |
+| 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length |
+| 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length |
+| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
+| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
 | 1024 | **slpf/** | P-Target | 1 | Targets defined in this profile |
 
 **_Type: Actuator (Map{1..*})_**
@@ -58,18 +58,18 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **start_time** | Ls$Date-Time | 0..1 | The specific date/time to initiate the Command |
-| 2 | **stop_time** | Ls$Date-Time | 0..1 | The specific date/time to terminate the Command |
-| 3 | **duration** | Ls$Duration | 0..1 | The length of time for an Command to be in effect |
-| 4 | **response_requested** | Ls$Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Command |
+| 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Command |
+| 3 | **duration** | Duration | 0..1 | The length of time for an Command to be in effect |
+| 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
 | 1024 | **slpf** | P-Args | 0..1 | Command Arguments defined in this profile |
 
 **_Type: Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **versions** | Ls$Version | 0..1 | List of OpenC2 language versions supported by this Actuator |
-| 2 | **profiles** | Ls$Namespace unique | 0..* | List of profiles supported by this Actuator |
+| 1 | **versions** | Version | 0..1 | List of OpenC2 language versions supported by this Actuator |
+| 2 | **profiles** | Namespace unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | P-Results | 0..1 | Results defined in this profile |
@@ -135,7 +135,7 @@
 | :--- | :--- | :--- |
 | **Rule-ID** | Integer | Access rule identifier |
 
-**_Type: Ls$Status-Code (Enumerated.ID)_**
+**_Type: Status-Code (Enumerated.ID)_**
 
 | ID | Description |
 | ---: | :--- |
@@ -153,61 +153,61 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Features** | ArrayOf(Ls$Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
 
-**_Type: Ls$File (Map{1..*})_**
+**_Type: File (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
-| 3 | **hashes** | Ls$Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
+| 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-**_Type: Ls$IPv4-Net (Array /ipv4-net)_**
+**_Type: IPv4-Net (Array /ipv4-net)_**
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | Ls$IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
+| 1 | IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
 | 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
 
-**_Type: Ls$IPv4-Connection (Record{1..*})_**
+**_Type: IPv4-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **src_addr** | Ls$IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Ls$Port | 0..1 | Source service per [RFC6335] |
-| 3 | **dst_addr** | Ls$IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Ls$Port | 0..1 | Destination service per [RFC6335] |
-| 5 | **protocol** | Ls$L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see L4-Protocol section |
+| 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
+| 2 | **src_port** | Port | 0..1 | Source service per [RFC6335] |
+| 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [RFC6335] |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see L4-Protocol section |
 
-**_Type: Ls$IPv6-Net (Array /ipv6-net)_**
+**_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | Ls$IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
+| 1 | IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
 | 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
 
-**_Type: Ls$IPv6-Connection (Record{1..*})_**
+**_Type: IPv6-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **src_addr** | Ls$IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Ls$Port | 0..1 | Source service per [RFC6335] |
-| 3 | **dst_addr** | Ls$IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Ls$Port | 0..1 | Destination service per [RFC6335] |
-| 5 | **protocol** | Ls$L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10] |
+| 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
+| 2 | **src_port** | Port | 0..1 | Source service per [RFC6335] |
+| 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [RFC6335] |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10] |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Date-Time** | Integer{0..*} | Date and Time |
+| **Date-Time** | Integer{0..*} | Date and Time |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Duration** | Integer{0..*} | A length of time |
+| **Duration** | Integer{0..*} | A length of time |
 
-**_Type: Ls$Feature (Enumerated)_**
+**_Type: Feature (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
@@ -216,7 +216,7 @@
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
-**_Type: Ls$Hashes (Map{1..*})_**
+**_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -227,14 +227,14 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [RFC0791] |
+| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [RFC0791] |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [RFC8200] |
+| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [RFC8200] |
 
-**_Type: Ls$L4-Protocol (Enumerated)_**
+**_Type: L4-Protocol (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
@@ -246,9 +246,9 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Port** | Integer{0..65535} | Transport Protocol Port Number, [RFC6335] |
+| **Port** | Integer{0..65535} | Transport Protocol Port Number, [RFC6335] |
 
-**_Type: Ls$Response-Type (Enumerated)_**
+**_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
@@ -260,14 +260,14 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Version** | String | Major.Minor version number |
+| **Version** | String | Major.Minor version number |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Namespace** | String /uri | Unique name of an Actuator Profile |
+| **Namespace** | String /uri | Unique name of an Actuator Profile |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Ls$Command-ID** | String(%^\S{0,36}$%) | Command Identifier |
+| **Command-ID** | String(%^\S{0,36}$%) | Command Identifier |

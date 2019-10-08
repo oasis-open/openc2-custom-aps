@@ -1,9 +1,9 @@
-/* Generated from schema\oc2ls-v1.1-lang.jadn, Sat Oct  5 11:53:48 2019 */
+/* Generated from schema\oc2ls-v1.1-lang.jadn, Tue Oct  8 11:35:28 2019 */
 
        title: OpenC2 Language Profile
       module: http://oasis-open.org/openc2/oc2ls/v1.1
        patch: 0-wd01
- description: Language Profile from the OpenC2 Language Specification version 1.1
+ description: Language Profile from the OpenC2 Language Specification version 1.0.1
      exports: ['OpenC2-Command', 'OpenC2-Response']
      imports: {'ls': 'http://oasis-open.org/openc2/oc2ls-types/v1.1'}
 
