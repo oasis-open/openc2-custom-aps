@@ -4,7 +4,7 @@
     "properties": ["battery"]
   },
   "actuator": {
-    "x-esm": {
+    "x_esm": {
       "asset_id": "TGEadsasd"
     }
   }

@@ -7,7 +7,7 @@
     "slpf": {
       "asset_id": "123456"
     },
-    "x-acme": {
+    "x_acme": {
       "endpoint_id": "567890"
     }
   }

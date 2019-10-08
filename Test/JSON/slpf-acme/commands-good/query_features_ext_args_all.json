@@ -4,7 +4,7 @@
     "features": [ "profiles", "versions", "pairs", "rate_limit" ]
   },
   "args": {
-    "x-0123456789_ABCDEFG_abcdefg___": {
+    "x_0123456789_ABCDEFG_abcdefg___": {
       "debug_logging": true
     }
   }

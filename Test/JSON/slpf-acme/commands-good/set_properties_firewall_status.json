@@ -6,7 +6,7 @@
     ]
   },
   "args": {
-    "x-acme": {
+    "x_acme": {
       "firewall_status": "on"
     }
   }

@@ -4,7 +4,7 @@
     "features": [ "profiles", "versions", "pairs", "rate_limit" ]
   },
   "args": {
-    "x-mycompany_with_underscore": {
+    "x_mycompany_with_underscore": {
       "debug_logging": true
     }
   }
