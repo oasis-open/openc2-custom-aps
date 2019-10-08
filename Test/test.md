@@ -1,7 +1,8 @@
 ## Auto-generated JSON Schema test results
 ### Custom Actuator Profiles test suite
 
-### language/commands-good/, Schema=oc2ls-v1.1-lang.jadn
+### language/, Schema=oc2ls-v1.1-lang.jadn
+### language/commands-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | allow_device_deviceid.json | |
@@ -86,8 +87,7 @@
 | 80 | query_features_profiles_id.json | |
 | 81 | query_properties_firewall_status.json | |
 | 82 | remediate_file_hashes_sha256.json | |
-
-### language/commands-bad/, Schema=oc2ls-v1.1-lang.jadn
+### language/commands-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | action_notarget.json | Fail: 'target' is a required property|
@@ -106,7 +106,7 @@
 | 14 | number.json | Fail: 3.14159 is not of type 'object'|
 | 15 | number_integer.json | Fail: 100 is not of type 'object'|
 | 16 | openc2_response.json | Fail: Additional properties are not allowed ('status' was unexpected)|
-| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status_text', 'status' were unexpected)|
+| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status', 'status_text' were unexpected)|
 | 18 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements|
 | 19 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit']|
 | 20 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties|
@@ -114,8 +114,7 @@
 | 22 | start_container_ext_noprofile.json | Fail: Additional properties are not allowed (':container' was unexpected)|
 | 23 | string.json | Fail: 'foo' is not of type 'object'|
 | 24 | target_multiple.json | Fail: {'file': {'hashes': {'sha256': '5c2d6daaf85a710605678f8e7ef0b725b33303f3234197b9dc4b46196734a4f0'}}, 'device': {'device_id': '9BCE8431AC106FAA3861C7E771D20E53'}} has too many properties|
-
-### language/responses-good/, Schema=oc2ls-v1.1-lang.jadn
+### language/responses-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | ls_example_query_features.json | |
@@ -133,15 +132,14 @@
 | 13 | status_asdouble.json | |
 | 14 | status_only_not_implemented.json | |
 | 15 | status_only_success.json | |
-
-### language/responses-bad/, Schema=oc2ls-v1.1-lang.jadn
+### language/responses-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | empty.json | Bad JSON: Expecting value '' |
 | 2 | empty_array.json | Fail: [] is not of type 'object'|
 | 3 | empty_object.json | Fail: 'status' is a required property|
 | 4 | ls_example_query_features_old.json | |
-| 5 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('action', 'target' were unexpected)|
+| 5 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected)|
 | 6 | results_empty.json | Fail: {} does not have enough properties|
 | 7 | status_asbool.json | Fail: True is not of type 'integer'|
 | 8 | status_asstring.json | Fail: '200' is not of type 'integer'|
@@ -151,7 +149,8 @@
 | 12 | statustext_nostatus.json | Fail: 'status' is a required property|
 | 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
 
-### slpf/commands-good/, Schema=oc2slpf-v1.1.jadn
+### slpf/, Schema=oc2slpf-v1.1.jadn
+### slpf/commands-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | ls_example_deny_ipv4connection.json | |
@@ -161,25 +160,23 @@
 | 5 | slpf_example_deny_ipv6connection.json | |
 | 6 | slpf_example_deny_ipv6net.json | |
 | 7 | slpf_example_update_file.json | |
-
-### slpf/commands-bad/, Schema=oc2slpf-v1.1.jadn
+### slpf/commands-bad/
   None
-
-### slpf/responses-good/, Schema=oc2slpf-v1.1.jadn
+### slpf/responses-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | results_slpf_empty.json | |
 | 2 | slpf_example_query_features_pairs_example.json | Fail: 'slpf/rule_number' is not one of ['features', 'file', 'ipv4_net', 'ipv6_net', 'ipv4_connection', 'ipv6_connection', 'slpf']|
 | 3 | slpf_example_rule_number.json | |
-
-### slpf/responses-bad/, Schema=oc2slpf-v1.1.jadn
+### slpf/responses-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | slpf_query_pairs_bad_action.json | Fail: Additional properties are not allowed ('scan' was unexpected)|
 | 2 | slpf_query_pairs_bad_pair.json | |
 | 3 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['features', 'file', 'ipv4_net', 'ipv6_net', 'ipv4_connection', 'ipv6_connection', 'slpf']|
 
-### slpf-acme/commands-good/, Schema=oc2slpf-acme-v1.1.jadn
+### slpf-acme/, Schema=oc2slpf-acme-v1.1.jadn
+### slpf-acme/commands-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('uri' was unexpected)|
@@ -195,29 +192,26 @@
 | 11 | start_container_ext_target_ext_actuator_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
 | 12 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
 | 13 | stop_container_ext_target.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-
-### slpf-acme/commands-bad/, Schema=oc2slpf-acme-v1.1.jadn
+### slpf-acme/commands-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X-mycompany' was unexpected)|
 | 2 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected)|
 | 3 | query_features_ext_args_nox-.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
 | 4 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected)|
-| 5 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-mycompany:features', 'x-acme:features' were unexpected)|
+| 5 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected)|
 | 6 | start_container_ext_specialchar1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
 | 7 | start_container_ext_specialchar2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
 | 8 | start_container_ext_underscore_first1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
 | 9 | start_container_ext_underscore_first2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
-
-### slpf-acme/responses-good/, Schema=oc2slpf-acme-v1.1.jadn
+### slpf-acme/responses-good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x-esm' was unexpected)|
 | 2 | results_ext_empty.json | Fail: Additional properties are not allowed ('x-acme' was unexpected)|
-| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x-mycompany', 'x-acme' were unexpected)|
+| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'x-mycompany' were unexpected)|
 | 4 | results_ext_single.json | Fail: Additional properties are not allowed ('x-mycompany' was unexpected)|
-
-### slpf-acme/responses-bad/, Schema=oc2slpf-acme-v1.1.jadn
+### slpf-acme/responses-bad/
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | query_features_all_badprofile.json | Fail: ['1.0-draft-2019-02'] is not of type 'string'|
