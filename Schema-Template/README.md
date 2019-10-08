@@ -39,8 +39,11 @@ restrictions on what URI a profile author may use.  The Namespace is the **$id**
 of the profile's JSON Schema, and may be used in the **$ref** value of other JSON Schemas
 to refer to the profile.
 ### 2.2 Template
-1. Copy the *Language Profile* schema from the Language Specification into the profile.
+1. Copy the *Language Profile* schema from the Language Specification into the profile schema.
 2. From the Action, Target, Args, and Results lists, delete every field that is not
-needed by the profile.  Do not modify any other fiels in these lists.  Do not modify
+needed by the profile.  Do not modify any other fields in these lists.  Do not modify
 any other type definitions.
-3. 
+3. Add fields for profile-specific types to the Target, Args, Actuators and Results lists.
+Use ID and Name values that do not conflict with those shown in the namespace registry.
+4. Add type definitions for profile-specific types P-Target, P-Args, P-Actuators, P-Results,
+and all types referenced by them.

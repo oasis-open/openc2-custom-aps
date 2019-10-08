@@ -1,10 +1,10 @@
-## Auto-generated JSON Schema oc2ls-v1.1-lang.jadn test results
+## Auto-generated JSON Schema test results
 ### bberliner test suite
 
 JADN Schema: oc2ls-v1.1-lang.jadn
 ### commands/good/
-|  #  | Name |     |
-| --- | ---- | --- |
+|  #  | Name | Results |
+| --- | ---- | ------- |
 | 1 | allow_device_deviceid.json | |
 | 2 | allow_file_hashes_sha256.json | |
 | 3 | allow_ipv4net.json | |
@@ -108,8 +108,8 @@ JADN Schema: oc2ls-v1.1-lang.jadn
 | 101 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected) |
 | 102 | stop_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected) |
 ### commands/bad/
-|  #  | Name |     |
-| --- | ---- | --- |
+|  #  | Name | Results |
+| --- | ---- | ------- |
 | 1 | action_notarget.json | Fail: 'target' is a required property |
 | 2 | action_notarget_id.json | Fail: 'target' is a required property |
 | 3 | action_unknown.json | Fail: 'unknown' is not one of ['scan', 'locate', 'query', 'deny', 'contain', 'allow', 'start', 'stop', 'restart', 'cancel', 'set', 'update', 'redirect', 'create', 'delete', 'detonate', 'restore', 'copy', 'investigate', 'remediate'] |
@@ -144,8 +144,8 @@ JADN Schema: oc2ls-v1.1-lang.jadn
 | 32 | string.json | Fail: 'foo' is not of type 'object' |
 | 33 | target_multiple.json | Fail: {'file': {'hashes': {'sha256': '5c2d6daaf85a710605678f8e7ef0b725b33303f3234197b9dc4b46196734a4f0'}}, 'device': {'device_id': '9BCE8431AC106FAA3861C7E771D20E53'}} has too many properties |
 ### responses/good/
-|  #  | Name |     |
-| --- | ---- | --- |
+|  #  | Name | Results |
+| --- | ---- | ------- |
 | 1 | ls_example_query_features.json | |
 | 2 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x-esm' was unexpected) |
 | 3 | query_features_all.json | |
@@ -169,8 +169,8 @@ JADN Schema: oc2ls-v1.1-lang.jadn
 | 21 | status_only_not_implemented.json | |
 | 22 | status_only_success.json | |
 ### responses/bad/
-|  #  | Name |     |
-| --- | ---- | --- |
+|  #  | Name | Results |
+| --- | ---- | ------- |
 | 1 | empty.json | Bad JSON: Expecting value '' |
 | 2 | empty_array.json | Fail: [] is not of type 'object' |
 | 3 | empty_object.json | Fail: 'status' is a required property |
