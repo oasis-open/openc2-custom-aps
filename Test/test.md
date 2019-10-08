@@ -141,7 +141,7 @@
 | 2 | empty_array.json | Fail: [] is not of type 'object'|
 | 3 | empty_object.json | Fail: 'status' is a required property|
 | 4 | ls_example_query_features_old.json | |
-| 5 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected)|
+| 5 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('action', 'target' were unexpected)|
 | 6 | results_empty.json | Fail: {} does not have enough properties|
 | 7 | status_asbool.json | Fail: True is not of type 'integer'|
 | 8 | status_asstring.json | Fail: '200' is not of type 'integer'|
@@ -179,4 +179,49 @@
 | 2 | slpf_query_pairs_bad_pair.json | |
 | 3 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['features', 'file', 'ipv4_net', 'ipv6_net', 'ipv4_connection', 'ipv6_connection', 'slpf']|
 
-### Validation Errors: {'cg': '1/89', 'cb': '0/24', 'rg': '1/18', 'rb': '2/16'}
+### slpf-acme/commands-good/, Schema=oc2slpf-acme-v1.1.jadn
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('uri' was unexpected)|
+| 2 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('properties' was unexpected)|
+| 3 | query_features_ext_args.json | Fail: Additional properties are not allowed ('x-mycompany' was unexpected)|
+| 4 | query_features_ext_args_all.json | Fail: Additional properties are not allowed ('x-0123456789_ABCDEFG_abcdefg___' was unexpected)|
+| 5 | query_features_ext_args_underscore.json | Fail: Additional properties are not allowed ('x-mycompany_with_underscore' was unexpected)|
+| 6 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x-acme:features' was unexpected)|
+| 7 | query_features_extension_args_number.json | Fail: Additional properties are not allowed ('x-395' was unexpected)|
+| 8 | set_properties_firewall_status.json | Fail: 'set' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 9 | start_container_ext_target.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 10 | start_container_ext_target_ext_actuator.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 11 | start_container_ext_target_ext_actuator_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 12 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 13 | stop_container_ext_target.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+
+### slpf-acme/commands-bad/, Schema=oc2slpf-acme-v1.1.jadn
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X-mycompany' was unexpected)|
+| 2 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected)|
+| 3 | query_features_ext_args_nox-.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
+| 4 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected)|
+| 5 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-mycompany:features', 'x-acme:features' were unexpected)|
+| 6 | start_container_ext_specialchar1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 7 | start_container_ext_specialchar2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 8 | start_container_ext_underscore_first1.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+| 9 | start_container_ext_underscore_first2.json | Fail: 'start' is not one of ['query', 'deny', 'allow', 'update', 'delete']|
+
+### slpf-acme/responses-good/, Schema=oc2slpf-acme-v1.1.jadn
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x-esm' was unexpected)|
+| 2 | results_ext_empty.json | Fail: Additional properties are not allowed ('x-acme' was unexpected)|
+| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x-mycompany', 'x-acme' were unexpected)|
+| 4 | results_ext_single.json | Fail: Additional properties are not allowed ('x-mycompany' was unexpected)|
+
+### slpf-acme/responses-bad/, Schema=oc2slpf-acme-v1.1.jadn
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | query_features_all_badprofile.json | Fail: ['1.0-draft-2019-02'] is not of type 'string'|
+| 2 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
+
+### Validation Errors: {'cg': '14/102', 'cb': '0/33', 'rg': '5/22', 'rb': '2/18'}
+
