@@ -1,7 +1,7 @@
 {
   "action": "start",
   "target": {
-    "x-acm&e:container": {
+    "x_acm&e:container": {
       "container_id": "E57C0116-D291-4AF3-BEF9-0F5B604A2C85"
     }
   }

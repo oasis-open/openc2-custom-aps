@@ -4,7 +4,7 @@
     "features": [ "profiles", "versions", "pairs", "rate_limit" ]
   },
   "args": {
-    "X-mycompany": {
+    "X_mycompany": {
       "debug_logging": true
     }
   }

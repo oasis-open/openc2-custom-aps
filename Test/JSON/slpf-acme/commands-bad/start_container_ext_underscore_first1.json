@@ -1,7 +1,7 @@
 {
   "action": "start",
   "target": {
-    "x-_acme:container": {
+    "x__acme:container": {
       "container_id": "E57C0116-D291-4AF3-BEF9-0F5B604A2C85"
     }
   }
