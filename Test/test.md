@@ -1,7 +1,6 @@
 ## Auto-generated JSON Schema test results
 ### Custom Actuator Profiles test suite
 
-
 ### language/commands-good/, Schema=oc2ls-v1.1-lang.jadn
 |  #  | Name | Results |
 | --- | ---- | ------- |
@@ -107,7 +106,7 @@
 | 14 | number.json | Fail: 3.14159 is not of type 'object'|
 | 15 | number_integer.json | Fail: 100 is not of type 'object'|
 | 16 | openc2_response.json | Fail: Additional properties are not allowed ('status' was unexpected)|
-| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status', 'status_text' were unexpected)|
+| 17 | openc2_response_text.json | Fail: Additional properties are not allowed ('status_text', 'status' were unexpected)|
 | 18 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements|
 | 19 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit']|
 | 20 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties|
@@ -121,20 +120,19 @@
 | --- | ---- | ------- |
 | 1 | ls_example_query_features.json | |
 | 2 | query_features_all.json | |
-| 3 | results_empty.json | Fail: {} does not have enough properties|
-| 4 | status_102.json | |
-| 5 | status_200.json | |
-| 6 | status_400.json | |
-| 7 | status_401.json | |
-| 8 | status_403.json | |
-| 9 | status_404.json | |
-| 10 | status_500.json | |
-| 11 | status_501.json | |
-| 12 | status_503.json | |
-| 13 | status_and_status_text.json | |
-| 14 | status_asdouble.json | |
-| 15 | status_only_not_implemented.json | |
-| 16 | status_only_success.json | |
+| 3 | status_102.json | |
+| 4 | status_200.json | |
+| 5 | status_400.json | |
+| 6 | status_401.json | |
+| 7 | status_403.json | |
+| 8 | status_404.json | |
+| 9 | status_500.json | |
+| 10 | status_501.json | |
+| 11 | status_503.json | |
+| 12 | status_and_status_text.json | |
+| 13 | status_asdouble.json | |
+| 14 | status_only_not_implemented.json | |
+| 15 | status_only_success.json | |
 
 ### language/responses-bad/, Schema=oc2ls-v1.1-lang.jadn
 |  #  | Name | Results |
@@ -144,13 +142,14 @@
 | 3 | empty_object.json | Fail: 'status' is a required property|
 | 4 | ls_example_query_features_old.json | |
 | 5 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected)|
-| 6 | status_asbool.json | Fail: True is not of type 'integer'|
-| 7 | status_asstring.json | Fail: '200' is not of type 'integer'|
-| 8 | status_negative.json | Fail: -201 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
-| 9 | status_too_high.json | Fail: 5555 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
-| 10 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
-| 11 | statustext_nostatus.json | Fail: 'status' is a required property|
-| 12 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
+| 6 | results_empty.json | Fail: {} does not have enough properties|
+| 7 | status_asbool.json | Fail: True is not of type 'integer'|
+| 8 | status_asstring.json | Fail: '200' is not of type 'integer'|
+| 9 | status_negative.json | Fail: -201 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
+| 10 | status_too_high.json | Fail: 5555 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
+| 11 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
+| 12 | statustext_nostatus.json | Fail: 'status' is a required property|
+| 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
   Merge http://oasis-open.org/openc2/oc2ls-types/v1.1 into http://oasis-open.org/openc2/oc2slpf/v1.1
 *
 
@@ -182,4 +181,4 @@
 | 2 | slpf_query_pairs_bad_pair.json | |
 | 3 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['features', 'file', 'ipv4_net', 'ipv6_net', 'ipv4_connection', 'ipv6_connection', 'slpf']|
 
-### Validation Errors: {'cg': '1/89', 'cb': '0/24', 'rg': '2/19', 'rb': '2/15'}
+### Validation Errors: {'cg': '1/89', 'cb': '0/24', 'rg': '1/18', 'rb': '2/16'}
