@@ -15,7 +15,7 @@ the subset of common elements plus custom elements needed to perform a Profile's
 and the schema for the one or more Profiles supported by a Cyber-defense Component
 is illustrated in Figure 1.  The schema implemented by a Component is the union of the profile
 schemas supported by that Component, i.e, a data instance is valid iff it is valid according
-to **oneOf** the supported profile schemas.
+to **anyOf** the supported profile schemas.
 
 ![Resolver](images/resolver.png)
 *Fig. 1 - Language, Profiles, and Product Schemas*
@@ -24,8 +24,8 @@ The Language Specification includes two schemas: a *Language Profile* that is co
 into every Actuator Profile and then tailored to support the profile's function, and the
 *Common Types* schema that can be either referenced by or copied into each Profile schema.
 The "Language Profile" validates everything defined in the Language Spec and nothing else.
-It is also possible to define a "Language+* (language-star) Profile" that validates everything
-defined in the Language Spec plus everything that might be defined in future actuator profiles.
+It is also possible to define a "Language+Anything" profile that validates everything
+defined in the Language Spec plus anything that might be defined in future actuator profiles.
 
 The steps to create a new actuator profile are:
 ### 2.1 Namespace
@@ -45,5 +45,14 @@ needed by the profile.  Do not modify any other fields in these lists.  Do not m
 any other type definitions.
 3. Add fields for profile-specific types to the Target, Args, Actuators and Results lists.
 Use ID and Name values that do not conflict with those shown in the namespace registry.
-4. Add type definitions for profile-specific types P-Target, P-Args, P-Actuators, P-Results,
+4. Add type definitions for profile-specific types (P-Target, P-Args, P-Actuators, P-Results),
 and all types referenced by them.
+
+### 2.3 Example
+The Markdown and IDL (text format) folders contain property tables for:
+1) The Language Types schema referenced by all actuator profiles
+2) The Language Profile schema to be used as a profile template
+3) A Stateless Packet Filtering schema customized from the profile template
+
+These folders also contain the result of combining the Actuator Profile and Language Types
+schemas into a single schema with all references resolved.
