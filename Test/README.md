@@ -14,7 +14,7 @@ might be defined in a current or future actuator profile.
 
 **3. SLPF**
 
-This actuator accepts every command and response defined in the OpenC2 Stateless Packet Fitering actuator profile
+This actuator accepts every command and response defined in the OpenC2 Stateless Packet Filtering actuator profile
 and rejects anything else.
 
 **4. SLPF + Acme**

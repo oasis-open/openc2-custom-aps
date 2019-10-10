@@ -55,4 +55,4 @@ The Markdown and IDL (text format) folders contain property tables for:
 3) A Stateless Packet Filtering schema customized from the profile template
 
 These folders also contain the result of combining the Actuator Profile and Language Types
-schemas into a single schema with all references resolved.
+schemas into a Component schema with all references resolved.
