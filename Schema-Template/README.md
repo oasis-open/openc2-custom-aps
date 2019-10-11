@@ -23,8 +23,8 @@ to **anyOf** the supported profile schemas.
 The Language Specification includes two schemas: a *Language Profile* that is copied verbatim
 into every Actuator Profile and then tailored to support the profile's function, and the
 *Common Types* schema that can be either referenced by or copied into each Profile schema.
-The "Language Profile" validates everything defined in the Language Spec and nothing else.
-It is also possible to define a "Language+Anything" profile that validates everything
+The Language Profile validates everything defined in the Language Spec and nothing else.
+It is also possible to define a *Language+Anything* profile that validates everything
 defined in the Language Spec plus anything that might be defined in future actuator profiles.
 
 The steps to create a new actuator profile are:
@@ -49,6 +49,11 @@ Use ID and Name values that do not conflict with those shown in the namespace re
 and all types referenced by them.
 
 ### 2.3 Example
+The template/reference structure shown here was developed after approval of the OpenC2 v1.0
+Committee Specifications, to document the process for constructing Component schemas.
+V1.1 schemas follow the template/reference structure; the v1.0 schemas provided for
+comparison do not.
+
 The Markdown and IDL (text format) folders contain property tables for:
 1) The Language Types schema referenced by all actuator profiles
 2) The Language Profile schema to be used as a profile template
