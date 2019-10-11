@@ -25,10 +25,11 @@ test suite: (x_acme, mycompany, x_395, etc.)
 ## Changes from bberliner tests:
 * **status_asdouble** - move response from bad to good - JSON has no integer type, 200 and 200.0 are the same number.
 * **results_empty** - move response from good to bad - results must not be empty if present
-* **ls_example_query_features** - response updated to v1.1 ($id URI), move original to bad
+* **ls_example_query_features**, **query_features_all** - response updated to v1.1 ($id URI), move original to bad
 * **slpf_example_query_features_pairs_example** - change targets to JSON Pointer format
 * **query_features_all_badprofile**, **results_unknown_profile** - move from bad to good, profile can have any valid property name
 * **results_ext_empty** - move from good to bad, results can't be empty
 
 ## New tests
 * **slpf_query_pairs_bad_action**, **slpf_query_pairs_bad_target**, **slpf_query_pairs_bad_pair** - bad responses, not included in slpf
+* **create_poetry**, **poetry_results** - passes Language+Anything, but not plausible legitimate OpenC2 command and response
