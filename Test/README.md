@@ -31,5 +31,9 @@ test suite: (x_acme, mycompany, x_395, etc.)
 * **results_ext_empty** - move from good to bad, results can't be empty
 
 ## New tests
-* **slpf_query_pairs_bad_action**, **slpf_query_pairs_bad_target**, **slpf_query_pairs_bad_pair** - bad responses, not included in slpf
-* **create_poetry**, **poetry_results** - passes Language+Anything, but not plausible legitimate OpenC2 command and response
+* **slpf_query_pairs_bad_action**, **slpf_query_pairs_bad_target** - action or target not supported in SLPF
+* **slpf_query_pairs_bad_pair** - action and target both supported in SLPF, but combination not valid
+### Implausible tests
+An OpenC2 use case for these items is implausible, but they pass according to a generic Language+Anything schema.
+Illustrates the difference between function-specific profiles and a generic profile.
+* **create_poetry**, **poetry_results**
