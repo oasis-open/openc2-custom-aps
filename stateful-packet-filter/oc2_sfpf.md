@@ -29,7 +29,7 @@ Alex Everett (alex.everett@unc.edu), [University of North Carolina, Chapel Hill]
 
 #### Abstract:
 
-Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. Stateless packet filtering is a cyber defense mechanism that denies or allows traffic based on static properties of the traffic, such as address, port, protocol, etc. This profile defines the Actions, Targets, Specifiers and Options that are consistent with the version 1.0 of the OpenC2 Language Specification ([[OpenC2-Lang-v1.0]](#openc2-lang-v10)) in the context of stateless packet filtering (SLPF).
+Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. Stateful packet filtering is a cyber defense mechanism that denies or allows traffic based on a myriad of values such as source address, destination address, and/or port numbers and maintains a table of valid connections. This profile defines the Actions, Targets, Specifiers and Options that are consistent with the version 1.0 of the OpenC2 Language Specification ([[OpenC2-Lang-v1.0]](#openc2-lang-v10)) in the context of stateful packet filtering (SFPF).
 
 #### Status:
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
@@ -89,7 +89,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [2.1.4 Actuator Specifiers](#214-actuator-specifiers)
     -   [2.2 OpenC2 Response Components](#22-openc2-response-components)
         -   [2.2.1 Common Results](#221-common-results)
-        -   [2.2.2 SLPF Results](#222-slpf-results)
+        -   [2.2.2 SFPF Results](#222-sfpf-results)
         -   [2.2.3 Response Status Codes](#223-response-status-codes)
     -   [2.3 OpenC2 Commands](#23-openc2-commands)
         -   [2.3.1 Allow](#231-allow)
@@ -188,7 +188,7 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 _This section is normative._
 
 * **Action**: The task or activity to be performed (e.g., 'deny').
-* **Actuator**: The function performed by the Consumer that executes the Command (e.g., 'Stateless Packet Filtering').
+* **Actuator**: The function performed by the Consumer that executes the Command (e.g., 'Stateful Packet Filtering').
 * **Argument**: A property of a Command that provides additional information on how to perform the Command, such as date/time, periodicity, duration, etc.
 * **Command**: A Message defined by an Action-Target pair that is sent from a Producer and received by a Consumer.
 * **Consumer**: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.
@@ -339,10 +339,10 @@ All components, devices and systems that provide SFPF functionality will impleme
 
 The purpose of this document is to:
 
-* Identify the required and optional OpenC2 Actions for Actuators with SLPF functionality
-* Identify the required and optional Target types for each Action in the SLPF class of Actuators
-* Identify Actuator-Specifiers and Arguments for each Action/Target pair that are applicable and/or unique to the SLPF class of Actuators
-* Annotate each Action/Target pair with a justification and example, and provide sample OpenC2 Commands to a SLPF with corresponding Responses
+* Identify the required and optional OpenC2 Actions for Actuators with SFPF functionality
+* Identify the required and optional Target types for each Action in the SFPF class of Actuators
+* Identify Actuator-Specifiers and Arguments for each Action/Target pair that are applicable and/or unique to the SFPF class of Actuators
+* Annotate each Action/Target pair with a justification and example, and provide sample OpenC2 Commands to a SFPF with corresponding Responses
 
 This SFPF profile:
 
@@ -352,7 +352,7 @@ This SFPF profile:
 Cyber defense systems that are utilizing OpenC2 may require the following components to implement the SFPF profile:
 
 * OpenC2 Producers: Devices that send Commands, receive Responses, and manage the execution of Commands involving one or more SFPF or other Actuators with SFPF capability. The OpenC2 Producer needs _a priori_ knowledge of which Commands the Actuator can process and execute, therefore must understand the profiles for any device that it intends to command
-* OpenC2 Consumers: Devices or instances that provide stateless packet filtering functions. Typically these are Actuators that execute the cyber defense function, but could be orchestrators (i.e., a device or instance that forwards Commands to the Actuator)
+* OpenC2 Consumers: Devices or instances that provide stateful packet filtering functions. Typically these are Actuators that execute the cyber defense function, but could be orchestrators (i.e., a device or instance that forwards Commands to the Actuator)
 
 Though cyber defense components, devices, systems and/or instances may implement multiple Actuator profiles, a particular OpenC2 Message may reference at most a single Actuator profile. The scope of this document is limited to SFPF.
 
@@ -360,7 +360,7 @@ This specification is organized into three major sections.
 
 Section One (this section) provides a non-normative overview of the suite of specifications that realize OpenC2. This section provides references as well as defines the scope and purpose of this specification.
 
-[Section Two](#2-openc2-language-binding) (normative) binds this particular profile to the OpenC2 Language Specification. Section Two enumerates the components of the language specification that are meaningful in the context of SLPF and defines components that are applicable to this distinct profile. Section Two also defines the Commands (i.e., the Action/Target pairs) that are permitted in the context of SFPF.
+[Section Two](#2-openc2-language-binding) (normative) binds this particular profile to the OpenC2 Language Specification. Section Two enumerates the components of the language specification that are meaningful in the context of SFPF and defines components that are applicable to this distinct profile. Section Two also defines the Commands (i.e., the Action/Target pairs) that are permitted in the context of SFPF.
 
 [Section Three](#3-conformance-statements) (normative) presents definitive criteria for conformance so that cyber security stakeholders can be assured that their products, instances and/or integrations are compatible with OpenC2.
 
@@ -575,7 +575,7 @@ Table 2.2.1-1 lists the Response Results properties defined in the [[OpenC2-Lang
 | 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 
 ### 2.2.2 SFPF Results
-The list of common Response properties is extended to include the additional Response properties defined in this section and referenced with the slpf namespace.
+The list of common Response properties is extended to include the additional Response properties defined in this section and referenced with the sfpf namespace.
 
 **Table 2.2.2-1. SFPF Results**
 
@@ -645,7 +645,7 @@ Upon receipt of an unsupported Command Argument, SFPF Consumers
 
 OpenC2 Producers that send 'allow target' Commands and support the 'delete sfpf:rule_number' Command:
 
-* MUST support the slpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-slpf-targets)
+* MUST support the sfpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-sfpf-targets)
 * SHOULD populate the Command Arguments field with "response_requested" : "complete"
 * MAY populate the Command Arguments field with the "insert_rule" : <integer> option
 * MUST populate the Command Arguments field with "response_requested" : "complete" if the insert_rule Argument is populated
@@ -701,8 +701,8 @@ Products that receive but do not implement the 'allow ipv6_connection' Command:
 * MAY respond with the 500 status code
 
 #### 2.3.1.3 'Allow ipv4_net'
-The 'allow ipv4_net' Command is OPTIONAL for Openc2 Producers implementing the SLPF.
-The 'allow ipv4_net' Command is OPTIONAL for Openc2 Consumers implementing the SLPF.
+The 'allow ipv4_net' Command is OPTIONAL for Openc2 Producers implementing the SFPF.
+The 'allow ipv4_net' Command is OPTIONAL for Openc2 Consumers implementing the SFPF.
 
 The Command permits traffic as specified by the range of IPv4 addresses as expressed by CIDR notation. If the mask is absent (or unspecified) then it MUST be treated as a single IPv4 address (i.e., an address range of one element). The address range specified in the ipv4_net MUST be treated as a source OR destination address.
 
@@ -713,8 +713,8 @@ Products that receive but do not implement the 'allow ipv4_net' Command:
 * MAY respond with the 500 status code
 
 #### 2.3.1.4 'Allow ipv6_net'
-The 'allow ipv6_net' Command is OPTIONAL for Openc2 Producers implementing the SLPF.
-The 'allow ipv6_net' Command is OPTIONAL for Openc2 Consumers implementing the SLPF.
+The 'allow ipv6_net' Command is OPTIONAL for Openc2 Producers implementing the SFPF.
+The 'allow ipv6_net' Command is OPTIONAL for Openc2 Consumers implementing the SFPF.
 
 The Command permits traffic as specified by the range of IPv6 addresses as expressed by CIDR notation. If the mask is absent (or unspecified) then it MUST be treated as a single IPv6 address (i.e., an address range of one element). The address range specified in the ipv6_net MUST be treated as a source OR destination address.
 
@@ -734,17 +734,17 @@ Upon receipt of a Command with an Argument that is not supported by the Actuator
 * SHOULD respond with 'Option not supported' in the status text
 * MAY respond with the 500 status code
 
-OpenC2 Producers that send 'deny target' Commands and support the 'delete slpf:rule_number' Command:
+OpenC2 Producers that send 'deny target' Commands and support the 'delete sfpf:rule_number' Command:
 
-* MUST support the slpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-slpf-targets)
+* MUST support the sfpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-sfpf-targets)
 * SHOULD populate the Command Arguments field with '"response_requested" : "complete"
 * MAY populate the Command Arguments field with the "insert_rule" : <integer> option
 * MUST populate the Command Arguments field with "response_requested" : "complete" if the insert_rule Argument is populated
 
-OpenC2 Consumers that receive 'deny <target>' Commands and support the 'delete slpf:rule_number' Command:
+OpenC2 Consumers that receive 'deny <target>' Commands and support the 'delete sfpf:rule_number' Command:
 
-* MUST support the slpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-slpf-targets)
-* MUST return the rule number assigned in the slpf object if the "response_requested" : "complete" Argument is populated.
+* MUST support the sfpf:rule_number Target type as defined in [Section 2.1.2.2](#2122-sfpf-targets)
+* MUST return the rule number assigned in the sfpf object if the "response_requested" : "complete" Argument is populated.
 
 OpenC2 Consumers that receive 'deny target' Commands and support the 'insert_rule' Command Argument:
 
@@ -762,29 +762,29 @@ The valid Target type, associated Specifiers, and Options are summarized in [Sec
 The 'query features' Command MUST be implemented in accordance with Version 1.0 of the [[OpenC2-Lang-v1.0]](#openc2-lang-v10).
 
 ### 2.3.4 Delete
-The slpf:rule_number is the only valid Target type for the delete Action. The associated Specifiers, and Options are summarized in [Section 2.3.4.1](#2341-delete-slpfrule_number). Sample Commands are presented in [Annex A](#annex-a-sample-commands).
+The sfpf:rule_number is the only valid Target type for the delete Action. The associated Specifiers, and Options are summarized in [Section 2.3.4.1](#2341-delete-sfpfrule_number). Sample Commands are presented in [Annex A](#annex-a-sample-commands).
 
-#### 2.3.4.1 delete slpf:rule_number
-The 'delete slpf:rule_number' Command is used to remove a firewall rule rather than issue an allow or deny to counteract the effect of an existing rule. Implementation of the 'delete slpf:rule_number' Command is OPTIONAL. Products that choose to implement the 'delete slpf:rule_number' Command MUST implement the slpf:rule_number Target type described in [Section 2.1.2.2](#2122-slpf-targets).
+#### 2.3.4.1 delete sfpf:rule_number
+The 'delete sfpf:rule_number' Command is used to remove a firewall rule rather than issue an allow or deny to counteract the effect of an existing rule. Implementation of the 'delete sfpf:rule_number' Command is OPTIONAL. Products that choose to implement the 'delete sfpf:rule_number' Command MUST implement the sfpf:rule_number Target type described in [Section 2.1.2.2](#2122-sfpf-targets).
 
-OpenC2 Producers that send the 'delete slpf:rule_number' Command:
+OpenC2 Producers that send the 'delete sfpf:rule_number' Command:
 
 * MAY populate the Command Arguments field with 'response_requested" : "complete"
 * MUST NOT include other Command Arguments
 * MUST include exactly one rule_number
 
-OpenC2 Consumers that receive the 'delete slpf:rule_number' Command:
+OpenC2 Consumers that receive the 'delete sfpf:rule_number' Command:
 
-* but cannot parse or process the 'delete slpf:rule_number' Command:
+* but cannot parse or process the 'delete sfpf:rule_number' Command:
     * MUST NOT respond with a OK/200
     * SHOULD respond with status code 400
     * MAY respond with the 500 status code
-* but do not support the slpf:rule_number Target type:
+* but do not support the sfpf:rule_number Target type:
     * MUST NOT respond with a OK/200
     * SHOULD respond with the 501 status code
     * SHOULD respond with 'target not supported' in the status text
     * MAY respond with the 500 status code
-* MUST respond with Response code 200 upon successful parsing of the 'delete slpf:rule_number' Command and subsequent removal of the corresponding rule
+* MUST respond with Response code 200 upon successful parsing of the 'delete sfpf:rule_number' Command and subsequent removal of the corresponding rule
 * upon successful parsing but failure to remove the corresponding rule:
     * MUST NOT respond with OK/200
     * MUST respond with Response code 500
@@ -882,7 +882,7 @@ An OpenC2 Producer satisfies 'Update File Producer' conformance if:
 ### 3.1.7 Conformance Clause 7: delete rule number Producer
 An OpenC2 Producer satisfies 'delete rule Producer' conformance if:
 * 3.1.7.1 **MUST** meet all of the conformance criteria identified in Conformance Clause 1 of this specification
-* 3.1.7.2 **MUST** implement the 'delete slpf:rule_number' in accordance with [Section 2.3.4.1](#2341-delete-slpfrule_number) of this specification
+* 3.1.7.2 **MUST** implement the 'delete sfpf:rule_number' in accordance with [Section 2.3.4.1](#2341-delete-sfpfrule_number) of this specification
 
 ### 3.1.8 Conformance Clause 8: Persistent Producer
 An OpenC2 Producer satisfies 'Persistent Producer' conformance if:
@@ -957,7 +957,7 @@ An OpenC2 Consumer satisfies 'Update File Consumer' conformance if:
 ### 3.2.7 Conformance Clause 18: delete rule number Consumer
 An OpenC2 Consumer satisfies 'delete rule Consumer' conformance if:
 * 3.2.7.1 **MUST** meet all of the conformance criteria identified in Conformance Clause 12 of this specification
-* 3.2.7.2 **MUST** implement the 'delete slpf:rule_number' in accordance with [Section 2.3.4.1](#2341-delete-slpfrule_number) of this specification
+* 3.2.7.2 **MUST** implement the 'delete sfpf:rule_number' in accordance with [Section 2.3.4.1](#2341-delete-sfpfrule_number) of this specification
 
 ### 3.2.8 Conformance Clause 19: Persistent Consumer
 An OpenC2 Consumer satisfies 'Persistent Consumer' conformance if:
@@ -986,7 +986,7 @@ An OpenC2 Consumer satisfies 'Temporal Consumer' conformance if:
 
 _This section is non-normative_
 
-This section will summarize and provide examples of OpenC2 Commands as they pertain to SLPF firewalls. The sample Commands will be encoded in verbose JSON, however other encodings are possible provided the Command is validated against the property tables defined in [Section 2](#2-openc2-language-binding) of this specification. Examples of corresponding Responses are provided where appropriate.
+This section will summarize and provide examples of OpenC2 Commands as they pertain to SFPF firewalls. The sample Commands will be encoded in verbose JSON, however other encodings are possible provided the Command is validated against the property tables defined in [Section 2](#2-openc2-language-binding) of this specification. Examples of corresponding Responses are provided where appropriate.
 
 The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.
 
@@ -1010,7 +1010,7 @@ The examples include Integer Date-Time fields; the conversion of Integer values 
 Deny and allow can be treated as mathematical complements of each other. Unless otherwise stated, the example Targets, Specifiers, Arguments and corresponding Responses are applicable to both Actions.
 
 ### A.1.1 Deny a particular connection
-Block a particular connection within the domain and do not send a host unreachable. Note, the "slpf":{"drop_process"} argument does not apply to the allow Action.
+Block a particular connection within the domain and do not send a host unreachable. Note, the "sfpf":{"drop_process"} argument does not apply to the allow Action.
 
 **Command:**
 
@@ -1030,12 +1030,12 @@ Block a particular connection within the domain and do not send a host unreachab
     "start_time": 1534775460000,
     "duration": 500,
     "response_requested": "ack",
-    "slpf": {
+    "sfpf": {
        "drop_process": "none"
        }
   },
   "actuator": {
-        "slpf": {
+        "sfpf": {
             "asset_id": "30"
         }
     }
@@ -1051,7 +1051,7 @@ Block a particular connection within the domain and do not send a host unreachab
 ```
 
 ### A.1.2 Deny all outbound ftp transfers
-Block all outbound ftp data transfers, send false acknowledgment. Note that the five-tuple is incomplete. Note that the response_requested field was not populated therefore will be 'complete'. Also note that the Actuator called out was SLPF with no additional Specifiers, therefore all endpoints that can execute the Command should. Note, the "slpf":{"drop_process"} argument does not apply to the allow Action.
+Block all outbound ftp data transfers, send false acknowledgment. Note that the five-tuple is incomplete. Note that the response_requested field was not populated therefore will be 'complete'. Also note that the Actuator called out was SFPF with no additional Specifiers, therefore all endpoints that can execute the Command should. Note, the "sfpf":{"drop_process"} argument does not apply to the allow Action.
 
 **Command:**
 
@@ -1065,13 +1065,13 @@ Block all outbound ftp data transfers, send false acknowledgment. Note that the 
     }
   },
   "args": {
-    "slpf": {
+    "sfpf": {
       "drop_process": "false_ack",
       "direction": "egress"
     }
   },
   "actuator": {
-    "slpf": {}
+    "sfpf": {}
   }
 }
 ```
@@ -1116,12 +1116,12 @@ Block all inbound traffic from the specified ipv6 network and do not respond. In
   },
   "args": {
     "response_requested": "none",
-    "slpf": {
+    "sfpf": {
       "direction": "ingress"
     }
   },
   "actuator": {
-    "slpf": {
+    "sfpf": {
       "named_group": "perimeter"
     }
   }
@@ -1145,7 +1145,7 @@ Permit ftp data transfers to 3ffe:1900:4545:3::f8ff:fe21:67cf from any source. (
     }
   },
   "actuator": {
-    "slpf": {}
+    "sfpf": {}
   }
 }
 ```
@@ -1158,7 +1158,7 @@ In this case the Actuator returned a rule number associated with the allow.
 {
   "status": 200,
   "results": {
-    "slpf": {
+    "sfpf": {
       "rule_number": 1234
     }
   }
@@ -1166,7 +1166,7 @@ In this case the Actuator returned a rule number associated with the allow.
 ```
 
 ## A.2 Delete Rule
-Used to remove a firewall rule rather than issue an allow or deny to counteract the effect of an existing rule. Implementation of the 'delete slpf:rule_number' Command is OPTIONAL.
+Used to remove a firewall rule rather than issue an allow or deny to counteract the effect of an existing rule. Implementation of the 'delete sfpf:rule_number' Command is OPTIONAL.
 
 In this case the rule number assigned in a previous allow will be removed (refer to the final example in [Annex A.1](#a1-deny-and-allow)
 
@@ -1176,13 +1176,13 @@ In this case the rule number assigned in a previous allow will be removed (refer
 {
   "action": "delete",
   "target": {
-    "slpf:rule_number": 1234
+    "sfpf:rule_number": 1234
   },
   "args": {
     "response_requested": "complete"
   },
   "actuator": {
-    "slpf": {}
+    "sfpf": {}
   }
 }
 ```
@@ -1204,7 +1204,7 @@ Instructs the firewalls to acquire a new configuration file. Note that all netwo
     }
   },
   "actuator": {
-    "slpf": {
+    "sfpf": {
       "named_group": "network"
     }
   }
@@ -1309,14 +1309,14 @@ This Command queries the Actuator to determine both the language versions and th
 
 **Response:**
 
-The Actuator device is apparently a smart front-door-lock for which an extension profile has been written. The device supports both the standard slpf functions and whatever Commands are defined in the extension profile.
+The Actuator device is apparently a smart front-door-lock for which an extension profile has been written. The device supports both the standard sfpf functions and whatever Commands are defined in the extension profile.
 
 ```json
 {
   "status": 200,
   "results": {
     "versions": ["1.3"],
-    "profiles": ["slpf", "iot-front-door-lock"]
+    "profiles": ["sfpf", "iot-front-door-lock"]
   }
 }
 ```
@@ -1349,7 +1349,7 @@ The Actuator supports all Action/Target pairs shown in Table 2.3-1 - Command Mat
       "allow": ["ipv6_net", "ipv6_connection"],
       "deny": ["ipv6_net", "ipv6_connection"],
       "query": ["features"],
-      "delete": ["slpf:rule_number"],
+      "delete": ["sfpf:rule_number"],
       "update": ["file"]
     }
   }
@@ -1375,7 +1375,7 @@ _This section is non-normative_
 | OODA | Observe-Orient-Decide-Act |
 | OpenDXL | Open-source Data Exchange Layer |
 | RFC | Request for Comment |
-| SLPF | Stateless Packet Filter |
+| SFPF | Stateful Packet Filter |
 | TC | Technical Committee |
 | URI | Uniform Resource Identifier |
 
@@ -1387,7 +1387,7 @@ _This section is non-normative_
 
 The Actuator Profile Subcommittee was tasked by the OASIS Open Command and Control Technical Committee (OpenC2 TC) which at the time of this submission, had 132 members. The editors wish to express their gratitude to the members of the OpenC2 TC.
 
-The following individuals are acknowledged for providing comments, suggested text and/or participation in the SLPF CSD ballots:
+The following individuals are acknowledged for providing comments, suggested text and/or participation in the SFPF CSD ballots:
 
 * Barry, Michelle- AT&T
 * Berliner, Brian- Symantec
