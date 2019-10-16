@@ -23,15 +23,31 @@ This actuator accepts every command and response defined in the SLPF profile plu
 test suite: (x_acme, mycompany, x_395, etc.)
 
 ## Changes from bberliner tests:
-* **status_asdouble** - move response from bad to good - JSON has no integer type, 200 and 200.0 are the same number.
-* **results_empty** - move response from good to bad - results must not be empty if present
-* **ls_example_query_features**, **query_features_all** - response updated to v1.1 ($id URI), move original to bad
-* **slpf_example_query_features_pairs_example** - change targets to JSON Pointer format
-* **query_features_all_badprofile**, **results_unknown_profile** - move from bad to good, profile can have any valid property name
-* **results_ext_empty** - move from good to bad, results can't be empty
+**commands/good:**  
+* **deny_uri_actuator_multiple** - multiple actuators not allowed in v1.0, proposed for v1.1
+
+**commands/bad:**  
+
+**responses/good:**  
+* **results_empty** - move to bad - results must not be empty if present
+
+**responses/bad:**  
+* **query_features_all_badprofile** - "myextension" OK in v1.0, must be URI in v1.1
+* **status_asdouble** - move to good - JSON has no integer type, 200 and 200.0 are the same number.
+
+**To be fixed:**  
+* **query_features_ext_target** - process target path
+* **slpf_example_delete_rulenumber** - process target path
+* **start_container_ext_target** - process target path
+* **start_container_ext_target_ext_actuator** - process target path
+* **start_container_ext_target_ext_actuator_ext_args** - process target path
+* **start_container_ext_target_ext_actuator_mult_ext_args** - process target path
+* **stop_container_ext_target** - process target path
+* **slpf_example_query_featurs_pairs_example** - process target path
 
 ## New tests
-* **slpf_query_pairs_bad_action**, **slpf_query_pairs_bad_target** - action or target not supported in SLPF
+* **slpf_query_pairs_bad_action** - action not supported in SLPF
+* **slpf_query_pairs_bad_target** - target not supported in SLPF
 * **slpf_query_pairs_bad_pair** - action and target both supported in SLPF, but combination not valid
 ### Implausible tests
 An OpenC2 use case for these items is implausible, but they pass according to a generic Language+Anything schema.
