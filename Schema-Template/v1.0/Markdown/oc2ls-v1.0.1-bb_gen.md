@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 15:07:44 2019-->
+<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 15:50:56 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -68,7 +68,7 @@
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 | 1024 | **slpf** | P-Target | 1 | Targets defined in the SLPF actuator profile |
 
-**_Type: Args (Map)_**
+**_Type: Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -102,7 +102,7 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 1 | **versions** | Version unique | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
@@ -134,7 +134,7 @@
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
-**_Type: Device (Map)_**
+**_Type: Device (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -155,9 +155,9 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature){0..10} | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
 
-**_Type: File (Map)_**
+**_Type: File (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -182,7 +182,7 @@
 | 1 | IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
 
-**_Type: IPv4-Connection (Record)_**
+**_Type: IPv4-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -199,7 +199,7 @@
 | 1 | IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address. |
 
-**_Type: IPv6-Connection (Record)_**
+**_Type: IPv6-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -219,11 +219,11 @@
 | :--- | :--- | :--- |
 | **MAC-Addr** | Binary /eui | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
-**_Type: Process (Map)_**
+**_Type: Process (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **pid** | Integer | 0..1 | Process ID of the process |
+| 1 | **pid** | Integer{0..*} | 0..1 | Process ID of the process |
 | 2 | **name** | String | 0..1 | Name of the process |
 | 3 | **cwd** | String | 0..1 | Current working directory of the process |
 | 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
@@ -233,7 +233,7 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an Actuator. |
+| **Properties** | ArrayOf(String){1..*} unique | A list of names that uniquely identify properties of an Actuator. |
 
 
 | Type Name | Type Definition | Description |
@@ -248,17 +248,17 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(#Target){1..*} | List of Target fields |
+| **Targets** | ArrayOf(#Target){1..*} unique | List of Target fields |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer | Date and Time |
+| **Date-Time** | Integer{0..*} | Date and Time |
 
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer | A length of time |
+| **Duration** | Integer{0..*} | A length of time |
 
 **_Type: Feature (Enumerated)_**
 
@@ -269,7 +269,7 @@
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
-**_Type: Hashes (Map)_**
+**_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |

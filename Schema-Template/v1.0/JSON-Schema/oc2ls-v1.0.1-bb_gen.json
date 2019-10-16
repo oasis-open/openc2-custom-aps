@@ -1,4 +1,4 @@
-/* Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 15:07:44 2019 */
+/* Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 15:50:56 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -185,6 +185,7 @@
       "title": "Args",
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "start_time": {
           "$ref": "#/definitions/Date-Time",
@@ -254,6 +255,7 @@
         "versions": {
           "type": "array",
           "description": "List of OpenC2 language versions supported by this Actuator",
+          "uniqueItems": true,
           "minItems": 1,
           "items": {
             "$ref": "#/definitions/Version",
@@ -333,6 +335,7 @@
       "title": "Device",
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "hostname": {
           "$ref": "#/definitions/Hostname",
@@ -364,6 +367,7 @@
       "title": "Features",
       "type": "array",
       "description": "An array of zero to ten names used to query an Actuator for its supported capabilities.",
+      "uniqueItems": true,
       "maxItems": 10,
       "items": {
         "$ref": "#/definitions/Feature"
@@ -373,6 +377,7 @@
       "title": "File",
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "name": {
           "type": "string",
@@ -410,6 +415,7 @@
       "type": "object",
       "description": "5-tuple that specifies a tcp/ip connection",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "src_addr": {
           "$ref": "#/definitions/IPv4-Net",
@@ -443,6 +449,7 @@
       "type": "object",
       "description": "5-tuple that specifies a tcp/ip connection",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "src_addr": {
           "$ref": "#/definitions/IPv6-Net",
@@ -482,10 +489,12 @@
       "title": "Process",
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "pid": {
           "type": "integer",
-          "description": "Process ID of the process"
+          "description": "Process ID of the process",
+          "minimum": 0
         },
         "name": {
           "type": "string",
@@ -513,6 +522,8 @@
       "title": "Properties",
       "type": "array",
       "description": "A list of names that uniquely identify properties of an Actuator.",
+      "uniqueItems": true,
+      "minItems": 1,
       "items": {
         "type": "string"
       }
@@ -595,6 +606,7 @@
       "title": "Targets",
       "type": "array",
       "description": "List of Target fields",
+      "uniqueItems": true,
       "minItems": 1,
       "maxItems": 100,
       "items": {
@@ -624,12 +636,14 @@
     "Date-Time": {
       "title": "Date Time",
       "type": "integer",
-      "description": "Date and Time"
+      "description": "Date and Time",
+      "minimum": 0
     },
     "Duration": {
       "title": "Duration",
       "type": "integer",
-      "description": "A length of time"
+      "description": "A length of time",
+      "minimum": 0
     },
     "Feature": {
       "title": "Feature",
@@ -647,6 +661,7 @@
       "type": "object",
       "description": "Cryptographic Hash values",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "md5": {
           "type": "string",

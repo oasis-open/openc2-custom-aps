@@ -8,7 +8,7 @@ Manually combined:
 * OpenC2 v1.0 property tables with errata
 * Stateless Packet Filtering actuator profile
 * Additional profile definitions implied by bberliner test data
-
+  
 ### commands/good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
@@ -123,8 +123,8 @@ Manually combined:
 | 4 | allow_ipv4net_badcidr.json | Fail: '127.0.0.1/64' does not match '^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])(\\/(3[0-2]|[0-2]?[0-9]))?$' |
 | 5 | allow_ipv4net_badip.json | Fail: '127.0.0.300' does not match '^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])(\\/(3[0-2]|[0-2]?[0-9]))?$' |
 | 6 | allow_ipv6net_wikipedia3.json | Fail: '2001::85a3::8a2e:370:7334' does not match '^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(%.+)?s*(\\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$' |
-| 7 | args_empty.json | |
-| 8 | deny_file_hashes_empty.json | |
+| 7 | args_empty.json | Fail: {} does not have enough properties |
+| 8 | deny_file_hashes_empty.json | Fail: {} does not have enough properties |
 | 9 | deny_file_hashes_sha512.json | Fail: Additional properties are not allowed ('sha512' was unexpected) |
 | 10 | deny_uri_actuator_empty.json | Fail: {} does not have enough properties |
 | 11 | empty.json | Bad JSON: Expecting value '' |
@@ -138,7 +138,7 @@ Manually combined:
 | 19 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected) |
 | 20 | query_features_ext_args_nox-.json | Fail: Additional properties are not allowed ('mycompany' was unexpected) |
 | 21 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected) |
-| 22 | query_features_notunique.json | |
+| 22 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements |
 | 23 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit'] |
 | 24 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected) |
 | 25 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties |
@@ -193,4 +193,4 @@ Manually combined:
 | 13 | statustext_nostatus.json | Fail: 'status' is a required property |
 | 14 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected) |
 
-  Validation Errors: {'cg': '8/102', 'cb': '3/33', 'rg': '2/22', 'rb': '2/14'}
+  Validation Errors: {'cg': '8/102', 'cb': '0/33', 'rg': '2/22', 'rb': '2/14'}
