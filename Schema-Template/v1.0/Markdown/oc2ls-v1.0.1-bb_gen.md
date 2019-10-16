@@ -1,11 +1,11 @@
-<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 15:50:56 2019-->
+<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 16:08:29 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
-| **title:** | oc2ls version 1.0 json schema |
-| **module:** | http://oasis-open.org/openc2/oc2ls/v1.0 |
-| **patch:** | 0-csprd03 |
-| **description:** | OpenC2 Language Specification version 1.0. |
+| **title:** | SLPF + Acme schema for bberliner tests |
+| **module:** | http://oasis-open.org/openc2/oc2ls/v1.0.1 |
+| **patch:** | 0-bb |
+| **description:** | OpenC2 LS version 1.0 + errata + SLPF + Acme types |
 | **exports:** | OpenC2-Command, OpenC2-Response |
 | **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_A-Za-z0-9]{0,31}$ |
 
