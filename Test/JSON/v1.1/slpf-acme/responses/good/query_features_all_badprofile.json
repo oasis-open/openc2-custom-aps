@@ -6,25 +6,7 @@
       "1.0-draft-2019-02"
     ],
     "profiles": [
-      "http://mycompany.com/oc2profiles/myextension"
-    ],
-    "pairs": {
-      "query": [
-        "features"
-      ],
-      "deny": [
-        "file"
-      ],
-      "allow": [
-        "file",
-        "device"
-      ],
-      "remediate": [
-        "file"
-      ],
-      "contain": [
-        "device"
-      ]
-    }
+      "myextension"
+    ]
   }
 }
