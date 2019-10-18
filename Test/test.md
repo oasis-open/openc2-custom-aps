@@ -1,5 +1,5 @@
 ## Auto-generated JSON Schema test results
-### Custom Actuator Profiles test suite
+**Custom Actuator Profiles test suite**
 
 **Test Data:** https://api.github.com/repos/oasis-open/openc2-custom-aps/contents/Test/JSON/v1.1/   
 
@@ -170,8 +170,8 @@
 ### slpf/responses/good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | results_slpf_empty.json | Fail: {} does not have enough properties|
-| 2 | slpf_example_query_features_pairs_example.json | Fail: ['features'] is not of type 'string'|
+| 1 | results_slpf_empty.json | |
+| 2 | slpf_example_query_features_pairs_example.json | |
 | 3 | slpf_example_rule_number.json | |
 ### slpf/responses/bad/
 |  #  | Name | Results |
@@ -215,8 +215,8 @@
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | ls_example_query_properties_battery.json | Fail: Additional properties are not allowed ('x_esm' was unexpected)|
-| 2 | query_features_all_badprofile.json | Fail: Additional properties are not allowed ('remediate', 'contain' were unexpected)|
-| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x_acme', 'x_mycompany' were unexpected)|
+| 2 | query_features_all_badprofile.json | Fail: 'myextension' is not a 'uri'|
+| 3 | results_ext_multiple.json | Fail: Additional properties are not allowed ('x_mycompany', 'x_acme' were unexpected)|
 | 4 | results_ext_single.json | Fail: Additional properties are not allowed ('x_mycompany' was unexpected)|
 ### slpf-acme/responses/bad/
 |  #  | Name | Results |
@@ -225,4 +225,4 @@
 | 2 | query_features_all_badprofile-v1.0.json | Fail: Additional properties are not allowed ('remediate', 'contain' were unexpected)|
 | 3 | results_ext_empty.json | Fail: Additional properties are not allowed ('x_acme' was unexpected)|
 
-### Validation Errors: {'cg': '15/103', 'cb': '0/35', 'rg': '6/22', 'rb': '0/21'}
+### Validation Errors: {'cg': '15/103', 'cb': '0/35', 'rg': '4/22', 'rb': '0/21'}
