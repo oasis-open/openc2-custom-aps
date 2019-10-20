@@ -20,6 +20,9 @@ to **anyOf** the supported profile schemas.
 ![Resolver](images/resolver.png)
 *Fig. 1 - Language, Profiles, and Product Schemas*
 ## 2. Profile Template
+The template/reference structure shown here was developed after publication of the OpenC2 v1.0
+Committee Specifications.  V1.1 schemas are organized according to this structure; v1.0 schemas are not.
+
 The Language Specification includes two schemas: a *Language Profile* that is copied verbatim
 into every Actuator Profile and then tailored to support the profile's function, and the
 *Common Types* schema that can be either referenced by or copied into each Profile schema.
@@ -27,8 +30,10 @@ The Language Profile validates everything defined in the Language Spec and nothi
 It is also possible to define a *Language+Anything* profile that validates everything
 defined in the Language Spec plus anything that might be defined in future actuator profiles.
 
+## 3. Creating a Profile
 The steps to create a new actuator profile are:
-### 2.1 Namespace
+
+**Namespace:**  
 Select a Namespace (unique name) for the profile schema. This name is in the form of a URI as
 defined by JSON Schema, but it does not necessarily refer to a network-accessible resource.
 
@@ -38,7 +43,8 @@ authors MUST NOT select a Namespace that is already registered, but there are no
 restrictions on what URI a profile author may use.  The Namespace is the **$id** value
 of the profile's JSON Schema, and may be used in the **$ref** value of other JSON Schemas
 to refer to the profile.
-### 2.2 Template
+
+**Template:**  
 1. Copy the *Language Profile* schema from the Language Specification into the profile schema.
 2. From the Action, Target, Args, and Results lists, delete every field that is not
 needed by the profile.  Do not modify any other fields in these lists.  Do not modify
@@ -48,16 +54,12 @@ Use ID and Name values that do not conflict with those shown in the namespace re
 4. Add type definitions for profile-specific types (P-Target, P-Args, P-Actuators, P-Results),
 and all types referenced by them.
 
-### 2.3 Example
-The template/reference structure shown here was developed after approval of the OpenC2 v1.0
-Committee Specifications, to document the process for constructing Component schemas.
-V1.1 schemas follow the template/reference structure; the v1.0 schemas provided for
-comparison do not.
-
+**Example:**  
 The Markdown and IDL (text format) folders contain property tables for:
 1) The Language Types schema referenced by all actuator profiles
 2) The Language Profile schema to be used as a profile template
 3) A Stateless Packet Filtering schema customized from the profile template
+4) Component schemas constructed by combining Profile and Language Types
 
-These folders also contain the result of combining the Actuator Profile and Language Types
-schemas into a Component schema with all references resolved.
+The JSON Schema folder contains JSON Schema files generated from the Component schemas.
+

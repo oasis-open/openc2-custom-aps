@@ -5,22 +5,22 @@ is considered good or bad. Actuator types are:
 
 **1. Language**
 
-This actuator accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
+This device accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
 
 **2. Language + Anything**
 
-This actuator accepts every command and response defined in the OpenC2 Language Specification plus anything that
+This device accepts every command and response defined in the OpenC2 Language Specification plus anything that
 might be defined in a current or future actuator profile.
 
 **3. SLPF**
 
-This actuator accepts every command and response defined in the OpenC2 Stateless Packet Filtering actuator profile
+This device accepts every command and response defined in the OpenC2 Stateless Packet Filtering actuator profile
 and rejects anything else.
 
 **4. SLPF + Acme**
 
-This actuator accepts every command and response defined in the SLPF profile plus profiles implied by the bberliner
-test suite: (x_acme, mycompany, x_395, etc.)
+This device accepts every command and response defined in the SLPF profile plus a set of hypothetical OpenC2
+profiles (x_acme, mycompany, x_395, etc.)
 
 ## Changes from bberliner tests:
 **commands/good:**  
@@ -49,7 +49,13 @@ test suite: (x_acme, mycompany, x_395, etc.)
 * **slpf_query_pairs_bad_action** - action not supported in SLPF
 * **slpf_query_pairs_bad_target** - target not supported in SLPF
 * **slpf_query_pairs_bad_pair** - action and target both supported in SLPF, but combination not valid
+* **long_name_60** - long property names - property names must be 3-32 characters.
+* **long_name_120** - extra long property names
+* **long_name_240** - very long property names
+
 ### Implausible tests
-An OpenC2 use case for these items is implausible, but they pass according to a generic Language+Anything schema.
-Illustrates the difference between function-specific profiles and a generic profile.
-* **create_poetry**, **poetry_results**
+These test cases pass a generic Language+Anything profile, but there is no plausible use case for
+considering them valid OpenC2 commands and responses.
+Illustrates the difference between a generic profile and profiles supported by OpenC2 Producers/Consumers.
+* **poetry_create**, **poetry_results** - English literature
+* **castle_set**, **castle_results** - Video game
