@@ -8,7 +8,7 @@ Manually combined:
 * OpenC2 v1.0 property tables with errata
 * Stateless Packet Filtering actuator profile
 * Additional profile definitions implied by bberliner test data
-  
+
 ### commands/good/
 |  #  | Name | Results |
 | --- | ---- | ------- |
@@ -94,7 +94,7 @@ Manually combined:
 | 80 | query_features_empty.json | |
 | 81 | query_features_empty_id.json | |
 | 82 | query_features_ext_args.json | |
-| 83 | query_features_ext_args_all.json | |
+| 83 | query_features_ext_args_all.json | Fail: Additional properties are not allowed ('x-0123456789_ABCDEFG_abcdefg___' was unexpected) |
 | 84 | query_features_ext_args_underscore.json | |
 | 85 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x-acme:features' was unexpected) |
 | 86 | query_features_extension_args_number.json | |
@@ -181,7 +181,7 @@ Manually combined:
 | 1 | empty.json | Bad JSON: Expecting value '' |
 | 2 | empty_array.json | Fail: [] is not of type 'object' |
 | 3 | empty_object.json | Fail: 'status' is a required property |
-| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('action', 'target' were unexpected) |
+| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected) |
 | 5 | query_features_all_badprofile.json | |
 | 6 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected) |
 | 7 | status_asbool.json | Fail: True is not of type 'integer' |
@@ -193,4 +193,4 @@ Manually combined:
 | 13 | statustext_nostatus.json | Fail: 'status' is a required property |
 | 14 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected) |
 
-  Validation Errors: {'cg': '8/102', 'cb': '0/33', 'rg': '2/22', 'rb': '2/14'}
+  Validation Errors: {'cg': '9/102', 'cb': '0/33', 'rg': '2/22', 'rb': '2/14'}

@@ -50,8 +50,7 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **slpf_query_pairs_bad_action** - action not supported in SLPF
 * **slpf_query_pairs_bad_target** - target not supported in SLPF
 * **slpf_query_pairs_bad_pair** - action and target both supported in SLPF, but combination not valid
-* **long_name_60** - long property names - property names must be 3-32 characters.
-* **long_name_120** - extra long property names
+* **long_name_80** - long property names - property names must be 1-32 characters.
 * **long_name_240** - very long property names
 
 ### Implausible tests
