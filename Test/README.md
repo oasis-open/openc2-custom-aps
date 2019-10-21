@@ -24,7 +24,8 @@ profiles (x_acme, mycompany, x_395, etc.)
 
 ## Changes from bberliner tests:
 **commands/good:**  
-* **deny_uri_actuator_multiple** - multiple actuators not allowed in v1.0, proposed for v1.1
+* **deny_uri_actuator_multiple** - move to bad, multiple actuators not allowed in v1.0, proposed for v1.1
+* **query_features_ext_args_all** - move to bad, upper-case characters not allowed
 
 **commands/bad:**  
 
@@ -32,7 +33,7 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **results_empty** - move to bad - results must not be empty if present
 
 **responses/bad:**  
-* **query_features_all_badprofile** - "myextension" OK in v1.0, must be URI in v1.1
+* **query_features_all_badprofile** - move to good - "myextension" is OK in v1.0 (must be URI in v1.1)
 * **status_asdouble** - move to good - JSON has no integer type, 200 and 200.0 are the same number.
 
 **To be fixed:**  
