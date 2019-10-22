@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.0.jadn, Thu Oct 10 17:47:43 2019 */
+/* Generated from schema\oc2slpf-v1.0.jadn, Tue Oct 22 14:13:44 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -90,19 +90,37 @@
     "Drop-Process": {
       "title": "Drop Process",
       "type": "string",
-      "enum": [
-        "none",
-        "reject",
-        "false_ack"
+      "oneOf": [
+        {
+          "const": "none",
+          "description": "Drop the packet and do not send a notification to the source of the packet"
+        },
+        {
+          "const": "reject",
+          "description": "Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet"
+        },
+        {
+          "const": "false_ack",
+          "description": "Drop the traffic and send a false acknowledgment"
+        }
       ]
     },
     "Direction": {
       "title": "Direction",
       "type": "string",
-      "enum": [
-        "both",
-        "ingress",
-        "egress"
+      "oneOf": [
+        {
+          "const": "both",
+          "description": "Apply rules to all traffic"
+        },
+        {
+          "const": "ingress",
+          "description": "Apply rules to incoming traffic only"
+        },
+        {
+          "const": "egress",
+          "description": "Apply rules to outgoing traffic only"
+        }
       ]
     },
     "Rule-ID": {

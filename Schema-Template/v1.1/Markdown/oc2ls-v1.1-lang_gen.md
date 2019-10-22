@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2ls-v1.1-lang.jadn, Tue Oct  8 11:35:28 2019-->
+<!-- Generated from schema\oc2ls-v1.1-lang.jadn, Tue Oct 22 13:16:56 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -106,4 +106,4 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields |
+| **Targets** | ArrayOf(#Target){1..*} unique | List of Target fields |

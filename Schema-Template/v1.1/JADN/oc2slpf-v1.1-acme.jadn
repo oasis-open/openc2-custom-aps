@@ -1,10 +1,14 @@
 {
  "meta": {
-  "module": "http://oasis-open.org/openc2/oc2slpf/v1.1",
-  "patch": "0-wd01",
-  "title": "Stateless Packet Filtering Profile",
-  "description": "Data definitions for Stateless Packet Filtering (SLPF) functions",
-  "imports": {"ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1"},
+  "module": "http://oasis-open.org/openc2/oc2slpf/v1.1/acme",
+  "patch": "0",
+  "title": "SLPF + Acme schema for bberliner tests - v1.1",
+  "description": "OpenC2 LS version 1.1 + SLPF + Acme types",
+  "imports": {
+    "ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1",
+    "slpf": "http://oasis-open.org/openc2/oc2slpf/v1.1",
+    "acme": "http://oasis-open.org/openc2/cap/acme/v1.1"
+  },
   "exports": ["OpenC2-Command", "OpenC2-Response"]
  },
 
@@ -27,6 +31,8 @@
     [3, "query", "Initiate a request for information"],
     [6, "deny", "Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access"],
     [8, "allow", "Permit access to or execution of a Target"],
+    [9, "start", "Initiate a process, application, system, or activity."],
+    [15, "set", "Change a value, configuration, or state of a managed entity."],
     [16, "update", "Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update"],
     [20, "delete", "Remove an entity (e.g., data, files, flows)"]
   ]],
@@ -38,6 +44,8 @@
     [14, "ipv6_net", "ls:IPv6-Net", [], "An IPv6 address range including prefix length"],
     [15, "ipv4_connection", "ls:IPv4-Connection", [], "A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol"],
     [16, "ipv6_connection", "ls:IPv6-Connection", [], "A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol"],
+    [25, "properties", "ls:Properties", [], "Data attribute associated with an Actuator."],
+    [19, "uri", "ls:URI", [], "A uniform resource identifier (URI)."],
     [1024, "slpf", "P-Target", ["<"], "Targets defined in this profile"]
   ]],
 
@@ -92,14 +100,14 @@
     [1, "rule_number", "Rule-ID", [], "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"]
   ]],
 
-  ["P-Specifiers", "Map", [], "SLPF actuator specifiers (may be empty)", [
+  ["P-Specifiers", "Map", [], "SLPF actuator specifiers", [
     [1, "hostname", "String", ["[0"], "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"],
     [2, "named_group", "String", ["[0"], "User defined collection of devices with SLPF functionality"],
     [3, "asset_id", "String", ["[0"], "Unique identifier for a particular SLPF"],
     [4, "asset_tuple", "String", ["[0", "]10"], "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"]
   ]],
 
-  ["P-Args", "Map", ["{1"], "SLPF command arguments", [
+  ["P-Args", "Map", [], "SLPF command arguments", [
     [1, "drop_process", "Drop-Process", ["[0"], "Specifies how to handle denied packets"],
     [2, "persistent", "Boolean", ["[0"], "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"],
     [3, "direction", "Direction", ["[0"], "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"],

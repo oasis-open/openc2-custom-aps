@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2slpf-v1.1.jadn, Tue Oct  8 11:35:29 2019-->
+<!-- Generated from schema\oc2slpf-v1.1.jadn, Tue Oct 22 13:16:56 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -6,7 +6,7 @@
 | **module:** | http://oasis-open.org/openc2/oc2slpf/v1.1 |
 | **patch:** | 0-wd01 |
 | **description:** | Data definitions for Stateless Packet Filtering (SLPF) functions |
-| **exports:** | OpenC2-Command, OpenC2-Response, P-Target, P-Specifiers, P-Args, P-Results |
+| **exports:** | OpenC2-Command, OpenC2-Response |
 | **imports:** | **ls**:&nbsp;http://oasis-open.org/openc2/oc2ls-types/v1.1 |
 
 **_Type: OpenC2-Command (Record)_**
@@ -69,21 +69,48 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **versions** | ls:Version | 0..1 | List of OpenC2 language versions supported by this Actuator |
+| 1 | **versions** | ls:Version unique | 0..10 | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | ls:Namespace unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | P-Results | 0..1 | Results defined in this profile |
 
+**_Type: Action-Targets (Map)_**
 
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Action-Targets** | MapOf(Action, Targets){1..*} | Targets applicable to each action |
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 3 | **query** | Query-Targets unique | 1..10 |  |
+| 6 | **deny** | Allow-Deny-Targets unique | 1..10 |  |
+| 8 | **allow** | Allow-Deny-Targets unique | 1..10 |  |
+| 16 | **update** | Update-Targets unique | 1..10 |  |
+| 20 | **delete** | Delete-Targets unique | 1..10 |  |
 
+**_Type: Query-Targets (Enumerated)_**
 
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields |
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 9 | **features** |  |
+
+**_Type: Allow-Deny-Targets (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 13 | **ipv4_net** |  |
+| 14 | **ipv6_net** |  |
+| 15 | **ipv4_connection** |  |
+| 16 | **ipv6_connection** |  |
+
+**_Type: Update-Targets (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 10 | **file** |  |
+
+**_Type: Delete-Targets (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1024 | **slpf/rule_number** |  |
 
 **_Type: P-Target (Choice)_**
 
@@ -100,7 +127,7 @@
 | 3 | **asset_id** | String | 0..1 | Unique identifier for a particular SLPF |
 | 4 | **asset_tuple** | String | 0..10 | Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings |
 
-**_Type: P-Args (Map)_**
+**_Type: P-Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |

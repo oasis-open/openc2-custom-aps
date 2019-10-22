@@ -84,7 +84,7 @@
 
   ["Action-Targets", "MapOf", ["{1", "+Action", "*Targets"], "Map of each action supported by this actuator to the list of targets applicable to that action"],
 
-  ["Targets", "ArrayOf", ["*Enum(Target)", "{1", "}0", "q"], "List of Target fields"],
+  ["Targets", "ArrayOf", ["*#Target", "{1", "}0", "q"], "List of Target fields"],
 
   ["Status-Code", "Enumerated", ["="], "", [
     [102, "Processing", "an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it"],

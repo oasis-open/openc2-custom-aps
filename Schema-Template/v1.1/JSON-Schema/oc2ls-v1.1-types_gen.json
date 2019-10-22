@@ -1,181 +1,57 @@
-/* Generated from schema\oc2ls-v1.1-lang.jadn, Thu Oct 10 11:32:21 2019 */
+/* Generated from schema\oc2ls-v1.1-types.jadn, Tue Oct 22 14:13:44 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://oasis-open.org/openc2/oc2ls/v1.1",
-  "title": "OpenC2 Language Profile",
-  "description": "Language Profile from the OpenC2 Language Specification version 1.0.1",
-  "$ref": "#/definitions/OpenC2-Command",
+  "$id": "http://oasis-open.org/openc2/oc2ls-types/v1.1",
+  "title": "OpenC2 Language Common Types",
+  "description": "Common Types from the OpenC2 Language Specification version 1.1.  These definitions are referenced by or copied into Profiles",
+  "$ref": "#/definitions/Status-Code",
   "definitions": {
-    "OpenC2-Command": {
-      "title": "OpenC2 Command",
-      "type": "object",
-      "description": "The Command defines an Action to be performed on a Target",
-      "additionalProperties": false,
-      "required": [
-        "action",
-        "target"
-      ],
-      "properties": {
-        "action": {
-          "$ref": "#/definitions/Action",
-          "description": "The task or activity to be performed (i.e., the 'verb')."
+    "Status-Code": {
+      "title": "Status Code",
+      "type": "integer",
+      "oneOf": [
+        {
+          "const": 102,
+          "description": "Processing - an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it"
         },
-        "target": {
-          "$ref": "#/definitions/Target",
-          "description": "The object of the Action. The Action is performed on the Target."
+        {
+          "const": 200,
+          "description": "OK - the Command has succeeded"
         },
-        "args": {
-          "$ref": "#/definitions/Args",
-          "description": "Additional information that applies to the Command."
+        {
+          "const": 201,
+          "description": "Created - the Command has succeeded and a new resource has been created as a result of it"
         },
-        "actuator": {
-          "$ref": "#/definitions/Actuator",
-          "description": "The subject of the Action. The Actuator executes the Action on the Target."
+        {
+          "const": 400,
+          "description": "Bad Request - the Consumer cannot process the Command due to something that is perceived to be a Producer error (e.g., malformed Command syntax)"
         },
-        "command_id": {
-          "$ref": "#/definitions/Command-ID",
-          "description": "An identifier of this Command."
+        {
+          "const": 401,
+          "description": "Unauthorized - the Command Message lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials"
+        },
+        {
+          "const": 403,
+          "description": "Forbidden - the Consumer understood the Command but refuses to authorize it"
+        },
+        {
+          "const": 404,
+          "description": "Not Found - the Consumer has not found anything matching the Command"
+        },
+        {
+          "const": 500,
+          "description": "Internal Error - the Consumer encountered an unexpected condition that prevented it from performing the Command"
+        },
+        {
+          "const": 501,
+          "description": "Not Implemented - the Consumer does not support the functionality required to perform the Command"
+        },
+        {
+          "const": 503,
+          "description": "Service Unavailable - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer"
         }
-      }
-    },
-    "Action": {
-      "title": "Action",
-      "type": "string",
-      "enum": [
-        "scan",
-        "locate",
-        "query",
-        "deny",
-        "contain",
-        "allow",
-        "start",
-        "stop",
-        "restart",
-        "cancel",
-        "set",
-        "update",
-        "redirect",
-        "create",
-        "delete",
-        "detonate",
-        "restore",
-        "copy",
-        "investigate",
-        "remediate"
       ]
-    },
-    "Target": {
-      "title": "Target",
-      "type": "object",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "maxProperties": 1,
-      "properties": {
-        "artifact": {
-          "$ref": "#/definitions/Artifact",
-          "description": "An array of bytes representing a file-like object or a link to that object."
-        },
-        "command": {
-          "$ref": "#/definitions/Command-ID",
-          "description": "A reference to a previously issued Command."
-        },
-        "device": {
-          "$ref": "#/definitions/Device",
-          "description": "The properties of a hardware device."
-        },
-        "domain_name": {
-          "$ref": "#/definitions/Domain-Name",
-          "description": "A network domain name."
-        },
-        "email_addr": {
-          "$ref": "#/definitions/Email-Addr",
-          "description": "A single email address."
-        },
-        "features": {
-          "$ref": "#/definitions/Features",
-          "description": "A set of items used with the query Action to determine an Actuator's capabilities."
-        },
-        "file": {
-          "$ref": "#/definitions/File",
-          "description": "Properties of a file."
-        },
-        "idn_domain_name": {
-          "$ref": "#/definitions/IDN-Domain-Name",
-          "description": "An internationalized domain name."
-        },
-        "idn_email_addr": {
-          "$ref": "#/definitions/IDN-Email-Addr",
-          "description": "A single internationalized email address."
-        },
-        "ipv4_net": {
-          "$ref": "#/definitions/IPv4-Net",
-          "description": "An IPv4 address range including CIDR prefix length."
-        },
-        "ipv6_net": {
-          "$ref": "#/definitions/IPv6-Net",
-          "description": "An IPv6 address range including prefix length."
-        },
-        "ipv4_connection": {
-          "$ref": "#/definitions/IPv4-Connection",
-          "description": "A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol."
-        },
-        "ipv6_connection": {
-          "$ref": "#/definitions/IPv6-Connection",
-          "description": "A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol."
-        },
-        "iri": {
-          "$ref": "#/definitions/IRI",
-          "description": "An internationalized resource identifier (IRI)."
-        },
-        "mac_addr": {
-          "$ref": "#/definitions/MAC-Addr",
-          "description": "A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [EUI]."
-        },
-        "process": {
-          "$ref": "#/definitions/Process",
-          "description": "Common properties of an instance of a computer program as executed on an operating system."
-        },
-        "properties": {
-          "$ref": "#/definitions/Properties",
-          "description": "Data attribute associated with an Actuator."
-        },
-        "uri": {
-          "$ref": "#/definitions/URI",
-          "description": "A uniform resource identifier (URI)."
-        }
-      }
-    },
-    "Actuator": {
-      "title": "Actuator",
-      "type": "object",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "properties": {}
-    },
-    "Args": {
-      "title": "Args",
-      "type": "object",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "properties": {
-        "start_time": {
-          "$ref": "#/definitions/Date-Time",
-          "description": "The specific date/time to initiate the Command"
-        },
-        "stop_time": {
-          "$ref": "#/definitions/Date-Time",
-          "description": "The specific date/time to terminate the Command"
-        },
-        "duration": {
-          "$ref": "#/definitions/Duration",
-          "description": "The length of time for an Command to be in effect"
-        },
-        "response_requested": {
-          "$ref": "#/definitions/Response-Type",
-          "description": "The type of Response required for the Command: none, ack, status, complete"
-        }
-      }
     },
     "Artifact": {
       "title": "Artifact",
@@ -418,11 +294,23 @@
       "title": "Feature",
       "type": "string",
       "description": "Specifies the results to be returned from a query features Command",
-      "enum": [
-        "versions",
-        "profiles",
-        "pairs",
-        "rate_limit"
+      "oneOf": [
+        {
+          "const": "versions",
+          "description": "List of OpenC2 Language versions supported by this Actuator"
+        },
+        {
+          "const": "profiles",
+          "description": "List of profiles supported by this Actuator"
+        },
+        {
+          "const": "pairs",
+          "description": "List of supported Actions and applicable Targets"
+        },
+        {
+          "const": "rate_limit",
+          "description": "Maximum number of Commands per minute supported by design or policy"
+        }
       ]
     },
     "Hashes": {
@@ -477,11 +365,23 @@
       "title": "L4 Protocol",
       "type": "string",
       "description": "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC5237]",
-      "enum": [
-        "icmp",
-        "tcp",
-        "udp",
-        "sctp"
+      "oneOf": [
+        {
+          "const": "icmp",
+          "description": "Internet Control Message Protocol - [RFC0792]"
+        },
+        {
+          "const": "tcp",
+          "description": "Transmission Control Protocol - [RFC0793]"
+        },
+        {
+          "const": "udp",
+          "description": "User Datagram Protocol - [RFC0768]"
+        },
+        {
+          "const": "sctp",
+          "description": "Stream Control Transmission Protocol - [RFC4960]"
+        }
       ]
     },
     "Payload": {
@@ -512,12 +412,35 @@
     "Response-Type": {
       "title": "Response Type",
       "type": "string",
-      "enum": [
-        "none",
-        "ack",
-        "status",
-        "complete"
+      "oneOf": [
+        {
+          "const": "none",
+          "description": "No response"
+        },
+        {
+          "const": "ack",
+          "description": "Respond when Command received"
+        },
+        {
+          "const": "status",
+          "description": "Respond with progress toward Command completion"
+        },
+        {
+          "const": "complete",
+          "description": "Respond when all aspects of Command completed"
+        }
       ]
+    },
+    "Version": {
+      "title": "Version",
+      "type": "string",
+      "description": "Major.Minor version number"
+    },
+    "Namespace": {
+      "title": "Namespace",
+      "type": "string",
+      "description": "Unique name of an Actuator Profile",
+      "format": "uri"
     },
     "Command-ID": {
       "title": "Command ID",

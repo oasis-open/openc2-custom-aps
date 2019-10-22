@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.1.jadn, Tue Oct  8 11:35:29 2019 */
+/* Generated from schema\oc2slpf-v1.1.jadn, Tue Oct 22 14:13:44 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -13,18 +13,6 @@
     },
     "openc2_response": {
       "$ref": "#/definitions/OpenC2-Response"
-    },
-    "p_target": {
-      "$ref": "#/definitions/P-Target"
-    },
-    "p_specifiers": {
-      "$ref": "#/definitions/P-Specifiers"
-    },
-    "p_args": {
-      "$ref": "#/definitions/P-Args"
-    },
-    "p_results": {
-      "$ref": "#/definitions/P-Results"
     }
   },
   "definitions": {
@@ -81,96 +69,31 @@
         }
       }
     },
-    "P-Target": {
-      "title": "P Target",
-      "type": "object",
-      "description": "SLPF targets",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "maxProperties": 1,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
-        }
-      }
-    },
-    "P-Specifiers": {
-      "title": "P Specifiers",
-      "type": "object",
-      "description": "SLPF actuator specifiers",
-      "additionalProperties": false,
-      "properties": {
-        "hostname": {
-          "type": "string",
-          "description": "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"
-        },
-        "named_group": {
-          "type": "string",
-          "description": "User defined collection of devices with SLPF functionality"
-        },
-        "asset_id": {
-          "type": "string",
-          "description": "Unique identifier for a particular SLPF"
-        },
-        "asset_tuple": {
-          "type": "array",
-          "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings",
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "type": "string",
-            "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"
-          }
-        }
-      }
-    },
-    "P-Args": {
-      "title": "P Args",
-      "type": "object",
-      "description": "SLPF command arguments",
-      "additionalProperties": false,
-      "properties": {
-        "drop_process": {
-          "$ref": "#/definitions/Drop-Process",
-          "description": "Specifies how to handle denied packets"
-        },
-        "persistent": {
-          "type": "boolean",
-          "description": "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"
-        },
-        "direction": {
-          "$ref": "#/definitions/Direction",
-          "description": "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"
-        },
-        "insert_rule": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Specifies the identifier of the rule within a list, typically used in a top-down rule list"
-        }
-      }
-    },
-    "P-Results": {
-      "title": "P Results",
-      "type": "object",
-      "description": "SLPF results defined in this profile",
-      "additionalProperties": false,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Rule identifier returned from allow or deny Command."
-        }
-      }
-    },
     "Action": {
       "title": "Action",
       "type": "string",
       "description": "Actions used in this profile",
-      "enum": [
-        "query",
-        "deny",
-        "allow",
-        "update",
-        "delete"
+      "oneOf": [
+        {
+          "const": "query",
+          "description": "Initiate a request for information"
+        },
+        {
+          "const": "deny",
+          "description": "Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access"
+        },
+        {
+          "const": "allow",
+          "description": "Permit access to or execution of a Target"
+        },
+        {
+          "const": "update",
+          "description": "Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update"
+        },
+        {
+          "const": "delete",
+          "description": "Remove an entity (e.g., data, files, flows)"
+        }
       ]
     },
     "Target": {
@@ -259,8 +182,15 @@
       "minProperties": 1,
       "properties": {
         "versions": {
-          "$ref": "#/definitions/Version",
-          "description": "List of OpenC2 language versions supported by this Actuator"
+          "type": "array",
+          "description": "List of OpenC2 language versions supported by this Actuator",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Version",
+            "description": "List of OpenC2 language versions supported by this Actuator"
+          }
         },
         "profiles": {
           "type": "array",
@@ -292,60 +222,238 @@
       "type": "object",
       "description": "Targets applicable to each action",
       "additionalProperties": false,
-      "minProperties": 1,
+      "required": [
+        "query",
+        "deny",
+        "allow",
+        "update",
+        "delete"
+      ],
       "properties": {
         "query": {
-          "$ref": "#/definitions/Targets"
+          "type": "array",
+          "description": "",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Query-Targets",
+            "description": ""
+          }
         },
         "deny": {
-          "$ref": "#/definitions/Targets"
+          "type": "array",
+          "description": "",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Allow-Deny-Targets",
+            "description": ""
+          }
         },
         "allow": {
-          "$ref": "#/definitions/Targets"
+          "type": "array",
+          "description": "",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Allow-Deny-Targets",
+            "description": ""
+          }
         },
         "update": {
-          "$ref": "#/definitions/Targets"
+          "type": "array",
+          "description": "",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Update-Targets",
+            "description": ""
+          }
         },
         "delete": {
-          "$ref": "#/definitions/Targets"
+          "type": "array",
+          "description": "",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Delete-Targets",
+            "description": ""
+          }
         }
       }
     },
-    "Targets": {
-      "title": "Targets",
-      "type": "array",
-      "description": "List of Target fields",
-      "uniqueItems": true,
-      "minItems": 1,
-      "maxItems": 100,
-      "items": {
-        "enum": [
-          "features",
-          "file",
-          "ipv4_net",
-          "ipv6_net",
-          "ipv4_connection",
-          "ipv6_connection",
-          "slpf"
-        ]
+    "Query-Targets": {
+      "title": "Query Targets",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "features",
+          "description": ""
+        }
+      ]
+    },
+    "Allow-Deny-Targets": {
+      "title": "Allow Deny Targets",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "ipv4_net",
+          "description": ""
+        },
+        {
+          "const": "ipv6_net",
+          "description": ""
+        },
+        {
+          "const": "ipv4_connection",
+          "description": ""
+        },
+        {
+          "const": "ipv6_connection",
+          "description": ""
+        }
+      ]
+    },
+    "Update-Targets": {
+      "title": "Update Targets",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "file",
+          "description": ""
+        }
+      ]
+    },
+    "Delete-Targets": {
+      "title": "Delete Targets",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "slpf/rule_number",
+          "description": ""
+        }
+      ]
+    },
+    "P-Target": {
+      "title": "P Target",
+      "type": "object",
+      "description": "SLPF targets",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "rule_number": {
+          "$ref": "#/definitions/Rule-ID",
+          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
+        }
+      }
+    },
+    "P-Specifiers": {
+      "title": "P Specifiers",
+      "type": "object",
+      "description": "SLPF actuator specifiers (may be empty)",
+      "additionalProperties": false,
+      "properties": {
+        "hostname": {
+          "type": "string",
+          "description": "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"
+        },
+        "named_group": {
+          "type": "string",
+          "description": "User defined collection of devices with SLPF functionality"
+        },
+        "asset_id": {
+          "type": "string",
+          "description": "Unique identifier for a particular SLPF"
+        },
+        "asset_tuple": {
+          "type": "array",
+          "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"
+          }
+        }
+      }
+    },
+    "P-Args": {
+      "title": "P Args",
+      "type": "object",
+      "description": "SLPF command arguments",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "drop_process": {
+          "$ref": "#/definitions/Drop-Process",
+          "description": "Specifies how to handle denied packets"
+        },
+        "persistent": {
+          "type": "boolean",
+          "description": "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"
+        },
+        "direction": {
+          "$ref": "#/definitions/Direction",
+          "description": "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"
+        },
+        "insert_rule": {
+          "$ref": "#/definitions/Rule-ID",
+          "description": "Specifies the identifier of the rule within a list, typically used in a top-down rule list"
+        }
+      }
+    },
+    "P-Results": {
+      "title": "P Results",
+      "type": "object",
+      "description": "SLPF results defined in this profile",
+      "additionalProperties": false,
+      "properties": {
+        "rule_number": {
+          "$ref": "#/definitions/Rule-ID",
+          "description": "Rule identifier returned from allow or deny Command."
+        }
       }
     },
     "Drop-Process": {
       "title": "Drop Process",
       "type": "string",
-      "enum": [
-        "none",
-        "reject",
-        "false_ack"
+      "oneOf": [
+        {
+          "const": "none",
+          "description": "Drop the packet and do not send a notification to the source of the packet"
+        },
+        {
+          "const": "reject",
+          "description": "Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet"
+        },
+        {
+          "const": "false_ack",
+          "description": "Drop the traffic and send a false acknowledgement"
+        }
       ]
     },
     "Direction": {
       "title": "Direction",
       "type": "string",
-      "enum": [
-        "both",
-        "ingress",
-        "egress"
+      "oneOf": [
+        {
+          "const": "both",
+          "description": "Apply rules to all traffic"
+        },
+        {
+          "const": "ingress",
+          "description": "Apply rules to incoming traffic only"
+        },
+        {
+          "const": "egress",
+          "description": "Apply rules to outgoing traffic only"
+        }
       ]
     },
     "Rule-ID": {
@@ -356,17 +464,47 @@
     "Status-Code": {
       "title": "Status Code",
       "type": "integer",
-      "enum": [
-        102,
-        200,
-        201,
-        400,
-        401,
-        403,
-        404,
-        500,
-        501,
-        503
+      "oneOf": [
+        {
+          "const": 102,
+          "description": "Processing - an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it"
+        },
+        {
+          "const": 200,
+          "description": "OK - the Command has succeeded"
+        },
+        {
+          "const": 201,
+          "description": "Created - the Command has succeeded and a new resource has been created as a result of it"
+        },
+        {
+          "const": 400,
+          "description": "Bad Request - the Consumer cannot process the Command due to something that is perceived to be a Producer error (e.g., malformed Command syntax)"
+        },
+        {
+          "const": 401,
+          "description": "Unauthorized - the Command Message lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials"
+        },
+        {
+          "const": 403,
+          "description": "Forbidden - the Consumer understood the Command but refuses to authorize it"
+        },
+        {
+          "const": 404,
+          "description": "Not Found - the Consumer has not found anything matching the Command"
+        },
+        {
+          "const": 500,
+          "description": "Internal Error - the Consumer encountered an unexpected condition that prevented it from performing the Command"
+        },
+        {
+          "const": 501,
+          "description": "Not Implemented - the Consumer does not support the functionality required to perform the Command"
+        },
+        {
+          "const": 503,
+          "description": "Service Unavailable - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer"
+        }
       ]
     },
     "Features": {
@@ -485,11 +623,23 @@
       "title": "Feature",
       "type": "string",
       "description": "Specifies the results to be returned from a query features Command",
-      "enum": [
-        "versions",
-        "profiles",
-        "pairs",
-        "rate_limit"
+      "oneOf": [
+        {
+          "const": "versions",
+          "description": "List of OpenC2 Language versions supported by this Actuator"
+        },
+        {
+          "const": "profiles",
+          "description": "List of profiles supported by this Actuator"
+        },
+        {
+          "const": "pairs",
+          "description": "List of supported Actions and applicable Targets"
+        },
+        {
+          "const": "rate_limit",
+          "description": "Maximum number of Commands per minute supported by design or policy"
+        }
       ]
     },
     "Hashes": {
@@ -532,11 +682,23 @@
       "title": "L4 Protocol",
       "type": "string",
       "description": "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC5237]",
-      "enum": [
-        "icmp",
-        "tcp",
-        "udp",
-        "sctp"
+      "oneOf": [
+        {
+          "const": "icmp",
+          "description": "Internet Control Message Protocol - [RFC0792]"
+        },
+        {
+          "const": "tcp",
+          "description": "Transmission Control Protocol - [RFC0793]"
+        },
+        {
+          "const": "udp",
+          "description": "User Datagram Protocol - [RFC0768]"
+        },
+        {
+          "const": "sctp",
+          "description": "Stream Control Transmission Protocol - [RFC4960]"
+        }
       ]
     },
     "Port": {
@@ -549,11 +711,23 @@
     "Response-Type": {
       "title": "Response Type",
       "type": "string",
-      "enum": [
-        "none",
-        "ack",
-        "status",
-        "complete"
+      "oneOf": [
+        {
+          "const": "none",
+          "description": "No response"
+        },
+        {
+          "const": "ack",
+          "description": "Respond when Command received"
+        },
+        {
+          "const": "status",
+          "description": "Respond with progress toward Command completion"
+        },
+        {
+          "const": "complete",
+          "description": "Respond when all aspects of Command completed"
+        }
       ]
     },
     "Version": {
