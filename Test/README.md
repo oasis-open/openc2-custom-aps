@@ -47,11 +47,11 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **slpf_example_query_featurs_pairs_example** - process target path
 
 ## New tests
-* **query_args** - language/response/good - v1.1 query - standard args
-* **query_slpf_args** - slpf/response/good - v1.1 query - profile-defined args
-* **query_slpf_pairs_bad_action** - slpf/response/bad - action not supported in SLPF
-* **query_slpf_pairs_bad_target** - slpf/response/bad - target not supported in SLPF
-* **query_slpf_pairs_bad_pair** - slpf/response/bad - action and target both supported but combination not valid
+* **results_query_args** - language/response/good - v1.1 query - standard args
+* **results_slpf_query_args** - slpf/response/good - v1.1 query - profile-defined args
+* **query_slpf_pairs_bad_action_rsp** - slpf/response/bad - action not supported in SLPF
+* **query_slpf_pairs_bad_target_rsp** - slpf/response/bad - target not supported in SLPF
+* **query_slpf_pairs_bad_pair_rsp** - slpf/response/bad - action and target both supported but combination not valid
 * **long_name_80** - language-anything/commands/bad - long property names - property names must be 1-32 characters.
 * **long_name_244** - language-anything/commands/bad - very long property names
 
@@ -59,5 +59,5 @@ profiles (x_acme, mycompany, x_395, etc.)
 These test cases pass a generic Language+Anything profile, but there is no plausible use case for
 considering them valid OpenC2 commands and responses.
 Illustrates the difference between a generic profile and profiles supported by OpenC2 Producers/Consumers.
-* **poetry_create**, **poetry_results** - English literature
-* **castle_set**, **castle_results** - Video game
+* **poetry_create**, **results_poetry** - language/*/bad, language-anything/*/good - English literature
+* **castle_set**, **results_castle** - language/*/bad, language-anything/*/good - Video game
