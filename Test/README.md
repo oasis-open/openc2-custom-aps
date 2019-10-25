@@ -1,15 +1,18 @@
 # OpenC2 v1.1 Test Data
 
 OpenC2 test items (commands and responses) are organized by actuator type, which determines whether a given item
-is considered good or bad. Actuator types are:
+is considered good or bad. Each actuator implements a component schema that is derived from one or more profiles.
+Example actuator types are:
 
 **1. Language**
 
-This device accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
+This component accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
+
+* oc2ls-v1.1-lang_resolved: Component schema = language profile (oc2ls-v1.1-lang) + language types (oc2ls-v1.1-types)
 
 **2. Language + Anything**
 
-This device accepts every command and response defined in the OpenC2 Language Specification plus anything that
+This component accepts every command and response defined in the OpenC2 Language Specification plus anything that
 might be defined in a current or future actuator profile.
 
 **3. SLPF**
@@ -17,10 +20,14 @@ might be defined in a current or future actuator profile.
 This device accepts every command and response defined in the OpenC2 Stateless Packet Filtering actuator profile
 and rejects anything else.
 
+* oc2slpf-v1.1_resolved: Component schema = slpf profile (oc2slpf-v1.1) + language types (oc2ls-v1.1-types)
+
 **4. SLPF + Acme**
 
 This device accepts every command and response defined in the SLPF profile plus a set of hypothetical OpenC2
 profiles (x_acme, mycompany, x_395, etc.)
+
+* oc2ls-v1.0.1-bb: Component schema = OpenC2 LS version 1.0 + errata + SLPF + Acme types, manually combined
 
 ## Changes from bberliner tests:
 **commands/good:**  
@@ -56,8 +63,10 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **long_name_244** - language-anything/commands/bad - very long property names
 
 ### Implausible tests
-These test cases pass a generic Language+Anything profile, but there is no plausible use case for
-considering them valid OpenC2 commands and responses.
-Illustrates the difference between a generic profile and profiles supported by OpenC2 Producers/Consumers.
-* **poetry_create**, **results_poetry** - language/*/bad, language-anything/*/good - English literature
-* **castle_set**, **results_castle** - language/*/bad, language-anything/*/good - Video game
+These tests pass a generic Language+Anything profile, but there is no plausible use case for validating them
+as correct OpenC2 commands and responses.
+Illustrates the difference between a generic profile and profiles used by OpenC2 Producers and Consumers.
+* **create_poetry** - language/commands/bad, language-anything/commands/good - English literature
+* **results_poetry** - language/results/bad, language-anything/results/good - English literature
+* **set_castle** - language/commands/bad, language-anything/commands/good - Online game 
+* **results_castle** - language/results/bad, language-anything/results/good - Online game
