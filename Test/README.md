@@ -10,7 +10,7 @@ This component accepts every command and response defined in the OpenC2 Language
 
 * oc2ls-v1.0.1: Component schema = OpenC2 v1.0 Language Spec + errata
 
-**4. SLPF + Acme**
+**2. SLPF + Acme**
 
 This device accepts every command and response defined in the SLPF profile plus a set of hypothetical OpenC2
 profiles (x_acme, mycompany, x_395, etc.)
