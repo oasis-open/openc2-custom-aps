@@ -1,4 +1,4 @@
-# OpenC2 v1.0.1 Test Data
+# OpenC2 v1.1 Test Data
 
 OpenC2 test items (commands and responses) are organized by actuator type, which determines whether a given item
 is considered good or bad. Each actuator implements a component schema that is derived from one or more profiles.
@@ -8,7 +8,19 @@ Example actuator types are:
 
 This component accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
 
-* oc2ls-v1.0.1: Component schema = OpenC2 v1.0 Language Spec + errata
+* oc2ls-v1.1-lang_resolved: Component schema = language profile (oc2ls-v1.1-lang) + language types (oc2ls-v1.1-types)
+
+**2. Language + Anything**
+
+This component accepts every command and response defined in the OpenC2 Language Specification plus anything that
+might be defined in a current or future actuator profile.
+
+**3. SLPF**
+
+This device accepts every command and response defined in the OpenC2 Stateless Packet Filtering actuator profile
+and rejects anything else.
+
+* oc2slpf-v1.1_resolved: Component schema = slpf profile (oc2slpf-v1.1) + language types (oc2ls-v1.1-types)
 
 **4. SLPF + Acme**
 
