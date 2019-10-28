@@ -55,7 +55,6 @@ profiles (x_acme, mycompany, x_395, etc.)
 
 ## New tests
 * **results_query_args** - language/response/good - v1.1 query - standard args
-* **results_slpf_query_args** - slpf/response/good - v1.1 query - profile-defined args
 * **query_slpf_pairs_bad_action_rsp** - slpf/response/bad - action not supported in SLPF
 * **query_slpf_pairs_bad_target_rsp** - slpf/response/bad - target not supported in SLPF
 * **query_slpf_pairs_bad_pair_rsp** - slpf/response/bad - action and target both supported but combination not valid
