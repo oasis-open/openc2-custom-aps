@@ -161,7 +161,7 @@ Manually combined:
 | 6 | results_ext_multiple.json | |
 | 7 | results_ext_single.json | |
 | 8 | results_slpf_empty.json | |
-| 9 | slpf_example_query_features_pairs_example.json | Fail: 'slpf:rule_number' is not one of ['artifact', 'command', 'device', 'domain_name', 'email_addr', 'features', 'file', 'idn_domain_name', 'idn_email_addr', 'ipv4_net', 'ipv6_net', 'ipv4_connection', 'ipv6_connection', 'iri', 'mac_addr', 'process', 'properties', 'uri', 'slpf'] |
+| 9 | slpf_example_query_features_pairs_example.json | |
 | 10 | slpf_example_rule_number.json | |
 | 11 | status_102.json | |
 | 12 | status_200.json | |
@@ -193,4 +193,4 @@ Manually combined:
 | 13 | statustext_nostatus.json | Fail: 'status' is a required property |
 | 14 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected) |
 
-  Validation Errors: {'cg': '9/102', 'cb': '0/33', 'rg': '2/22', 'rb': '2/14'}
+  Validation Errors: {'cg': '9/102', 'cb': '0/33', 'rg': '1/22', 'rb': '2/14'}

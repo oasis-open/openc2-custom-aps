@@ -1,4 +1,4 @@
-/* Generated from schema\oc2ls-v1.0.1-bb.jadn, Tue Oct 22 14:13:43 2019 */
+/* Generated from schema\oc2ls-v1.0.1-bb.jadn, Mon Oct 28 13:25:03 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -351,6 +351,386 @@
         }
       }
     },
+    "Action-Targets": {
+      "title": "Action Targets",
+      "type": "object",
+      "description": "Map of each action supported by this actuator to the list of targets applicable to that action.",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "scan": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-scan",
+            "description": ""
+          }
+        },
+        "locate": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-locate",
+            "description": ""
+          }
+        },
+        "query": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-query",
+            "description": ""
+          }
+        },
+        "deny": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-deny",
+            "description": ""
+          }
+        },
+        "contain": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-contain",
+            "description": ""
+          }
+        },
+        "allow": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-allow",
+            "description": ""
+          }
+        },
+        "start": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-start",
+            "description": ""
+          }
+        },
+        "stop": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-stop",
+            "description": ""
+          }
+        },
+        "restart": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-restart",
+            "description": ""
+          }
+        },
+        "cancel": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-cancel",
+            "description": ""
+          }
+        },
+        "set": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-set",
+            "description": ""
+          }
+        },
+        "update": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-update",
+            "description": ""
+          }
+        },
+        "redirect": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-redirect",
+            "description": ""
+          }
+        },
+        "create": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-create",
+            "description": ""
+          }
+        },
+        "delete": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-delete",
+            "description": ""
+          }
+        },
+        "detonate": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-detonate",
+            "description": ""
+          }
+        },
+        "restore": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-restore",
+            "description": ""
+          }
+        },
+        "copy": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-copy",
+            "description": ""
+          }
+        },
+        "investigate": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-investigate",
+            "description": ""
+          }
+        },
+        "remediate": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/definitions/Tgt-remediate",
+            "description": ""
+          }
+        }
+      }
+    },
+    "Tgt-scan": {
+      "title": "Tgt scan",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-locate": {
+      "title": "Tgt locate",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-query": {
+      "title": "Tgt query",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "features",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-deny": {
+      "title": "Tgt deny",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "file",
+          "description": ""
+        },
+        {
+          "const": "ipv4_net",
+          "description": ""
+        },
+        {
+          "const": "ipv6_net",
+          "description": ""
+        },
+        {
+          "const": "ipv4_connection",
+          "description": ""
+        },
+        {
+          "const": "ipv6_connection",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-contain": {
+      "title": "Tgt contain",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "device",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-allow": {
+      "title": "Tgt allow",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "device",
+          "description": ""
+        },
+        {
+          "const": "file",
+          "description": ""
+        },
+        {
+          "const": "ipv4_net",
+          "description": ""
+        },
+        {
+          "const": "ipv6_net",
+          "description": ""
+        },
+        {
+          "const": "ipv4_connection",
+          "description": ""
+        },
+        {
+          "const": "ipv6_connection",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-start": {
+      "title": "Tgt start",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-stop": {
+      "title": "Tgt stop",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-restart": {
+      "title": "Tgt restart",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-cancel": {
+      "title": "Tgt cancel",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-set": {
+      "title": "Tgt set",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-update": {
+      "title": "Tgt update",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "file",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-redirect": {
+      "title": "Tgt redirect",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-create": {
+      "title": "Tgt create",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-delete": {
+      "title": "Tgt delete",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "slpf:rule_number",
+          "description": ""
+        }
+      ]
+    },
+    "Tgt-detonate": {
+      "title": "Tgt detonate",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-restore": {
+      "title": "Tgt restore",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-copy": {
+      "title": "Tgt copy",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-investigate": {
+      "title": "Tgt investigate",
+      "type": "string",
+      "oneOf": []
+    },
+    "Tgt-remediate": {
+      "title": "Tgt remediate",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "file",
+          "description": ""
+        }
+      ]
+    },
     "Status-Code": {
       "title": "Status Code",
       "type": "integer",
@@ -619,162 +999,6 @@
       "type": "string",
       "description": "Uniform Resource Identifier, [[RFC3986]](#rfc3986).",
       "format": "uri"
-    },
-    "Action-Targets": {
-      "title": "Action Targets",
-      "type": "object",
-      "description": "Map of each action supported by this actuator to the list of targets applicable to that action.",
-      "additionalProperties": false,
-      "properties": {
-        "scan": {
-          "$ref": "#/definitions/Targets"
-        },
-        "locate": {
-          "$ref": "#/definitions/Targets"
-        },
-        "query": {
-          "$ref": "#/definitions/Targets"
-        },
-        "deny": {
-          "$ref": "#/definitions/Targets"
-        },
-        "contain": {
-          "$ref": "#/definitions/Targets"
-        },
-        "allow": {
-          "$ref": "#/definitions/Targets"
-        },
-        "start": {
-          "$ref": "#/definitions/Targets"
-        },
-        "stop": {
-          "$ref": "#/definitions/Targets"
-        },
-        "restart": {
-          "$ref": "#/definitions/Targets"
-        },
-        "cancel": {
-          "$ref": "#/definitions/Targets"
-        },
-        "set": {
-          "$ref": "#/definitions/Targets"
-        },
-        "update": {
-          "$ref": "#/definitions/Targets"
-        },
-        "redirect": {
-          "$ref": "#/definitions/Targets"
-        },
-        "create": {
-          "$ref": "#/definitions/Targets"
-        },
-        "delete": {
-          "$ref": "#/definitions/Targets"
-        },
-        "detonate": {
-          "$ref": "#/definitions/Targets"
-        },
-        "restore": {
-          "$ref": "#/definitions/Targets"
-        },
-        "copy": {
-          "$ref": "#/definitions/Targets"
-        },
-        "investigate": {
-          "$ref": "#/definitions/Targets"
-        },
-        "remediate": {
-          "$ref": "#/definitions/Targets"
-        }
-      }
-    },
-    "Targets": {
-      "title": "Targets",
-      "type": "array",
-      "description": "List of Target fields",
-      "uniqueItems": true,
-      "minItems": 1,
-      "maxItems": 100,
-      "items": {
-        "oneOf": [
-          {
-            "const": "artifact",
-            "description": "An array of bytes representing a file-like object or a link to that object."
-          },
-          {
-            "const": "command",
-            "description": "A reference to a previously issued Command."
-          },
-          {
-            "const": "device",
-            "description": "The properties of a hardware device."
-          },
-          {
-            "const": "domain_name",
-            "description": "A network domain name."
-          },
-          {
-            "const": "email_addr",
-            "description": "A single email address."
-          },
-          {
-            "const": "features",
-            "description": "A set of items used with the query Action to determine an Actuator's capabilities."
-          },
-          {
-            "const": "file",
-            "description": "Properties of a file."
-          },
-          {
-            "const": "idn_domain_name",
-            "description": "An internationalized domain name."
-          },
-          {
-            "const": "idn_email_addr",
-            "description": "A single internationalized email address."
-          },
-          {
-            "const": "ipv4_net",
-            "description": "An IPv4 address range including CIDR prefix length."
-          },
-          {
-            "const": "ipv6_net",
-            "description": "An IPv6 address range including prefix length."
-          },
-          {
-            "const": "ipv4_connection",
-            "description": "A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol"
-          },
-          {
-            "const": "ipv6_connection",
-            "description": "A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol"
-          },
-          {
-            "const": "iri",
-            "description": "An internationalized resource identifier (IRI)."
-          },
-          {
-            "const": "mac_addr",
-            "description": "A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui)"
-          },
-          {
-            "const": "process",
-            "description": "Common properties of an instance of a computer program as executed on an operating system."
-          },
-          {
-            "const": "properties",
-            "description": "Data attribute associated with an Actuator"
-          },
-          {
-            "const": "uri",
-            "description": "A uniform resource identifier (URI)."
-          },
-          {
-            "const": "slpf",
-            "description": "Targets defined in the SLPF actuator profile"
-          }
-        ]
-      }
     },
     "Date-Time": {
       "title": "Date Time",

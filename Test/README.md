@@ -63,10 +63,14 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **long_name_244** - language-anything/commands/bad - very long property names
 
 ### Implausible tests
-These tests pass a generic Language+Anything profile, but there is no plausible use case for validating them
+These tests pass a generic Language+Anything schema, but there is no plausible use case for validating them
 as correct OpenC2 commands and responses.
-Illustrates the difference between a generic profile and profiles used by OpenC2 Producers and Consumers.
+Illustrates the difference between a generic schema and profiles used by OpenC2 Producers and Consumers.
 * **create_poetry** - language/commands/bad, language-anything/commands/good - English literature
 * **results_poetry** - language/results/bad, language-anything/results/good - English literature
-* **set_castle** - language/commands/bad, language-anything/commands/good - Online game 
+* **set_castle** - language/commands/bad, language-anything/commands/good - Online game*
 * **results_castle** - language/results/bad, language-anything/results/good - Online game
+
+\* *Actual data from an online game.  Without a profile there is no*
+*clue to what purpose it serves or what benign or malicious operations might be occurring,*
+*and there are no limits on what other data would be considered valid OpenC2.*

@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Wed Oct 16 16:08:29 2019-->
+<!-- Generated from schema\oc2ls-v1.0.1-bb.jadn, Mon Oct 28 13:25:03 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -7,7 +7,7 @@
 | **patch:** | 0-bb |
 | **description:** | OpenC2 LS version 1.0 + errata + SLPF + Acme types |
 | **exports:** | OpenC2-Command, OpenC2-Response |
-| **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_A-Za-z0-9]{0,31}$ |
+| **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_a-z0-9]{0,31}$ |
 
 **_Type: OpenC2-Command (Record)_**
 
@@ -18,6 +18,14 @@
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
 | 5 | **command_id** | String | 0..1 | An identifier of this Command. |
+
+**_Type: OpenC2-Response (Map)_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **status** | Status-Code | 1 | An integer status code |
+| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
+| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **_Type: Action (Enumerated)_**
 
@@ -66,7 +74,7 @@
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
-| 1024 | **slpf** | P-Target | 1 | Targets defined in the SLPF actuator profile |
+| 1024 | **slpf:** | P-Target | 1 | Targets defined in the SLPF actuator profile |
 
 **_Type: Args (Map{1..*})_**
 
@@ -76,27 +84,18 @@
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Command |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Command to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
-| 1024 | **slpf** | P-Args | 0..1 | Command arguments defined in the SLPF actuator profile |
-| 3011 | **x-acme** | P-Args$acme | 0..1 | Results from the hypothetical Acme profile |
-| 3012 | **x-mycompany** | P-Args$myco | 0..1 | Results from the hypothetical My Company profile |
-| 3013 | **x-mycompany_with_underscore** | P-Args$myco2 | 0..1 | Results from the hypothetical My Company 2 profile |
-| 3014 | **x-0123456789_ABCDEFG_abcdefg___** | P-Args$alph | 0..1 | Results from the hypothetical Alphabet Company profile |
-| 3020 | **x-395** | P-Args$395 | 0..1 | Results from the hypothetical 395 company profile |
+| 1024 | **slpf:** | P-Args | 0..1 | Command arguments defined in the SLPF actuator profile |
+| 3011 | **x-acme:** | P-Args$acme | 0..1 | Results from the hypothetical Acme profile |
+| 3012 | **x-mycompany:** | P-Args$myco | 0..1 | Results from the hypothetical My Company profile |
+| 3013 | **x-mycompany_with_underscore:** | P-Args$myco2 | 0..1 | Results from the hypothetical My Company 2 profile |
+| 3020 | **x-395:** | P-Args$395 | 0..1 | Results from the hypothetical 395 company profile |
 
 **_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1024 | **slpf** | P-Actuator | 0..1 | Specifiers defined in the SLPF actuator profile |
-| 3010 | **x-esm** | P-Actuator$esm | 0..1 | Specifiers from the hypothetical Energy Storage Manager profile |
-
-**_Type: OpenC2-Response (Map)_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **status** | Status-Code | 1 | An integer status code |
-| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
+| 1024 | **slpf:** | P-Actuator | 0..1 | Specifiers defined in the SLPF actuator profile |
+| 3010 | **x-esm:** | P-Actuator$esm | 0..1 | Specifiers from the hypothetical Energy Storage Manager profile |
 
 **_Type: Results (Map{1..*})_**
 
@@ -106,10 +105,151 @@
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1024 | **slpf** | P-Results | 0..1 | Result properties defined in the Stateless Packet Filtering Profile |
-| 3010 | **x-esm** | P-Results$esm | 0..1 | Results from the hypothetical Energy Storage Manager profile |
-| 3011 | **x-acme** | P-Results$acme | 0..1 | Results from the hypothetical Acme profile |
-| 3012 | **x-mycompany** | P-Results$myco | 0..1 | Results from the hypothetical My Company profile |
+| 1024 | **slpf:** | P-Results | 0..1 | Result properties defined in the Stateless Packet Filtering Profile |
+| 3010 | **x-esm:** | P-Results$esm | 0..1 | Results from the hypothetical Energy Storage Manager profile |
+| 3011 | **x-acme:** | P-Results$acme | 0..1 | Results from the hypothetical Acme profile |
+| 3012 | **x-mycompany:** | P-Results$myco | 0..1 | Results from the hypothetical My Company profile |
+
+**_Type: Action-Targets (Map{1..*})_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **scan** | Tgt-scan | 0..10 |  |
+| 2 | **locate** | Tgt-locate | 0..10 |  |
+| 3 | **query** | Tgt-query | 0..10 |  |
+| 6 | **deny** | Tgt-deny | 0..10 |  |
+| 7 | **contain** | Tgt-contain | 0..10 |  |
+| 8 | **allow** | Tgt-allow | 0..10 |  |
+| 9 | **start** | Tgt-start | 0..10 |  |
+| 10 | **stop** | Tgt-stop | 0..10 |  |
+| 11 | **restart** | Tgt-restart | 0..10 |  |
+| 14 | **cancel** | Tgt-cancel | 0..10 |  |
+| 15 | **set** | Tgt-set | 0..10 |  |
+| 16 | **update** | Tgt-update | 0..10 |  |
+| 18 | **redirect** | Tgt-redirect | 0..10 |  |
+| 19 | **create** | Tgt-create | 0..10 |  |
+| 20 | **delete** | Tgt-delete | 0..10 |  |
+| 22 | **detonate** | Tgt-detonate | 0..10 |  |
+| 23 | **restore** | Tgt-restore | 0..10 |  |
+| 28 | **copy** | Tgt-copy | 0..10 |  |
+| 30 | **investigate** | Tgt-investigate | 0..10 |  |
+| 32 | **remediate** | Tgt-remediate | 0..10 |  |
+
+**_Type: Tgt-scan (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-locate (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-query (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **features** |  |
+
+**_Type: Tgt-deny (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **file** |  |
+| 2 | **ipv4_net** |  |
+| 3 | **ipv6_net** |  |
+| 4 | **ipv4_connection** |  |
+| 5 | **ipv6_connection** |  |
+
+**_Type: Tgt-contain (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **device** |  |
+
+**_Type: Tgt-allow (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **device** |  |
+| 2 | **file** |  |
+| 3 | **ipv4_net** |  |
+| 4 | **ipv6_net** |  |
+| 5 | **ipv4_connection** |  |
+| 6 | **ipv6_connection** |  |
+
+**_Type: Tgt-start (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-stop (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-restart (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-cancel (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-set (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-update (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **file** |  |
+
+**_Type: Tgt-redirect (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-create (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-delete (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **slpf:rule_number** |  |
+
+**_Type: Tgt-detonate (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-restore (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-copy (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-investigate (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+
+**_Type: Tgt-remediate (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **file** |  |
 
 **_Type: Status-Code (Enumerated.ID)_**
 
@@ -239,16 +379,6 @@
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **URI** | String /uri | Uniform Resource Identifier, [[RFC3986]](#rfc3986). |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Targets** | ArrayOf(#Target){1..*} unique | List of Target fields |
 
 
 | Type Name | Type Definition | Description |
@@ -435,12 +565,6 @@
 | 3 | **defined** | String | 1 |  |
 
 **_Type: P-Args$myco2 (Map{1..*})_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **debug_logging** | Boolean | 0..1 |  |
-
-**_Type: P-Args$alph (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |

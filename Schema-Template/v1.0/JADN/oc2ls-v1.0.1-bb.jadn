@@ -7,7 +7,7 @@
   "exports": ["OpenC2-Command", "OpenC2-Response"],
   "config": {
     "$FS": ":",
-    "$FieldName": "^[a-z][-_A-Za-z0-9]{0,31}$"
+    "$FieldName": "^[a-z][-_a-z0-9]{0,31}$"
   }
  },
 
@@ -18,6 +18,12 @@
     [3, "args", "Args", ["[0"], "Additional information that applies to the Command."],
     [4, "actuator", "Actuator", ["[0"], "The subject of the Action. The Actuator executes the Action on the Target."],
     [5, "command_id", "String", ["[0"], "An identifier of this Command."]
+  ]],
+
+  ["OpenC2-Response", "Map", [], "", [
+    [1, "status", "Status-Code", [], "An integer status code"],
+    [2, "status_text", "String", ["[0"], "A free-form human-readable description of the Response status"],
+    [3, "results", "Results", ["[0"], "Map of key:value pairs that contain additional results based on the invoking Command."]
   ]],
 
   ["Action", "Enumerated", [], "", [
@@ -62,7 +68,7 @@
     [18, "process", "Process", [], "Common properties of an instance of a computer program as executed on an operating system."],
     [25, "properties", "Properties", [], "Data attribute associated with an Actuator"],
     [19, "uri", "URI", [], "A uniform resource identifier (URI)."],
-    [1024, "slpf", "P-Target", [], "Targets defined in the SLPF actuator profile"]
+    [1024, "slpf", "P-Target", ["<<"], "Targets defined in the SLPF actuator profile"]
   ]],
 
   ["Args", "Map", ["{1"], "", [
@@ -70,23 +76,16 @@
     [2, "stop_time", "Date-Time", ["[0"], "The specific date/time to terminate the Command"],
     [3, "duration", "Duration", ["[0"], "The length of time for an Command to be in effect"],
     [4, "response_requested", "Response-Type", ["[0"], "The type of Response required for the Command: `none`, `ack`, `status`, `complete`."],
-    [1024, "slpf", "P-Args", ["[0"], "Command arguments defined in the SLPF actuator profile"],
-    [3011, "x-acme", "P-Args$acme", ["[0"], "Results from the hypothetical Acme profile"],
-    [3012, "x-mycompany", "P-Args$myco", ["[0"], "Results from the hypothetical My Company profile"],
-    [3013, "x-mycompany_with_underscore", "P-Args$myco2", ["[0"], "Results from the hypothetical My Company 2 profile"],
-    [3014, "x-0123456789_ABCDEFG_abcdefg___", "P-Args$alph", ["[0"], "Results from the hypothetical Alphabet Company profile"],
-    [3020, "x-395", "P-Args$395", ["[0"], "Results from the hypothetical 395 company profile"]
+    [1024, "slpf", "P-Args", ["[0", "<"], "Command arguments defined in the SLPF actuator profile"],
+    [3011, "x-acme", "P-Args$acme", ["[0", "<"], "Results from the hypothetical Acme profile"],
+    [3012, "x-mycompany", "P-Args$myco", ["[0", "<"], "Results from the hypothetical My Company profile"],
+    [3013, "x-mycompany_with_underscore", "P-Args$myco2", ["[0", "<"], "Results from the hypothetical My Company 2 profile"],
+    [3020, "x-395", "P-Args$395", ["[0", "<"], "Results from the hypothetical 395 company profile"]
   ]],
 
   ["Actuator", "Choice", [], "", [
-    [1024, "slpf", "P-Actuator", ["[0"], "Specifiers defined in the SLPF actuator profile"],
-    [3010, "x-esm", "P-Actuator$esm", ["[0"], "Specifiers from the hypothetical Energy Storage Manager profile"]
-  ]],
-
-  ["OpenC2-Response", "Map", [], "", [
-    [1, "status", "Status-Code", [], "An integer status code"],
-    [2, "status_text", "String", ["[0"], "A free-form human-readable description of the Response status"],
-    [3, "results", "Results", ["[0"], "Map of key:value pairs that contain additional results based on the invoking Command."]
+    [1024, "slpf", "P-Actuator", ["[0", "<"], "Specifiers defined in the SLPF actuator profile"],
+    [3010, "x-esm", "P-Actuator$esm", ["[0", "<"], "Specifiers from the hypothetical Energy Storage Manager profile"]
   ]],
 
   ["Results", "Map", ["{1"], "", [
@@ -94,10 +93,109 @@
     [2, "profiles", "ArrayOf", ["[0", "*Nsid"], "List of profiles supported by this Actuator"],
     [3, "pairs", "Action-Targets", ["[0"], "List of targets applicable to each supported Action"],
     [4, "rate_limit", "Number", ["[0"], "Maximum number of requests per minute supported by design or policy"],
-    [1024, "slpf", "P-Results", ["[0"], "Result properties defined in the Stateless Packet Filtering Profile"],
-    [3010, "x-esm", "P-Results$esm", ["[0"], "Results from the hypothetical Energy Storage Manager profile"],
-    [3011, "x-acme", "P-Results$acme", ["[0"], "Results from the hypothetical Acme profile"],
-    [3012, "x-mycompany", "P-Results$myco", ["[0"], "Results from the hypothetical My Company profile"]
+    [1024, "slpf", "P-Results", ["[0", "<"], "Result properties defined in the Stateless Packet Filtering Profile"],
+    [3010, "x-esm", "P-Results$esm", ["[0", "<"], "Results from the hypothetical Energy Storage Manager profile"],
+    [3011, "x-acme", "P-Results$acme", ["[0", "<"], "Results from the hypothetical Acme profile"],
+    [3012, "x-mycompany", "P-Results$myco", ["[0", "<"], "Results from the hypothetical My Company profile"]
+  ]],
+
+  ["Action-Targets", "Map", ["{1"], "Map of each action supported by this actuator to the list of targets applicable to that action.", [
+    [1, "scan", "Tgt-scan", ["[0", "]10"], ""],
+    [2, "locate", "Tgt-locate", ["[0", "]10"], ""],
+    [3, "query", "Tgt-query", ["[0", "]10"], ""],
+    [6, "deny", "Tgt-deny", ["[0", "]10"], ""],
+    [7, "contain", "Tgt-contain", ["[0", "]10"], ""],
+    [8, "allow", "Tgt-allow", ["[0", "]10"], ""],
+    [9, "start", "Tgt-start", ["[0", "]10"], ""],
+    [10, "stop", "Tgt-stop", ["[0", "]10"], ""],
+    [11, "restart", "Tgt-restart", ["[0", "]10"], ""],
+    [14, "cancel", "Tgt-cancel", ["[0", "]10"], ""],
+    [15, "set", "Tgt-set", ["[0", "]10"], ""],
+    [16, "update", "Tgt-update", ["[0", "]10"], ""],
+    [18, "redirect", "Tgt-redirect", ["[0", "]10"], ""],
+    [19, "create", "Tgt-create", ["[0", "]10"], ""],
+    [20, "delete", "Tgt-delete", ["[0", "]10"], ""],
+    [22, "detonate", "Tgt-detonate", ["[0", "]10"], ""],
+    [23, "restore", "Tgt-restore", ["[0", "]10"], ""],
+    [28, "copy", "Tgt-copy", ["[0", "]10"], ""],
+    [30, "investigate", "Tgt-investigate", ["[0", "]10"], ""],
+    [32, "remediate", "Tgt-remediate", ["[0", "]10"], ""]
+  ]],
+
+  ["Tgt-scan", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-locate", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-query", "Enumerated", [], "", [
+    [1, "features", ""]
+  ]],
+
+  ["Tgt-deny", "Enumerated", [], "", [
+    [1, "file", ""],
+    [2, "ipv4_net", ""],
+    [3, "ipv6_net", ""],
+    [4, "ipv4_connection", ""],
+    [5, "ipv6_connection", ""]
+  ]],
+
+  ["Tgt-contain", "Enumerated", [], "", [
+    [1, "device", ""]
+  ]],
+
+  ["Tgt-allow", "Enumerated", [], "", [
+    [1, "device", ""],
+    [2, "file", ""],
+    [3, "ipv4_net", ""],
+    [4, "ipv6_net", ""],
+    [5, "ipv4_connection", ""],
+    [6, "ipv6_connection", ""]
+  ]],
+
+  ["Tgt-start", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-stop", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-restart", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-cancel", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-set", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-update", "Enumerated", [], "", [
+    [1, "file", ""]
+  ]],
+
+  ["Tgt-redirect", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-create", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-delete", "Enumerated", [], "", [
+    [1, "slpf:rule_number", ""]
+  ]],
+
+  ["Tgt-detonate", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-restore", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-copy", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-investigate", "Enumerated", [], "", [
+  ]],
+
+  ["Tgt-remediate", "Enumerated", [], "", [
+    [1, "file", ""]
   ]],
 
   ["Status-Code", "Enumerated", ["="], "", [
@@ -183,10 +281,6 @@
   ["Properties", "ArrayOf", ["*String", "{1", "q"], "A list of names that uniquely identify properties of an Actuator."],
 
   ["URI", "String", ["/uri"], "Uniform Resource Identifier, [[RFC3986]](#rfc3986)."],
-
-  ["Action-Targets", "MapOf", ["+Action", "*Targets"], "Map of each action supported by this actuator to the list of targets applicable to that action."],
-
-  ["Targets", "ArrayOf", ["*#Target", "{1", "}0", "q"], "List of Target fields"],
 
   ["Date-Time", "Integer", ["{0"], "Date and Time"],
 
@@ -308,10 +402,6 @@
   ]],
 
   ["P-Args$myco2", "Map", ["{1"], "My Company 2 command arguments", [
-    [1, "debug_logging", "Boolean", ["[0"], ""]
-  ]],
-
-  ["P-Args$alph", "Map", ["{1"], "Alphabet Company command arguments", [
     [1, "debug_logging", "Boolean", ["[0"], ""]
   ]],
 
