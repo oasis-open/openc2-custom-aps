@@ -51,7 +51,6 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **start_container_ext_target_ext_actuator_ext_args** - process target path
 * **start_container_ext_target_ext_actuator_mult_ext_args** - process target path
 * **stop_container_ext_target** - process target path
-* **slpf_example_query_featurs_pairs_example** - process target path
 
 ## New tests
 * **results_query_args** - language/response/good - v1.1 query - standard args
