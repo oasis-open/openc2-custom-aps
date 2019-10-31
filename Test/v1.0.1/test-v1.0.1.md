@@ -104,14 +104,14 @@
 | 8 | deny_file_hashes_empty.json | Fail: {} does not have enough properties|
 | 9 | deny_file_hashes_sha512.json | Fail: Additional properties are not allowed ('sha512' was unexpected)|
 | 10 | deny_uri_actuator_empty.json | Fail: {} does not have enough properties|
-| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('slpf', 'x-acme' were unexpected)|
+| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'slpf' were unexpected)|
 | 12 | empty.json | Bad JSON: Expecting value '' |
 | 13 | empty_array.json | Fail: [] is not of type 'object'|
 | 14 | empty_object.json | Fail: 'action' is a required property|
 | 15 | number.json | Fail: 3.14159 is not of type 'object'|
 | 16 | number_integer.json | Fail: 100 is not of type 'object'|
 | 17 | openc2_response.json | Fail: Additional properties are not allowed ('status' was unexpected)|
-| 18 | openc2_response_text.json | Fail: Additional properties are not allowed ('status_text', 'status' were unexpected)|
+| 18 | openc2_response_text.json | Fail: Additional properties are not allowed ('status', 'status_text' were unexpected)|
 | 19 | query_features_ext_args_all.json | Fail: Additional properties are not allowed ('x-0123456789_ABCDEFG_abcdefg___' was unexpected)|
 | 20 | query_features_ext_args_capX.json | Fail: Additional properties are not allowed ('X-mycompany' was unexpected)|
 | 21 | query_features_ext_args_dots.json | Fail: Additional properties are not allowed ('x-mycompany.example.com' was unexpected)|
@@ -119,7 +119,7 @@
 | 23 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected)|
 | 24 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements|
 | 25 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit']|
-| 26 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-mycompany:features', 'x-acme:features' were unexpected)|
+| 26 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected)|
 | 27 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties|
 | 28 | start_container_ext_nocolon.json | Fail: Additional properties are not allowed ('container' was unexpected)|
 | 29 | start_container_ext_noprofile.json | Fail: Additional properties are not allowed (':container' was unexpected)|
@@ -163,9 +163,9 @@
 | 6 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
 | 7 | status_asbool.json | Fail: True is not of type 'integer'|
 | 8 | status_asstring.json | Fail: '200' is not of type 'integer'|
-| 9 | status_negative.json | Fail: -201 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
-| 10 | status_too_high.json | Fail: 5555 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
-| 11 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
+| 9 | status_negative.json | Fail: -201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 10 | status_too_high.json | Fail: 5555 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 11 | status_too_low.json | Fail: 55 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
 | 12 | statustext_nostatus.json | Fail: 'status' is a required property|
 | 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
 
@@ -236,9 +236,11 @@
 
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | results_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
-| 2 | slpf_query_pairs_bad_action.json | Fail: 'features' is not one of []|
-| 3 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
-| 4 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
+| 1 | results_ext_multiple_201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 2 | results_ext_single-201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 3 | results_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
+| 4 | slpf_query_pairs_bad_action.json | Fail: 'features' is not one of []|
+| 5 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
+| 6 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
 
-### Validation Errors: {'cg': '7/100', 'cb': '0/38', 'rg': '0/23', 'rb': '0/17'}
+### Validation Errors: {'cg': '7/100', 'cb': '0/38', 'rg': '0/23', 'rb': '0/19'}
