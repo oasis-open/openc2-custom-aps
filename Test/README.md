@@ -1,23 +1,36 @@
 # OpenC2 v1.0.1 Test Data
 
+These tests apply to the approved OpenC2 Language Specification version 1.0, plus a set of errata (bug fixes)
+currently under consideration by the Language subcommittee.
+
 OpenC2 test items (commands and responses) are organized by actuator type, which determines whether a given item
 is considered good or bad. Each actuator implements a component schema that is derived from one or more profiles.
 Example actuator types are:
 
 **1. Language**
 
-This component accepts every command and response defined in the OpenC2 Language Specification and rejects anything else.
+This component accepts every command and response defined in the OpenC2 Language Specification,
+and no Actuator Profiles.
 
 * oc2ls-v1.0.1: Component schema = OpenC2 v1.0 Language Spec + errata
 
-**2. SLPF + Acme**
+**2. SLPF**
 
-This device accepts every command and response defined in the SLPF profile plus a set of hypothetical OpenC2
-profiles (x_acme, mycompany, x_395, etc.)
+This component accepts commands and responses defined in the OpenC2 Stateless Packet Filtering profile.  Language
+elements not used by the SLPF profile are not accepted.
 
-* oc2ls-v1.0.1-bb: Component schema = OpenC2 LS version 1.0 + errata + SLPF + Acme types, manually combined
+* oc2slpf-v1.0.1: Component schema = OpenC2 SLPF Profile + errata
 
-## Changes from bberliner tests:
+**3. SLPF + Acme**
+
+This component accepts every command and response defined in the Language Specification and SLPF profile,
+plus some additional hypothetical actuator profiles.  Schema serves as an example of how
+commands and responses needed to support new use cases (such as a Powerwall home battery) are integrated
+into OpenC2.
+
+* oc2slpf-v1.0.1-acme: Component schema = OpenC2 LS version 1.0 + errata + SLPF + Acme types, manually combined
+
+## Changes from previous tests:
 **commands/good:**  
 * **deny_uri_actuator_multiple** - move to bad, multiple actuators not allowed in v1.0, proposed for v1.1
 * **query_features_ext_args_all** - move to bad, upper-case characters not allowed
@@ -31,22 +44,12 @@ profiles (x_acme, mycompany, x_395, etc.)
 * **query_features_all_badprofile** - move to good - "myextension" is OK in v1.0 (must be URI in v1.1)
 * **status_asdouble** - move to good - JSON has no integer type, 200 and 200.0 are the same number.
 
-**Fix schema generation software:**  
-* **query_features_ext_target** - process target path
-* **slpf_example_delete_rulenumber** - process target path
-* **start_container_ext_target** - process target path
-* **start_container_ext_target_ext_actuator** - process target path
-* **start_container_ext_target_ext_actuator_ext_args** - process target path
-* **start_container_ext_target_ext_actuator_mult_ext_args** - process target path
-* **stop_container_ext_target** - process target path
-
 ## New tests
-* **results_query_args** - language/response/good - v1.1 query - standard args
 * **query_slpf_pairs_bad_action_rsp** - slpf/response/bad - action not supported in SLPF
 * **query_slpf_pairs_bad_target_rsp** - slpf/response/bad - target not supported in SLPF
 * **query_slpf_pairs_bad_pair_rsp** - slpf/response/bad - action and target both supported but combination not valid
-* **long_name_80** - language-anything/commands/bad - long property names - property names must be 1-32 characters.
-* **long_name_244** - language-anything/commands/bad - very long property names
+* **long_name_x80** - language-anything/commands/bad - long property names - property names must be 1-32 characters.
+* **long_name_x244** - language-anything/commands/bad - very long property names
 
 ### Implausible tests
 These tests pass a generic Language+Anything schema, but there is no plausible use case for validating them
