@@ -1,7 +1,6 @@
 ## Auto-generated JSON Schema test results
-**Custom Actuator Profiles test suite**
+**Test Data:** https://api.github.com/repos/oasis-open/openc2-custom-aps/contents/Test/v1.0.1/   
 
-**Test Data:** https://api.github.com/repos/oasis-open/openc2-custom-aps/contents/Test/JSON/v1.0/   
 **Source Schema:** oc2ls-v1.0.1.jadn
 
 **language/commands/good/**  
@@ -105,7 +104,7 @@
 | 8 | deny_file_hashes_empty.json | Fail: {} does not have enough properties|
 | 9 | deny_file_hashes_sha512.json | Fail: Additional properties are not allowed ('sha512' was unexpected)|
 | 10 | deny_uri_actuator_empty.json | Fail: {} does not have enough properties|
-| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'slpf' were unexpected)|
+| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('slpf', 'x-acme' were unexpected)|
 | 12 | empty.json | Bad JSON: Expecting value '' |
 | 13 | empty_array.json | Fail: [] is not of type 'object'|
 | 14 | empty_object.json | Fail: 'action' is a required property|
@@ -169,7 +168,35 @@
 | 11 | status_too_low.json | Fail: 55 is not one of [102, 200, 201, 400, 401, 403, 404, 500, 501, 503]|
 | 12 | statustext_nostatus.json | Fail: 'status' is a required property|
 | 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
-**Source Schema:** oc2ls-v1.0.1-bb.jadn
+
+**Source Schema:** oc2slpf-v1.0.1.jadn
+
+**slpf/commands/good/**  
+
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | slpf_example_allow_ipv6connection.json | |
+| 2 | slpf_example_delete_rulenumber.json | Fail: Additional properties are not allowed ('slpf:rule_number' was unexpected)|
+| 3 | slpf_example_deny_ipv4connection.json | |
+| 4 | slpf_example_deny_ipv6connection.json | |
+| 5 | slpf_example_deny_ipv6net.json | |
+| 6 | slpf_example_update_file.json | |
+
+**slpf/commands/bad/**  
+  None
+
+**slpf/responses/good/**  
+
+|  #  | Name | Results |
+| --- | ---- | ------- |
+| 1 | results_slpf_empty.json | |
+| 2 | slpf_example_query_features_pairs_example.json | |
+| 3 | slpf_example_rule_number.json | |
+
+**slpf/responses/bad/**  
+  None
+
+**Source Schema:** oc2ls-v1.0.1-acme.jadn
 
 **slpf+acme/commands/good/**  
 
@@ -182,27 +209,19 @@
 | 5 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x-acme:features' was unexpected)|
 | 6 | query_features_extension_args_number.json | |
 | 7 | set_properties_firewall_status.json | |
-| 8 | slpf_example_allow_ipv6connection.json | |
-| 9 | slpf_example_delete_rulenumber.json | Fail: Additional properties are not allowed ('slpf:rule_number' was unexpected)|
-| 10 | slpf_example_deny_ipv4connection.json | |
-| 11 | slpf_example_deny_ipv6connection.json | |
-| 12 | slpf_example_deny_ipv6net.json | |
-| 13 | slpf_example_update_file.json | |
-| 14 | start_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 15 | start_container_ext_target_ext_actuator.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 16 | start_container_ext_target_ext_actuator_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 17 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 18 | stop_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 8 | start_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 9 | start_container_ext_target_ext_actuator.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 10 | start_container_ext_target_ext_actuator_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 11 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 12 | stop_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
 
 **slpf+acme/commands/bad/**  
 
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | create_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
-| 2 | long_name_244.json | Fail: Additional properties are not allowed ('when_in_the_course_of_human_events_it_becomes_necessary_for_one_people_to_dissolve_the_political_bands_which_have_connected_them_with_another_and_to_assume_among_the_powers_of_the_earth_the_separate_and_equal_station_to_which_the_laws_of_nature' was unexpected)|
-| 3 | long_name_80.json | Fail: Additional properties are not allowed ('the_judicial_power_of_the_united_states_shall_be_vested_in_one_supreme_court_and' was unexpected)|
-| 4 | long_name_x244.json | Fail: Additional properties are not allowed ('x-when_in_the_course_of_human_events_it_becomes_necessary_for_one_people_to_dissolve_the_political_bands_which_have_connected_them_with_another_and_to_assume_among_the_powers_of_the_earth_the_separate_and_equal_station_to_which_the_laws_of_natu' was unexpected)|
-| 5 | long_name_x80.json | Fail: Additional properties are not allowed ('x-the_judicial_power_of_the_united_states_shall_be_vested_in_one_supreme_court_a' was unexpected)|
+| 2 | long_name_x244.json | Fail: Additional properties are not allowed ('x-when_in_the_course_of_human_events_it_becomes_necessary_for_one_people_to_dissolve_the_political_bands_which_have_connected_them_with_another_and_to_assume_among_the_powers_of_the_earth_the_separate_and_equal_station_to_which_the_laws_of_natu' was unexpected)|
+| 3 | long_name_x80.json | Fail: Additional properties are not allowed ('x-the_judicial_power_of_the_united_states_shall_be_vested_in_one_supreme_court_a' was unexpected)|
 
 **slpf+acme/responses/good/**  
 
@@ -212,9 +231,6 @@
 | 2 | results_ext_empty.json | |
 | 3 | results_ext_multiple.json | |
 | 4 | results_ext_single.json | |
-| 5 | results_slpf_empty.json | |
-| 6 | slpf_example_query_features_pairs_example.json | |
-| 7 | slpf_example_rule_number.json | |
 
 **slpf+acme/responses/bad/**  
 
@@ -225,4 +241,4 @@
 | 3 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
 | 4 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
 
-### Validation Errors: {'cg': '7/100', 'cb': '0/40', 'rg': '0/23', 'rb': '0/17'}
+### Validation Errors: {'cg': '7/100', 'cb': '0/38', 'rg': '0/23', 'rb': '0/17'}
