@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 16:39:53 2019 */
+/* Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 17:38:01 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -446,10 +446,6 @@
         {
           "const": 200,
           "description": "OK - the Command has succeeded."
-        },
-        {
-          "const": 201,
-          "description": "Created - the Command successfully created a resource."
         },
         {
           "const": 400,

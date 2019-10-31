@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 16:39:53 2019-->
+<!-- Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 17:38:01 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -145,7 +145,6 @@
 | ---: | :--- |
 | 102 | **Processing**::an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it. |
 | 200 | **OK**::the Command has succeeded. |
-| 201 | **Created**::the Command successfully created a resource. |
 | 400 | **BadRequest**::the Consumer cannot process the Command due to something that is perceived to be a Producer error (e.g., malformed Command syntax). |
 | 401 | **Unauthorized**::the Command Message lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
 | 403 | **Forbidden**::the Consumer understood the Command but refuses to authorize it. |
