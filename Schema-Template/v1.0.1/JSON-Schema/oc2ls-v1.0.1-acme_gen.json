@@ -2,8 +2,8 @@
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://oasis-open.org/openc2/oc2ls/v1.0.1",
-  "title": "SLPF + Acme schema for bberliner tests",
+  "$id": "http://oasis-open.org/openc2/oc2ls/v1.0.1/acme",
+  "title": "SLPF + Acme schema",
   "description": "OpenC2 LS version 1.0 + errata + SLPF + Acme types",
   "type": "object",
   "additionalProperties": false,

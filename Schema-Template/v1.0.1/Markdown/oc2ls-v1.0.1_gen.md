@@ -2,10 +2,10 @@
 ## Schema
 | . | . |
 | ---: | :--- |
-| **title:** | SLPF + Acme schema for bberliner tests |
+| **title:** | SLPF + Acme schema |
 | **module:** | http://oasis-open.org/openc2/oc2ls/v1.0.1 |
-| **patch:** | 0-bb |
-| **description:** | OpenC2 LS version 1.0 + errata + SLPF + Acme types |
+| **patch:** | 0 |
+| **description:** | OpenC2 LS version 1.0 + errata |
 | **exports:** | OpenC2-Command, OpenC2-Response |
 | **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_a-z0-9]{0,31}$ |
 

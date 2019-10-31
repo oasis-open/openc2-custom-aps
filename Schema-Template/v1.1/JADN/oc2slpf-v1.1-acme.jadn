@@ -2,7 +2,7 @@
  "meta": {
   "module": "http://oasis-open.org/openc2/oc2slpf/v1.1/acme",
   "patch": "0",
-  "title": "SLPF + Acme schema for bberliner tests - v1.1",
+  "title": "SLPF + Acme schema - v1.1",
   "description": "OpenC2 LS version 1.1 + SLPF + Acme types",
   "imports": {
     "ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1",
