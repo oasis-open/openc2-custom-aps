@@ -54,12 +54,12 @@ into OpenC2.
 ### Implausible tests
 These tests pass a generic Language+Anything schema, but there is no plausible use case for validating them
 as correct OpenC2 commands and responses.
-Illustrates the difference between a generic schema and profiles used by OpenC2 Producers and Consumers.
-* **create_poetry** - language/commands/bad, language-anything/commands/good - English literature
-* **results_poetry** - language/results/bad, language-anything/results/good - English literature
-* **set_castle** - language/commands/bad, language-anything/commands/good - Online game*
-* **results_castle** - language/results/bad, language-anything/results/good - Online game
+They illustrate the difference between a generic "anything" schema and profiles used by OpenC2 Producers and Consumers.
+* **create_poetry** - slpf+acme/commands/bad - English literature
+* **results_poetry** - slpf+acme/results/bad - English literature
+* **set_castle** - slpf+acme/commands/bad - Online game*
+* **results_castle** - slpf+acme/results/bad - Online game
 
 \* *Actual data from an online game.  Without a profile there is no*
-*clue to what purpose it serves or what benign or malicious operations might be occurring,*
-*and there are no limits on what other data would be considered valid OpenC2.*
+*clue to what purpose it serves or what benign or malicious operations might be intended,*
+*and there are no limits on what is considered valid OpenC2.*
