@@ -54,7 +54,7 @@ into OpenC2.
 ### Implausible tests
 These tests pass a generic Language+Anything schema, but there is no plausible use case for validating them
 as correct OpenC2 commands and responses.
-They illustrate the difference between a generic "anything" schema and profiles used by OpenC2 Producers and Consumers.
+They illustrate the difference between a generic schema and profiles used by OpenC2 Producers and Consumers.
 * **create_poetry** - slpf+acme/commands/bad - English literature
 * **results_poetry** - slpf+acme/results/bad - English literature
 * **set_castle** - slpf+acme/commands/bad - Online game*
