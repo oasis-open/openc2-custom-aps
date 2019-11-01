@@ -104,7 +104,7 @@
 | 8 | deny_file_hashes_empty.json | Fail: {} does not have enough properties|
 | 9 | deny_file_hashes_sha512.json | Fail: Additional properties are not allowed ('sha512' was unexpected)|
 | 10 | deny_uri_actuator_empty.json | Fail: {} does not have enough properties|
-| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('x-acme', 'slpf' were unexpected)|
+| 11 | deny_uri_actuator_multiple.json | Fail: Additional properties are not allowed ('slpf', 'x-acme' were unexpected)|
 | 12 | empty.json | Bad JSON: Expecting value '' |
 | 13 | empty_array.json | Fail: [] is not of type 'object'|
 | 14 | empty_object.json | Fail: 'action' is a required property|
@@ -222,6 +222,7 @@
 | 1 | create_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
 | 2 | long_name_x244.json | Fail: Additional properties are not allowed ('x-when_in_the_course_of_human_events_it_becomes_necessary_for_one_people_to_dissolve_the_political_bands_which_have_connected_them_with_another_and_to_assume_among_the_powers_of_the_earth_the_separate_and_equal_station_to_which_the_laws_of_natu' was unexpected)|
 | 3 | long_name_x80.json | Fail: Additional properties are not allowed ('x-the_judicial_power_of_the_united_states_shall_be_vested_in_one_supreme_court_a' was unexpected)|
+| 4 | set_castle.json | Fail: Additional properties are not allowed ('x-game' was unexpected)|
 
 **slpf+acme/responses/good/**  
 
@@ -236,11 +237,12 @@
 
 |  #  | Name | Results |
 | --- | ---- | ------- |
-| 1 | results_ext_multiple_201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
-| 2 | results_ext_single-201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
-| 3 | results_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
-| 4 | slpf_query_pairs_bad_action.json | Fail: 'features' is not one of []|
-| 5 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
-| 6 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
+| 1 | results_castle.json | Fail: Additional properties are not allowed ('x-game' was unexpected)|
+| 2 | results_ext_multiple_201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 3 | results_ext_single-201.json | Fail: 201 is not one of [102, 200, 400, 401, 403, 404, 500, 501, 503]|
+| 4 | results_poetry.json | Fail: Additional properties are not allowed ('x-lit' was unexpected)|
+| 5 | slpf_query_pairs_bad_action.json | Fail: 'features' is not one of []|
+| 6 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
+| 7 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
 
-### Validation Errors: {'cg': '7/100', 'cb': '0/38', 'rg': '0/23', 'rb': '0/19'}
+### Validation Errors: {'cg': '7/100', 'cb': '0/39', 'rg': '0/23', 'rb': '0/20'}
