@@ -1,10 +1,10 @@
-/* Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 17:38:01 2019 */
+/* Generated from schema\oc2ls-v1.0.1.jadn, Mon Nov  4 15:03:30 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://oasis-open.org/openc2/oc2slpf/v1.0.1",
-  "title": "SLPF v1.0.1",
-  "description": "OpenC2 LS version 1.0 + errata + SLPF",
+  "$id": "http://oasis-open.org/openc2/oc2ls/v1.0.1",
+  "title": "Language schema with errata",
+  "description": "OpenC2 LS version 1.0 + errata",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -234,10 +234,6 @@
         "uri": {
           "$ref": "#/definitions/URI",
           "description": "A uniform resource identifier (URI)."
-        },
-        "slpf": {
-          "$ref": "#/definitions/P-Target",
-          "description": "Targets defined in the SLPF actuator profile"
         }
       }
     },
@@ -262,10 +258,6 @@
         "response_requested": {
           "$ref": "#/definitions/Response-Type",
           "description": "The type of Response required for the Command: `none`, `ack`, `status`, `complete`."
-        },
-        "slpf": {
-          "$ref": "#/definitions/P-Args",
-          "description": "Command arguments defined in the SLPF actuator profile"
         }
       }
     },
@@ -275,12 +267,7 @@
       "additionalProperties": false,
       "minProperties": 1,
       "maxProperties": 1,
-      "properties": {
-        "slpf": {
-          "$ref": "#/definitions/P-Actuator",
-          "description": "Specifiers defined in the SLPF actuator profile"
-        }
-      }
+      "properties": {}
     },
     "Results": {
       "title": "Results",
@@ -312,91 +299,129 @@
         "rate_limit": {
           "type": "number",
           "description": "Maximum number of requests per minute supported by design or policy"
-        },
-        "slpf": {
-          "$ref": "#/definitions/P-Results",
-          "description": "Result properties defined in the Stateless Packet Filtering Profile"
         }
       }
     },
     "Action-Targets": {
       "title": "Action Targets",
       "type": "object",
-      "description": "Map of each action supported by this actuator to the list of targets applicable to that action.",
+      "description": "Map of each action supported by this actuator to the list of targets applicable to that action",
       "additionalProperties": false,
       "minProperties": 1,
       "properties": {
+        "scan": {
+          "$ref": "#/definitions/Targets"
+        },
+        "locate": {
+          "$ref": "#/definitions/Targets"
+        },
         "query": {
-          "type": "array",
-          "description": "",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "$ref": "#/definitions/Tgt-query",
-            "description": ""
-          }
+          "$ref": "#/definitions/Targets"
         },
         "deny": {
-          "type": "array",
-          "description": "",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "$ref": "#/definitions/Tgt-allow-deny",
-            "description": ""
-          }
+          "$ref": "#/definitions/Targets"
+        },
+        "contain": {
+          "$ref": "#/definitions/Targets"
         },
         "allow": {
-          "type": "array",
-          "description": "",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "$ref": "#/definitions/Tgt-allow-deny",
-            "description": ""
-          }
+          "$ref": "#/definitions/Targets"
+        },
+        "start": {
+          "$ref": "#/definitions/Targets"
+        },
+        "stop": {
+          "$ref": "#/definitions/Targets"
+        },
+        "restart": {
+          "$ref": "#/definitions/Targets"
+        },
+        "cancel": {
+          "$ref": "#/definitions/Targets"
+        },
+        "set": {
+          "$ref": "#/definitions/Targets"
         },
         "update": {
-          "type": "array",
-          "description": "",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "$ref": "#/definitions/Tgt-update",
-            "description": ""
-          }
+          "$ref": "#/definitions/Targets"
+        },
+        "redirect": {
+          "$ref": "#/definitions/Targets"
+        },
+        "create": {
+          "$ref": "#/definitions/Targets"
         },
         "delete": {
-          "type": "array",
-          "description": "",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "$ref": "#/definitions/Tgt-delete",
-            "description": ""
-          }
+          "$ref": "#/definitions/Targets"
+        },
+        "detonate": {
+          "$ref": "#/definitions/Targets"
+        },
+        "restore": {
+          "$ref": "#/definitions/Targets"
+        },
+        "copy": {
+          "$ref": "#/definitions/Targets"
+        },
+        "investigate": {
+          "$ref": "#/definitions/Targets"
+        },
+        "remediate": {
+          "$ref": "#/definitions/Targets"
         }
       }
     },
-    "Tgt-query": {
-      "title": "Tgt query",
+    "Targets": {
+      "title": "Targets",
+      "type": "array",
+      "description": "List of JSON Pointers to Target types",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/definitions/Target$Pointer"
+      }
+    },
+    "Target$Pointer": {
+      "title": "Target$Pointer",
       "type": "string",
       "oneOf": [
         {
+          "const": "artifact",
+          "description": ""
+        },
+        {
+          "const": "command",
+          "description": ""
+        },
+        {
+          "const": "device",
+          "description": ""
+        },
+        {
+          "const": "domain_name",
+          "description": ""
+        },
+        {
+          "const": "email_addr",
+          "description": ""
+        },
+        {
           "const": "features",
           "description": ""
-        }
-      ]
-    },
-    "Tgt-allow-deny": {
-      "title": "Tgt allow deny",
-      "type": "string",
-      "oneOf": [
+        },
+        {
+          "const": "file",
+          "description": ""
+        },
+        {
+          "const": "idn_domain_name",
+          "description": ""
+        },
+        {
+          "const": "idn_email_addr",
+          "description": ""
+        },
         {
           "const": "ipv4_net",
           "description": ""
@@ -412,25 +437,25 @@
         {
           "const": "ipv6_connection",
           "description": ""
-        }
-      ]
-    },
-    "Tgt-update": {
-      "title": "Tgt update",
-      "type": "string",
-      "oneOf": [
+        },
         {
-          "const": "file",
+          "const": "iri",
           "description": ""
-        }
-      ]
-    },
-    "Tgt-delete": {
-      "title": "Tgt delete",
-      "type": "string",
-      "oneOf": [
+        },
         {
-          "const": "slpf:rule_number",
+          "const": "mac_addr",
+          "description": ""
+        },
+        {
+          "const": "process",
+          "description": ""
+        },
+        {
+          "const": "properties",
+          "description": ""
+        },
+        {
+          "const": "uri",
           "description": ""
         }
       ]
@@ -864,128 +889,6 @@
       "title": "Version",
       "type": "string",
       "description": "Major.Minor version number"
-    },
-    "P-Target": {
-      "title": "P Target",
-      "type": "object",
-      "description": "SLPF targets",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "maxProperties": 1,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
-        }
-      }
-    },
-    "Rule-ID": {
-      "title": "Rule ID",
-      "type": "integer",
-      "description": "Access rule identifier"
-    },
-    "P-Args": {
-      "title": "P Args",
-      "type": "object",
-      "description": "SLPF command arguments",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "properties": {
-        "drop_process": {
-          "$ref": "#/definitions/Drop-Process",
-          "description": "Specifies how to handle denied packets"
-        },
-        "persistent": {
-          "type": "boolean",
-          "description": "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"
-        },
-        "direction": {
-          "$ref": "#/definitions/Direction",
-          "description": "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"
-        },
-        "insert_rule": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Specifies the identifier of the rule within a list, typically used in a top-down rule list"
-        }
-      }
-    },
-    "Drop-Process": {
-      "title": "Drop Process",
-      "type": "string",
-      "oneOf": [
-        {
-          "const": "none",
-          "description": "Drop the packet and do not send a notification to the source of the packet"
-        },
-        {
-          "const": "reject",
-          "description": "Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet"
-        },
-        {
-          "const": "false_ack",
-          "description": "Drop the traffic and send a false acknowledgment"
-        }
-      ]
-    },
-    "Direction": {
-      "title": "Direction",
-      "type": "string",
-      "oneOf": [
-        {
-          "const": "both",
-          "description": "Apply rules to all traffic"
-        },
-        {
-          "const": "ingress",
-          "description": "Apply rules to incoming traffic only"
-        },
-        {
-          "const": "egress",
-          "description": "Apply rules to outgoing traffic only"
-        }
-      ]
-    },
-    "P-Actuator": {
-      "title": "P Actuator",
-      "type": "object",
-      "description": "SLPF actuator specifiers",
-      "additionalProperties": false,
-      "properties": {
-        "hostname": {
-          "type": "string",
-          "description": "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"
-        },
-        "named_group": {
-          "type": "string",
-          "description": "User defined collection of devices with SLPF functionality"
-        },
-        "asset_id": {
-          "type": "string",
-          "description": "Unique identifier for a particular SLPF"
-        },
-        "asset_tuple": {
-          "type": "array",
-          "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings",
-          "minItems": 1,
-          "maxItems": 10,
-          "items": {
-            "type": "string",
-            "description": "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"
-          }
-        }
-      }
-    },
-    "P-Results": {
-      "title": "P Results",
-      "type": "object",
-      "description": "SLPF results",
-      "additionalProperties": false,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Rule identifier returned from allow or deny Command."
-        }
-      }
     }
   }
 }

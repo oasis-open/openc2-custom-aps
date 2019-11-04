@@ -1,9 +1,9 @@
 {
  "meta": {
-  "module": "http://oasis-open.org/openc2/oc2ls/v1.0.1/acme",
+  "module": "http://oasis-open.org/openc2/oc2ls/v1.0.1",
   "patch": "0",
-  "title": "SLPF + Acme schema",
-  "description": "OpenC2 LS version 1.0 + errata + SLPF + Acme types",
+  "title": "Language schema with errata",
+  "description": "OpenC2 LS version 1.0 + errata",
   "exports": ["OpenC2-Command", "OpenC2-Response"],
   "config": {
     "$FS": ":",
@@ -67,135 +67,49 @@
     [17, "mac_addr", "MAC-Addr", [], "A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui)"],
     [18, "process", "Process", [], "Common properties of an instance of a computer program as executed on an operating system."],
     [25, "properties", "Properties", [], "Data attribute associated with an Actuator"],
-    [19, "uri", "URI", [], "A uniform resource identifier (URI)."],
-    [1024, "slpf", "P-Target", ["<<"], "Targets defined in the SLPF actuator profile"]
+    [19, "uri", "URI", [], "A uniform resource identifier (URI)."]
   ]],
 
   ["Args", "Map", ["{1"], "", [
     [1, "start_time", "Date-Time", ["[0"], "The specific date/time to initiate the Command"],
     [2, "stop_time", "Date-Time", ["[0"], "The specific date/time to terminate the Command"],
     [3, "duration", "Duration", ["[0"], "The length of time for an Command to be in effect"],
-    [4, "response_requested", "Response-Type", ["[0"], "The type of Response required for the Command: `none`, `ack`, `status`, `complete`."],
-    [1024, "slpf", "P-Args", ["[0", "<"], "Command arguments defined in the SLPF actuator profile"],
-    [3011, "x-acme", "P-Args$acme", ["[0", "<"], "Results from the hypothetical Acme profile"],
-    [3012, "x-mycompany", "P-Args$myco", ["[0", "<"], "Results from the hypothetical My Company profile"],
-    [3013, "x-mycompany_with_underscore", "P-Args$myco2", ["[0", "<"], "Results from the hypothetical My Company 2 profile"],
-    [3020, "x-395", "P-Args$395", ["[0", "<"], "Results from the hypothetical 395 company profile"]
+    [4, "response_requested", "Response-Type", ["[0"], "The type of Response required for the Command: `none`, `ack`, `status`, `complete`."]
   ]],
 
   ["Actuator", "Choice", [], "", [
-    [1024, "slpf", "P-Actuator", ["[0", "<"], "Specifiers defined in the SLPF actuator profile"],
-    [3010, "x-esm", "P-Actuator$esm", ["[0", "<"], "Specifiers from the hypothetical Energy Storage Manager profile"]
   ]],
 
   ["Results", "Map", ["{1"], "", [
     [1, "versions", "Version", ["[0", "]0", "q"], "List of OpenC2 language versions supported by this Actuator"],
     [2, "profiles", "ArrayOf", ["[0", "*Nsid"], "List of profiles supported by this Actuator"],
     [3, "pairs", "Action-Targets", ["[0"], "List of targets applicable to each supported Action"],
-    [4, "rate_limit", "Number", ["[0"], "Maximum number of requests per minute supported by design or policy"],
-    [1024, "slpf", "P-Results", ["[0", "<"], "Result properties defined in the Stateless Packet Filtering Profile"],
-    [3010, "x-esm", "P-Results$esm", ["[0", "<"], "Results from the hypothetical Energy Storage Manager profile"],
-    [3011, "x-acme", "P-Results$acme", ["[0", "<"], "Results from the hypothetical Acme profile"],
-    [3012, "x-mycompany", "P-Results$myco", ["[0", "<"], "Results from the hypothetical My Company profile"]
+    [4, "rate_limit", "Number", ["[0"], "Maximum number of requests per minute supported by design or policy"]
   ]],
 
-  ["Action-Targets", "Map", ["{1"], "Map of each action supported by this actuator to the list of targets applicable to that action.", [
-    [1, "scan", "Tgt-scan", ["[0", "]10", "q"], ""],
-    [2, "locate", "Tgt-locate", ["[0", "]10", "q"], ""],
-    [3, "query", "Tgt-query", ["[0", "]10", "q"], ""],
-    [6, "deny", "Tgt-deny", ["[0", "]10", "q"], ""],
-    [7, "contain", "Tgt-contain", ["[0", "]10", "q"], ""],
-    [8, "allow", "Tgt-allow", ["[0", "]10", "q"], ""],
-    [9, "start", "Tgt-start", ["[0", "]10", "q"], ""],
-    [10, "stop", "Tgt-stop", ["[0", "]10", "q"], ""],
-    [11, "restart", "Tgt-restart", ["[0", "]10", "q"], ""],
-    [14, "cancel", "Tgt-cancel", ["[0", "]10", "q"], ""],
-    [15, "set", "Tgt-set", ["[0", "]10", "q"], ""],
-    [16, "update", "Tgt-update", ["[0", "]10", "q"], ""],
-    [18, "redirect", "Tgt-redirect", ["[0", "]10", "q"], ""],
-    [19, "create", "Tgt-create", ["[0", "]10", "q"], ""],
-    [20, "delete", "Tgt-delete", ["[0", "]10", "q"], ""],
-    [22, "detonate", "Tgt-detonate", ["[0", "]10", "q"], ""],
-    [23, "restore", "Tgt-restore", ["[0", "]10", "q"], ""],
-    [28, "copy", "Tgt-copy", ["[0", "]10", "q"], ""],
-    [30, "investigate", "Tgt-investigate", ["[0", "]10", "q"], ""],
-    [32, "remediate", "Tgt-remediate", ["[0", "]10", "q"], ""]
-  ]],
+  ["Action-Targets", "MapOf", ["{1", "+Action", "*Targets"], "Map of each action supported by this actuator to the list of targets applicable to that action"],
 
-  ["Tgt-scan", "Enumerated", [], "", [
-  ]],
+  ["Targets", "ArrayOf", ["*Target$Pointer", "{1", "}0", "q"], "List of JSON Pointers to Target types"],
 
-  ["Tgt-locate", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-query", "Enumerated", [], "", [
-    [1, "features", ""]
-  ]],
-
-  ["Tgt-deny", "Enumerated", [], "", [
-    [1, "file", ""],
-    [2, "ipv4_net", ""],
-    [3, "ipv6_net", ""],
-    [4, "ipv4_connection", ""],
-    [5, "ipv6_connection", ""]
-  ]],
-
-  ["Tgt-contain", "Enumerated", [], "", [
-    [1, "device", ""]
-  ]],
-
-  ["Tgt-allow", "Enumerated", [], "", [
-    [1, "device", ""],
-    [2, "file", ""],
-    [3, "ipv4_net", ""],
-    [4, "ipv6_net", ""],
-    [5, "ipv4_connection", ""],
-    [6, "ipv6_connection", ""]
-  ]],
-
-  ["Tgt-start", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-stop", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-restart", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-cancel", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-set", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-update", "Enumerated", [], "", [
-    [1, "file", ""]
-  ]],
-
-  ["Tgt-redirect", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-create", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-delete", "Enumerated", [], "", [
-    [1, "slpf:rule_number", ""]
-  ]],
-
-  ["Tgt-detonate", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-restore", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-copy", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-investigate", "Enumerated", [], "", [
-  ]],
-
-  ["Tgt-remediate", "Enumerated", [], "", [
-    [1, "file", ""]
+  ["Target$Pointer", "Enumerated", [], "", [
+    [1, "artifact", ""],
+    [2, "command", ""],
+    [3, "device", ""],
+    [4, "domain_name", ""],
+    [5, "email_addr", ""],
+    [6, "features", ""],
+    [7, "file", ""],
+    [8, "idn_domain_name", ""],
+    [9, "idn_email_addr", ""],
+    [10, "ipv4_net", ""],
+    [11, "ipv6_net", ""],
+    [12, "ipv4_connection", ""],
+    [13, "ipv6_connection", ""],
+    [14, "iri", ""],
+    [15, "mac_addr", ""],
+    [16, "process", ""],
+    [17, "properties", ""],
+    [18, "uri", ""]
   ]],
 
   ["Status-Code", "Enumerated", ["="], "", [
@@ -313,11 +227,6 @@
     [132, "sctp", "Stream Control Transmission Protocol - [[RFC4960]](#rfc4960)"]
   ]],
 
-  ["Message-Type", "Enumerated", [], "", [
-    [1, "command", "The Message content is an OpenC2 Command"],
-    [2, "response", "The Message content is an OpenC2 Response"]
-  ]],
-
   ["Nsid", "String", ["{1", "}16"], "A short identifier that refers to a namespace."],
 
   ["Payload", "Choice", [], "", [
@@ -334,104 +243,7 @@
     [3, "complete", "Respond when all aspects of Command completed"]
   ]],
 
-  ["Version", "String", [], "Major.Minor version number"],
+  ["Version", "String", [], "Major.Minor version number"]
 
-  ["P-Target", "Choice", [], "SLPF targets", [
-    [1024, "rule_number", "Rule-ID", [], "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"]
-  ]],
-
-  ["Rule-ID", "Integer", [], "Access rule identifier"],
-
-  ["P-Args", "Map", ["{1"], "SLPF command arguments", [
-    [1024, "drop_process", "Drop-Process", ["[0"], "Specifies how to handle denied packets"],
-    [1025, "persistent", "Boolean", ["[0"], "Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart"],
-    [1026, "direction", "Direction", ["[0"], "Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both"],
-    [1027, "insert_rule", "Rule-ID", ["[0"], "Specifies the identifier of the rule within a list, typically used in a top-down rule list"]
-  ]],
-
-  ["Drop-Process", "Enumerated", [], "", [
-    [1, "none", "Drop the packet and do not send a notification to the source of the packet"],
-    [2, "reject", "Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet"],
-    [3, "false_ack", "Drop the traffic and send a false acknowledgment"]
-  ]],
-
-  ["Direction", "Enumerated", [], "", [
-    [1, "both", "Apply rules to all traffic"],
-    [2, "ingress", "Apply rules to incoming traffic only"],
-    [3, "egress", "Apply rules to outgoing traffic only"]
-  ]],
-
-  ["P-Actuator", "Map", [], "SLPF actuator specifiers", [
-    [1, "hostname", "String", ["[0"], "RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality"],
-    [2, "named_group", "String", ["[0"], "User defined collection of devices with SLPF functionality"],
-    [3, "asset_id", "String", ["[0"], "Unique identifier for a particular SLPF"],
-    [4, "asset_tuple", "String", ["[0", "]10"], "Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings"]
-  ]],
-
-  ["P-Results", "Map", [], "SLPF results", [
-    [1024, "rule_number", "Rule-ID", ["[0"], "Rule identifier returned from allow or deny Command."]
-  ]],
-
-  ["P-Args$acme", "Map", ["{1"], "Acme command arguments", [
-    [1, "firewall_status", "Status$acme", ["[0"], ""]
-  ]],
-
-  ["Status$acme", "Enumerated", [], "", [
-    [0, "off", ""],
-    [1, "on", ""]
-  ]],
-
-  ["P-Results$acme", "Map", [], "Acme results", [
-    [1, "status_detail", "String", ["[0"], ""]
-  ]],
-
-  ["P-Args$myco", "Map", ["{1"], "My Company command arguments", [
-    [1, "debug_logging", "Boolean", ["[0"], ""]
-  ]],
-
-  ["P-Results$myco", "Map", ["{1"], "My Company results", [
-    [1, "stuff", "Stuff$myco", ["[0"], ""]
-  ]],
-
-  ["Stuff$myco", "Record", [], "My Company results value", [
-    [1, "some", "Integer", [], ""],
-    [2, "values", "Boolean", ["]0"], ""],
-    [3, "defined", "String", [], ""]
-  ]],
-
-  ["P-Args$myco2", "Map", ["{1"], "My Company 2 command arguments", [
-    [1, "debug_logging", "Boolean", ["[0"], ""]
-  ]],
-
-  ["P-Args$395", "Map", ["{1"], "395 Company command arguments", [
-    [1, "debug_logging", "Boolean", ["[0"], ""]
-  ]],
-
-  ["P-Actuator$esm", "Map", [], "", [
-    [1, "asset_id", "String", ["[0"], "Unique identifier for a particular SLPF"]
-  ]],
-
-  ["P-Results$esm", "Map", ["{1"], "ESM results", [
-    [1, "asset_id", "String", ["[0"], ""],
-    [2, "battery", "Battery", ["[0"], ""]
-  ]],
-
-  ["Battery", "Record", [], "ESM Battery properties", [
-    [1, "capacity", "Number", [], ""],
-    [2, "charged_at", "Integer", [], ""],
-    [3, "status", "Integer", [], ""],
-    [4, "mode", "Battery-Mode", [], ""],
-    [5, "visible_on_display", "Boolean", [], ""]
-  ]],
-
-  ["Battery-Mode", "Record", [], "ESM Battery profile, Mode properties", [
-    [1, "output", "Output-Mode", [], ""],
-    [2, "supported", "ArrayOf", ["*Output-Mode"], ""]
-  ]],
-
-  ["Output-Mode", "Enumerated", [], "ESM Battery Mode items", [
-    [10, "high", ""],
-    [13, "trickle", ""]
-  ]]
  ]
 }

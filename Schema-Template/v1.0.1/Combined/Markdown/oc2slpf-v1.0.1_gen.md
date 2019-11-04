@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 17:38:01 2019-->
+<!-- Generated from schema\oc2slpf-v1.0.1.jadn, Mon Nov  4 15:03:30 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -7,7 +7,7 @@
 | **patch:** | 0 |
 | **description:** | OpenC2 LS version 1.0 + errata + SLPF |
 | **exports:** | OpenC2-Command, OpenC2-Response |
-| **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_a-z0-9]{0,31}$ |
+| **config:** | **$FS**:&nbsp;: **$FieldName**:&nbsp;^[a-z][-_:a-z0-9]{0,31}$ |
 
 **_Type: OpenC2-Command (Record)_**
 
@@ -74,7 +74,7 @@
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
-| 1024 | **slpf:** | P-Target | 1 | Targets defined in the SLPF actuator profile |
+| 900 | **slpf:rule_number** | Rule-ID | 1 | Immutable identifier assigned when a rule is created. Identifies a rule to be deleted |
 
 **_Type: Args (Map{1..*})_**
 
@@ -353,12 +353,6 @@
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
-
-**_Type: P-Target (Choice)_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1024 | **rule_number** | Rule-ID | 1 | Immutable identifier assigned when a rule is created. Identifies a rule to be deleted |
 
 
 | Type Name | Type Definition | Description |

@@ -1,7 +1,7 @@
 ## Auto-generated JSON Schema test results
 **Test Data:** https://api.github.com/repos/oasis-open/openc2-custom-aps/contents/Test/v1.0.1/   
 
-**Source Schema:** oc2ls-v1.0.1.jadn
+**Source Schema:** oc2ls-v1.0.1_cmd.jadn
 
 **language/commands/good/**  
 
@@ -119,7 +119,7 @@
 | 23 | query_features_ext_args_specialchar.json | Fail: Additional properties are not allowed ('x-mycompany/foo;bar' was unexpected)|
 | 24 | query_features_notunique.json | Fail: ['versions', 'versions'] has non-unique elements|
 | 25 | query_features_unknown.json | Fail: 'unknown' is not one of ['versions', 'profiles', 'pairs', 'rate_limit']|
-| 26 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-acme:features', 'x-mycompany:features' were unexpected)|
+| 26 | query_multiple_target_extensions.json | Fail: Additional properties are not allowed ('x-mycompany:features', 'x-acme:features' were unexpected)|
 | 27 | query_multiple_targets.json | Fail: {'features': ['versions'], 'properties': ['some_property']} has too many properties|
 | 28 | start_container_ext_nocolon.json | Fail: Additional properties are not allowed ('container' was unexpected)|
 | 29 | start_container_ext_noprofile.json | Fail: Additional properties are not allowed (':container' was unexpected)|
@@ -129,6 +129,8 @@
 | 33 | start_container_ext_underscore_first2.json | Fail: Additional properties are not allowed ('x-acme:_container' was unexpected)|
 | 34 | string.json | Fail: 'foo' is not of type 'object'|
 | 35 | target_multiple.json | Fail: {'file': {'hashes': {'sha256': '5c2d6daaf85a710605678f8e7ef0b725b33303f3234197b9dc4b46196734a4f0'}}, 'device': {'device_id': '9BCE8431AC106FAA3861C7E771D20E53'}} has too many properties|
+
+**Source Schema:** oc2ls-v1.0.1_rsp.jadn
 
 **language/responses/good/**  
 
@@ -158,7 +160,7 @@
 | 1 | empty.json | Bad JSON: Expecting value '' |
 | 2 | empty_array.json | Fail: [] is not of type 'object'|
 | 3 | empty_object.json | Fail: 'status' is a required property|
-| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('action', 'target' were unexpected)|
+| 4 | openc2_command_query_features_all.json | Fail: Additional properties are not allowed ('target', 'action' were unexpected)|
 | 5 | results_empty.json | Fail: {} does not have enough properties|
 | 6 | results_unknown_profile.json | Fail: Additional properties are not allowed ('mycompany' was unexpected)|
 | 7 | status_asbool.json | Fail: True is not of type 'integer'|
@@ -169,14 +171,14 @@
 | 12 | statustext_nostatus.json | Fail: 'status' is a required property|
 | 13 | unknown_field.json | Fail: Additional properties are not allowed ('command_id' was unexpected)|
 
-**Source Schema:** oc2slpf-v1.0.1.jadn
+**Source Schema:** oc2slpf-v1.0.1_cmd.jadn
 
 **slpf/commands/good/**  
 
 |  #  | Name | Results |
 | --- | ---- | ------- |
 | 1 | slpf_example_allow_ipv6connection.json | |
-| 2 | slpf_example_delete_rulenumber.json | Fail: Additional properties are not allowed ('slpf:rule_number' was unexpected)|
+| 2 | slpf_example_delete_rulenumber.json | |
 | 3 | slpf_example_deny_ipv4connection.json | |
 | 4 | slpf_example_deny_ipv6connection.json | |
 | 5 | slpf_example_deny_ipv6net.json | |
@@ -184,6 +186,8 @@
 
 **slpf/commands/bad/**  
   None
+
+**Source Schema:** oc2slpf-v1.0.1_rsp.jadn
 
 **slpf/responses/good/**  
 
@@ -196,7 +200,7 @@
 **slpf/responses/bad/**  
   None
 
-**Source Schema:** oc2ls-v1.0.1-acme.jadn
+**Source Schema:** oc2ls-v1.0.1-acme_cmd.jadn
 
 **slpf+acme/commands/good/**  
 
@@ -206,14 +210,14 @@
 | 2 | ls_example_query_properties_battery.json | |
 | 3 | query_features_ext_args.json | |
 | 4 | query_features_ext_args_underscore.json | |
-| 5 | query_features_ext_target.json | Fail: Additional properties are not allowed ('x-acme:features' was unexpected)|
+| 5 | query_features_ext_target.json | |
 | 6 | query_features_extension_args_number.json | |
 | 7 | set_properties_firewall_status.json | |
-| 8 | start_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 9 | start_container_ext_target_ext_actuator.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 10 | start_container_ext_target_ext_actuator_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 11 | start_container_ext_target_ext_actuator_mult_ext_args.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
-| 12 | stop_container_ext_target.json | Fail: Additional properties are not allowed ('x-acme:container' was unexpected)|
+| 8 | start_container_ext_target.json | |
+| 9 | start_container_ext_target_ext_actuator.json | |
+| 10 | start_container_ext_target_ext_actuator_ext_args.json | |
+| 11 | start_container_ext_target_ext_actuator_mult_ext_args.json | |
+| 12 | stop_container_ext_target.json | |
 
 **slpf+acme/commands/bad/**  
 
@@ -223,6 +227,8 @@
 | 2 | long_name_x244.json | Fail: Additional properties are not allowed ('x-when_in_the_course_of_human_events_it_becomes_necessary_for_one_people_to_dissolve_the_political_bands_which_have_connected_them_with_another_and_to_assume_among_the_powers_of_the_earth_the_separate_and_equal_station_to_which_the_laws_of_natu' was unexpected)|
 | 3 | long_name_x80.json | Fail: Additional properties are not allowed ('x-the_judicial_power_of_the_united_states_shall_be_vested_in_one_supreme_court_a' was unexpected)|
 | 4 | set_castle.json | Fail: Additional properties are not allowed ('x-game' was unexpected)|
+
+**Source Schema:** oc2ls-v1.0.1-acme_rsp.jadn
 
 **slpf+acme/responses/good/**  
 
@@ -245,4 +251,4 @@
 | 6 | slpf_query_pairs_bad_pair.json | Fail: 'file' is not one of ['features']|
 | 7 | slpf_query_pairs_bad_target.json | Fail: 'uri' is not one of ['file']|
 
-### Validation Errors: {'cg': '7/100', 'cb': '0/39', 'rg': '0/23', 'rb': '0/20'}
+### Validation Errors: {'g': '0/123', 'b': '0/59'}

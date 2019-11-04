@@ -1,9 +1,9 @@
-/* Generated from schema\oc2slpf-v1.0.1.jadn, Thu Oct 31 17:38:01 2019 */
+/* Generated from schema\oc2ls-v1.0.1.jadn, Mon Nov  4 15:03:30 2019 */
 
-       title: SLPF v1.0.1
-      module: http://oasis-open.org/openc2/oc2slpf/v1.0.1
+       title: Language schema with errata
+      module: http://oasis-open.org/openc2/oc2ls/v1.0.1
        patch: 0
- description: OpenC2 LS version 1.0 + errata + SLPF
+ description: OpenC2 LS version 1.0 + errata
      exports: ['OpenC2-Command', 'OpenC2-Response']
       config: {'$FS': ':', '$FieldName': '^[a-z][-_a-z0-9]{0,31}$'}
 
@@ -62,55 +62,49 @@ Target = Choice {                            // OpenC2 Target datatypes
     17 mac_addr        MAC-Addr,                 // A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui)
     18 process         Process,                  // Common properties of an instance of a computer program as executed on an operating system.
     25 properties      Properties,               // Data attribute associated with an Actuator
-    19 uri             URI,                      // A uniform resource identifier (URI).
-  1024 slpf:           P-Target                  // Targets defined in the SLPF actuator profile
+    19 uri             URI                       // A uniform resource identifier (URI).
 }
 
 Args = Map{1..*} {
      1 start_time      Date-Time optional,       // The specific date/time to initiate the Command
      2 stop_time       Date-Time optional,       // The specific date/time to terminate the Command
      3 duration        Duration optional,        // The length of time for an Command to be in effect
-     4 response_requested Response-Type optional, // The type of Response required for the Command: `none`, `ack`, `status`, `complete`.
-  1024 slpf:           P-Args optional           // Command arguments defined in the SLPF actuator profile
+     4 response_requested Response-Type optional // The type of Response required for the Command: `none`, `ack`, `status`, `complete`.
 }
 
 Actuator = Choice {
-  1024 slpf:           P-Actuator optional       // Specifiers defined in the SLPF actuator profile
 }
 
 Results = Map{1..*} {
      1 versions        Version [0..*] unique,    // List of OpenC2 language versions supported by this Actuator
      2 profiles        ArrayOf(Nsid) optional,   // List of profiles supported by this Actuator
      3 pairs           Action-Targets optional,  // List of targets applicable to each supported Action
-     4 rate_limit      Number optional,          // Maximum number of requests per minute supported by design or policy
-  1024 slpf:           P-Results optional        // Result properties defined in the Stateless Packet Filtering Profile
+     4 rate_limit      Number optional           // Maximum number of requests per minute supported by design or policy
 }
 
-Action-Targets = Map{1..*} {                 // Map of each action supported by this actuator to the list of targets applicable to that action.
-     3 query           Tgt-query [0..10] unique,
-     6 deny            Tgt-allow-deny [0..10] unique,
-     8 allow           Tgt-allow-deny [0..10] unique,
-    16 update          Tgt-update [0..10] unique,
-    20 delete          Tgt-delete [0..10] unique
-}
+Action-Targets = MapOf(Action, Targets){1..*} // Map of each action supported by this actuator to the list of targets applicable to that action
 
-Tgt-query = Enumerated {
-     1 features
-}
+Targets = ArrayOf(Target$Pointer){1..0} unique // List of JSON Pointers to Target types
 
-Tgt-allow-deny = Enumerated {
-     2 ipv4_net,
-     3 ipv6_net,
-     4 ipv4_connection,
-     5 ipv6_connection
-}
-
-Tgt-update = Enumerated {
-     1 file
-}
-
-Tgt-delete = Enumerated {
-     1 slpf:rule_number
+Target$Pointer = Enumerated {
+     1 artifact,
+     2 command,
+     3 device,
+     4 domain_name,
+     5 email_addr,
+     6 features,
+     7 file,
+     8 idn_domain_name,
+     9 idn_email_addr,
+    10 ipv4_net,
+    11 ipv6_net,
+    12 ipv4_connection,
+    13 ipv6_connection,
+    14 iri,
+    15 mac_addr,
+    16 process,
+    17 properties,
+    18 uri
 }
 
 Status-Code = Enumerated.ID {
@@ -245,39 +239,3 @@ Response-Type = Enumerated {
 }
 
 Version = String                             // Major.Minor version number
-
-P-Target = Choice {                          // SLPF targets
-  1024 rule_number     Rule-ID                   // Immutable identifier assigned when a rule is created. Identifies a rule to be deleted
-}
-
-Rule-ID = Integer                            // Access rule identifier
-
-P-Args = Map{1..*} {                         // SLPF command arguments
-  1024 drop_process    Drop-Process optional,    // Specifies how to handle denied packets
-  1025 persistent      Boolean optional,         // Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart
-  1026 direction       Direction optional,       // Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both
-  1027 insert_rule     Rule-ID optional          // Specifies the identifier of the rule within a list, typically used in a top-down rule list
-}
-
-Drop-Process = Enumerated {
-     1 none,                                     // Drop the packet and do not send a notification to the source of the packet
-     2 reject,                                   // Drop the packet and send an ICMP host unreachable (or equivalent) to the source of the packet
-     3 false_ack                                 // Drop the traffic and send a false acknowledgment
-}
-
-Direction = Enumerated {
-     1 both,                                     // Apply rules to all traffic
-     2 ingress,                                  // Apply rules to incoming traffic only
-     3 egress                                    // Apply rules to outgoing traffic only
-}
-
-P-Actuator = Map {                           // SLPF actuator specifiers
-     1 hostname        String optional,          // RFC 1123 hostname (can be a domain name or IP address) for a particular device with SLPF functionality
-     2 named_group     String optional,          // User defined collection of devices with SLPF functionality
-     3 asset_id        String optional,          // Unique identifier for a particular SLPF
-     4 asset_tuple     String [0..10]            // Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings
-}
-
-P-Results = Map {                            // SLPF results
-  1024 rule_number     Rule-ID optional          // Rule identifier returned from allow or deny Command.
-}

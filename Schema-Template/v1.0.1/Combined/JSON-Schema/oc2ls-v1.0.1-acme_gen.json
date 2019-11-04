@@ -1,4 +1,4 @@
-/* Generated from schema\oc2ls-v1.0.1-acme.jadn, Thu Oct 31 17:38:01 2019 */
+/* Generated from schema\oc2ls-v1.0.1-acme.jadn, Mon Nov  4 15:03:29 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -235,9 +235,17 @@
           "$ref": "#/definitions/URI",
           "description": "A uniform resource identifier (URI)."
         },
-        "slpf": {
-          "$ref": "#/definitions/P-Target",
-          "description": "Targets defined in the SLPF actuator profile"
+        "slpf:rule_number": {
+          "$ref": "#/definitions/Rule-ID",
+          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
+        },
+        "x-acme:features": {
+          "$ref": "#/definitions/Acme-Features",
+          "description": "Bad design - no reason to duplicate Features in acme profile"
+        },
+        "x-acme:container": {
+          "$ref": "#/definitions/Acme-Container",
+          "description": "Hypothetical container target"
         }
       }
     },
@@ -269,15 +277,19 @@
         },
         "x-acme": {
           "$ref": "#/definitions/P-Args$acme",
-          "description": "Results from the hypothetical Acme profile"
+          "description": "Command arguments from the hypothetical Acme profile"
         },
         "x-mycompany": {
           "$ref": "#/definitions/P-Args$myco",
-          "description": "Results from the hypothetical My Company profile"
+          "description": "Command arguments from the hypothetical My Company profile"
         },
         "x-mycompany_with_underscore": {
           "$ref": "#/definitions/P-Args$myco2",
-          "description": "Results from the hypothetical My Company 2 profile"
+          "description": "Command arguments from the hypothetical My Company 2 profile"
+        },
+        "x-example": {
+          "$ref": "#/definitions/P-Args$example",
+          "description": "Command arguments from the hypothetical Example profile"
         },
         "x-395": {
           "$ref": "#/definitions/P-Args$395",
@@ -299,6 +311,10 @@
         "x-esm": {
           "$ref": "#/definitions/P-Actuator$esm",
           "description": "Specifiers from the hypothetical Energy Storage Manager profile"
+        },
+        "x-mycompany": {
+          "$ref": "#/definitions/P-Actuator$myco",
+          "description": "Results from the hypothetical My Company profile"
         }
       }
     },
@@ -1122,20 +1138,6 @@
         }
       ]
     },
-    "Message-Type": {
-      "title": "Message Type",
-      "type": "string",
-      "oneOf": [
-        {
-          "const": "command",
-          "description": "The Message content is an OpenC2 Command"
-        },
-        {
-          "const": "response",
-          "description": "The Message content is an OpenC2 Response"
-        }
-      ]
-    },
     "Nsid": {
       "title": "Nsid",
       "type": "string",
@@ -1194,20 +1196,6 @@
       "title": "Version",
       "type": "string",
       "description": "Major.Minor version number"
-    },
-    "P-Target": {
-      "title": "P Target",
-      "type": "object",
-      "description": "SLPF targets",
-      "additionalProperties": false,
-      "minProperties": 1,
-      "maxProperties": 1,
-      "properties": {
-        "rule_number": {
-          "$ref": "#/definitions/Rule-ID",
-          "description": "Immutable identifier assigned when a rule is created. Identifies a rule to be deleted"
-        }
-      }
     },
     "Rule-ID": {
       "title": "Rule ID",
@@ -1367,6 +1355,19 @@
         }
       }
     },
+    "P-Actuator$myco": {
+      "title": "P Actuator$myco",
+      "type": "object",
+      "description": "My Company actuator specifiers",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "asset_id": {
+          "$ref": "#/definitions/UUID",
+          "description": ""
+        }
+      }
+    },
     "P-Results$myco": {
       "title": "P Results$myco",
       "type": "object",
@@ -1416,6 +1417,22 @@
       "properties": {
         "debug_logging": {
           "type": "boolean"
+        }
+      }
+    },
+    "P-Args$example": {
+      "title": "P Args$example",
+      "type": "object",
+      "description": "Example command arguments",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "async": {
+          "type": "boolean"
+        },
+        "webhook_id": {
+          "$ref": "#/definitions/UUID",
+          "description": ""
         }
       }
     },
@@ -1525,6 +1542,71 @@
           "description": ""
         }
       ]
+    },
+    "Acme-Features": {
+      "title": "Acme Features",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "features"
+      ],
+      "properties": {
+        "features": {
+          "$ref": "#/definitions/Acme-Feature-List",
+          "description": ""
+        }
+      }
+    },
+    "Acme-Feature-List": {
+      "title": "Acme Feature List",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Acme-Feature"
+      }
+    },
+    "Acme-Feature": {
+      "title": "Acme Feature",
+      "type": "string",
+      "oneOf": [
+        {
+          "const": "versions",
+          "description": "List of OpenC2 Language versions supported by this Actuator"
+        },
+        {
+          "const": "profiles",
+          "description": "List of profiles supported by this Actuator"
+        },
+        {
+          "const": "pairs",
+          "description": "List of supported Actions and applicable Targets"
+        },
+        {
+          "const": "rate_limit",
+          "description": "Maximum number of Commands per minute supported by design or policy"
+        },
+        {
+          "const": "schema",
+          "description": "Actuator Schema"
+        }
+      ]
+    },
+    "Acme-Container": {
+      "title": "Acme Container",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "container_id"
+      ],
+      "properties": {
+        "container_id": {
+          "$ref": "#/definitions/UUID",
+          "description": ""
+        }
+      }
+    },
+    "UUID": {
+      "title": "UUID",
+      "type": "string"
     }
   }
 }
