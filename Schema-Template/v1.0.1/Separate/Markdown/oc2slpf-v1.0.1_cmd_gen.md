@@ -1,4 +1,4 @@
-<!-- Generated from schema\oc2slpf-v1.0.1_cmd.jadn, Mon Nov  4 15:03:30 2019-->
+<!-- Generated from schema\oc2slpf-v1.0.1_cmd.jadn, Tue Nov  5 10:24:15 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -48,24 +48,12 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | String | 1 | A reference to a previously issued Command. |
-| 3 | **device** | Device | 1 | The properties of a hardware device. |
-| 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
-| 8 | **email_addr** | Email-Addr | 1 | A single email address. |
 | 9 | **features** | Features | 1 | A set of items used with the query Action to determine an Actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
-| 11 | **idn_domain_name** | IDN-Domain-Name | 1 | An internationalized domain name. |
-| 12 | **idn_email_addr** | IDN-Email-Addr | 1 | A single internationalized email address. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
 | 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
-| 20 | **iri** | IRI | 1 | An internationalized resource identifier (IRI). |
-| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
-| 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
-| 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
-| 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 | 900 | **slpf:rule_number** | Rule-ID | 1 | Immutable identifier assigned when a rule is created. Identifies a rule to be deleted |
 
 **_Type: Args (Map{1..*})_**
@@ -84,32 +72,6 @@
 | ---: | :--- | :--- | ---: | :--- |
 | 1024 | **slpf:** | P-Actuator | 0..1 | Specifiers defined in the SLPF actuator profile |
 
-**_Type: Artifact (Record{1..*})_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
-| 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
-| 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
-
-**_Type: Device (Map{1..*})_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **hostname** | Hostname | 0..1 | A hostname that can be used to connect to this device over a network |
-| 2 | **idn_hostname** | IDN-Hostname | 0..1 | An internationalized hostname that can be used to connect to this device over a network |
-| 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Domain-Name** | String /hostname | [[RFC1034]](#rfc1034), Section 3.5 |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Email-Addr** | String /email | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
-
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
@@ -122,16 +84,6 @@
 | 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **IDN-Domain-Name** | String /idn-hostname | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **IDN-Email-Addr** | String /idn-email | Internationalized email address, [[RFC6531]](#rfc6531) |
 
 **_Type: IPv4-Net (Array /ipv4-net)_**
 
@@ -170,37 +122,6 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IRI** | String /iri | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **MAC-Addr** | Binary /eui | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
-
-**_Type: Process (Map{1..*})_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **pid** | Integer{0..*} | 0..1 | Process ID of the process |
-| 2 | **name** | String | 0..1 | Name of the process |
-| 3 | **cwd** | String | 0..1 | Current working directory of the process |
-| 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
-| 5 | **parent** | Process | 0..1 | Process that spawned this one |
-| 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Properties** | ArrayOf(String){1..*} unique | A list of names that uniquely identify properties of an Actuator. |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **URI** | String /uri | Uniform Resource Identifier, [[RFC3986]](#rfc3986). |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
 | **Date-Time** | Integer{0..*} | Date and Time |
 
 
@@ -228,16 +149,6 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
-
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
 
@@ -253,13 +164,6 @@
 | 6 | **tcp** | Transmission Control Protocol - [[RFC0793]](#rfc0793) |
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
-
-**_Type: Payload (Choice)_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
-| 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
 
 | Type Name | Type Definition | Description |

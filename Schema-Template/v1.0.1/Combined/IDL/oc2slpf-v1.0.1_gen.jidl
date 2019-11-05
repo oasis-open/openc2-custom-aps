@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.0.1.jadn, Mon Nov  4 15:03:30 2019 */
+/* Generated from schema\oc2slpf-v1.0.1.jadn, Tue Nov  5 10:24:15 2019 */
 
        title: SLPF v1.0.1
       module: http://oasis-open.org/openc2/oc2slpf/v1.0.1
@@ -45,24 +45,12 @@ Action = Enumerated {
 }
 
 Target = Choice {                            // OpenC2 Target datatypes
-     1 artifact        Artifact,                 // An array of bytes representing a file-like object or a link to that object.
-     2 command         String,                   // A reference to a previously issued Command.
-     3 device          Device,                   // The properties of a hardware device.
-     7 domain_name     Domain-Name,              // A network domain name.
-     8 email_addr      Email-Addr,               // A single email address.
      9 features        Features,                 // A set of items used with the query Action to determine an Actuator's capabilities.
     10 file            File,                     // Properties of a file.
-    11 idn_domain_name IDN-Domain-Name,          // An internationalized domain name.
-    12 idn_email_addr  IDN-Email-Addr,           // A single internationalized email address.
     13 ipv4_net        IPv4-Net,                 // An IPv4 address range including CIDR prefix length.
     14 ipv6_net        IPv6-Net,                 // An IPv6 address range including prefix length.
     15 ipv4_connection IPv4-Connection,          // A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol
     16 ipv6_connection IPv6-Connection,          // A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol
-    20 iri             IRI,                      // An internationalized resource identifier (IRI).
-    17 mac_addr        MAC-Addr,                 // A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui)
-    18 process         Process,                  // Common properties of an instance of a computer program as executed on an operating system.
-    25 properties      Properties,               // Data attribute associated with an Actuator
-    19 uri             URI,                      // A uniform resource identifier (URI).
    900 slpf:rule_number Rule-ID                  // Immutable identifier assigned when a rule is created. Identifies a rule to be deleted
 }
 
@@ -125,22 +113,6 @@ Status-Code = Enumerated.ID {
    503                                           // ServiceUnavailable:: the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer.
 }
 
-Artifact = Record{1..*} {
-     1 mime_type       String optional,          // Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838)
-     2 payload         Payload optional,         // Choice of literal content or URL
-     3 hashes          Hashes optional           // Hashes of the payload content
-}
-
-Device = Map{1..*} {
-     1 hostname        Hostname optional,        // A hostname that can be used to connect to this device over a network
-     2 idn_hostname    IDN-Hostname optional,    // An internationalized hostname that can be used to connect to this device over a network
-     3 device_id       String optional           // An identifier that refers to this device within an inventory or management system
-}
-
-Domain-Name = String /hostname               // [[RFC1034]](#rfc1034), Section 3.5
-
-Email-Addr = String /email                   // Email address, [[RFC5322]](#rfc5322), Section 3.4.1
-
 Features = ArrayOf(Feature){0..10} unique    // An array of zero to ten names used to query an Actuator for its supported capabilities.
 
 File = Map{1..*} {
@@ -148,10 +120,6 @@ File = Map{1..*} {
      2 path            String optional,          // The absolute path to the location of the file in the file system
      3 hashes          Hashes optional           // One or more cryptographic hash codes of the file contents
 }
-
-IDN-Domain-Name = String /idn-hostname       // Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3.
-
-IDN-Email-Addr = String /idn-email           // Internationalized email address, [[RFC6531]](#rfc6531)
 
 IPv4-Net = Array /ipv4-net {
      1 IPv4-Addr,                                // ipv4_addr:: IPv4 address as defined in [[RFC0791]](#rfc0791)
@@ -179,23 +147,6 @@ IPv6-Connection = Record{1..*} {             // 5-tuple that specifies a tcp/ip 
      5 protocol        L4-Protocol optional      // layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol)
 }
 
-IRI = String /iri                            // Internationalized Resource Identifier, [[RFC3987]](#rfc3987).
-
-MAC-Addr = Binary /eui                       // Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui).
-
-Process = Map{1..*} {
-     1 pid             Integer{0..*} optional,   // Process ID of the process
-     2 name            String optional,          // Name of the process
-     3 cwd             String optional,          // Current working directory of the process
-     4 executable      File optional,            // Executable that was executed to start the process
-     5 parent          Process optional,         // Process that spawned this one
-     6 command_line    String optional           // The full command line invocation used to start this process, including all arguments
-}
-
-Properties = ArrayOf(String){1..*} unique    // A list of names that uniquely identify properties of an Actuator.
-
-URI = String /uri                            // Uniform Resource Identifier, [[RFC3986]](#rfc3986).
-
 Date-Time = Integer{0..*}                    // Date and Time
 
 Duration = Integer{0..*}                     // A length of time
@@ -213,10 +164,6 @@ Hashes = Map{1..*} {                         // Cryptographic Hash values
      3 sha256          Binary /x optional        // SHA256 hash as defined in [[RFC6234]](#rfc6234)
 }
 
-Hostname = String /hostname                  // Internet host name as specified in [[RFC1123]](#rfc1123)
-
-IDN-Hostname = String /idn-hostname          // Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3.
-
 IPv4-Addr = Binary /ipv4-addr                // 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)
 
 IPv6-Addr = Binary /ipv6-addr                // 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200)
@@ -229,11 +176,6 @@ L4-Protocol = Enumerated {                   // Value of the protocol (IPv4) or 
 }
 
 Nsid = String{1..16}                         // A short identifier that refers to a namespace.
-
-Payload = Choice {
-     1 bin             Binary,                   // Specifies the data contained in the artifact
-     2 url             URI                       // MUST be a valid URL that resolves to the un-encoded content
-}
 
 Port = Integer{0..65535}                     // Transport Protocol Port Number, [[RFC6335]](#rfc6335)
 
