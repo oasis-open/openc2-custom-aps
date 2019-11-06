@@ -1,4 +1,4 @@
-/* Generated from schema\oc2slpf-v1.0.1_cmd.jadn, Tue Nov  5 10:24:15 2019 */
+/* Generated from schema\oc2slpf-v1.0.1_cmd.jadn, Wed Nov  6 11:10:58 2019 */
 
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -43,14 +43,6 @@
       "type": "string",
       "oneOf": [
         {
-          "const": "scan",
-          "description": "Systematic examination of some aspect of the entity or its environment."
-        },
-        {
-          "const": "locate",
-          "description": "Find an object physically, logically, functionally, or by organization."
-        },
-        {
           "const": "query",
           "description": "Initiate a request for information."
         },
@@ -59,68 +51,16 @@
           "description": "Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access."
         },
         {
-          "const": "contain",
-          "description": "Isolate a file, process, or entity so that it cannot modify or access assets or processes."
-        },
-        {
           "const": "allow",
           "description": "Permit access to or execution of a Target."
-        },
-        {
-          "const": "start",
-          "description": "Initiate a process, application, system, or activity."
-        },
-        {
-          "const": "stop",
-          "description": "Halt a system or end an activity."
-        },
-        {
-          "const": "restart",
-          "description": "Stop then start a system or an activity."
-        },
-        {
-          "const": "cancel",
-          "description": "Invalidate a previously issued Action."
-        },
-        {
-          "const": "set",
-          "description": "Change a value, configuration, or state of a managed entity."
         },
         {
           "const": "update",
           "description": "Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update."
         },
         {
-          "const": "redirect",
-          "description": "Change the flow of traffic to a destination other than its original destination."
-        },
-        {
-          "const": "create",
-          "description": "Add a new entity of a known type (e.g., data, files, directories)."
-        },
-        {
           "const": "delete",
           "description": "Remove an entity (e.g., data, files, flows)."
-        },
-        {
-          "const": "detonate",
-          "description": "Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment."
-        },
-        {
-          "const": "restore",
-          "description": "Return a system to a previously known state."
-        },
-        {
-          "const": "copy",
-          "description": "Duplicate an object, file, data flow, or artifact."
-        },
-        {
-          "const": "investigate",
-          "description": "Task the recipient to aggregate and report information as it pertains to a security event or incident."
-        },
-        {
-          "const": "remediate",
-          "description": "Task the recipient to eliminate a vulnerability or attack point."
         }
       ]
     },
