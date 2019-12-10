@@ -1,4 +1,4 @@
-#Profile Schemas
+# Profile Schemas
 This folder contains three published schema modules:
 1. Language Profile
     * published in the Language Specification
