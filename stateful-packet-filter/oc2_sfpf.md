@@ -4,7 +4,7 @@
 
 # Open Command and Control (OpenC2) Custom Actuator Profile for Stateful Packet Filtering Version 1.0
 ## Working Draft 1
-## 09 September 2019
+## 30 December 2019
 
 #### This version:
 https://github.com/oasis-open/openc2-custom-aps/tree/master/stateful-packet-filter (Authoritative) 
@@ -44,7 +44,7 @@ Note that any machine-readable content ([Computer Language Definitions](https://
 When referencing this specification the following citation format should be used:
 
 **[OpenC2-SFPF-v1.0]**
-_Open Command and Control (OpenC2) Profile for Stateful Packet Filtering Version 1.0_. Edited by Alex Everett. 09 September 2019. 
+_Open Command and Control (OpenC2) Profile for Stateful Packet Filtering Version 1.0_. Edited by Alex Everett. 30 December 2019. 
 
 -------
 
@@ -331,7 +331,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 * **Extensible:**  While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
 ## 1.8 Purpose and Scope
-A 'Stateful Packet Filter' (SFPF) is a policy enforcement mechanism that restricts or permits traffic based on a myriad of values such as source address, destination address, and/or port numbers and maintains a table of valid connections. A Stateful Packet Filter may consider traffic patterns, connection state, data flows, applications, and/or payload information to make decisions. Stateful packet filters are commonly referred to as firewalls. The scope of this profile is limited to Stateful Packet Filtering herein referred to as SFPF.
+A 'Stateful Packet Filter' (SFPF) is a policy enforcement mechanism that restricts or permits traffic based on a myriad of values such as source address, destination address, and/or port numbers and maintains a table of valid connections. A Stateful Packet Filter may consider traffic patterns, connection state, data flows, applications, and/or payload information to make decisions. Stateful packet filters are commonly referred to as firewalls and are primarily used to enforce a network or host communications policy. The scope of this profile is limited to Stateful Packet Filtering herein referred to as SFPF.
 
 This Actuator profile specifies the set of Actions, Targets, Specifiers, and Command Arguments that integrates SFPF functionality with the Open Command and Control (OpenC2) Command set. Through this Command set, cyber security orchestrators may gain visibility into and provide control over the SFPF functionality in a manner that is independent of the instance of the SFPF function.
 
@@ -402,7 +402,7 @@ Table 2.1.1-1 presents the OpenC2 Actions defined in version 1.0 of the Language
 
 | ID | Name | Description |
 | :--- | :--- | :--- |
-| 3 | **query** | Initiate a request for information. Used to communicate the supported options and determine the state or settings |
+| 3 | **query** | Initiate a request for information. Used to communicate the supported options and determine state or settings |
 | 6 | **deny** | Prevent traffic or access |
 | 8 | **allow** | Permit traffic or access |
 | 15 | **set** | Change a value, configuration, or state of a managed entity. |
@@ -424,7 +424,6 @@ Table 2.1.2-1 lists the Targets defined in the OpenC2 Language Specification tha
 | :--- | :--- | :--- | :--- |
 | 3 | **device** | The properties of a hardware device. | 
 | 7 | **domain_name** | Domain-Name | A network domain name.
-| 8 | **idn_domain_name** | IDN-Domain-Name | A internatiolized domain name as defined in [[RFC5890]](#rfc5890) |
 | 9 | **features** | Features | A set of items such as Action/Target pairs, profiles versions, options that are supported by the Actuator. The Target is used with the query Action to determine an Actuator's capabilities |
 | 10 | **file** | File | Properties of a file |
 | 13 | **ipv4_net** | IPv4-Net | The representation of one or more IPv4 addresses expressed using CIDR notation |
@@ -454,7 +453,8 @@ The list of common Targets is extended to include the additional Targets defined
 
 | ID | Name | Type | Description |
 | :--- | :--- | :--- | :--- |
-| 1024 | **rule_number** | Rule-ID | Immutable identifier assigned when a rule is created. Identifies a rule to be deleted |
+| 1024 | **rule_name** | Rule-NAME | Immutable identifier assigned when a rule is created. Also identifies a rule to be deleted. |
+| 1025 | **cloud_connection** | cloud-CONNECTION | A network connection as it pertains to public cloud providers |
 
 ### 2.1.3 Command Arguments
 Arguments provide additional precision to a Command by including information such as how, when, or where a Command is to be executed. Table 2.1.3-1 summarizes the Command Arguments defined in Version 1.0 of the [[OpenC2-Lang-v1.0]](#openc2-lang-v10) as they relate to SFPF functionality. Table 2.1.3-2 summarizes the Command Arguments that are defined in this specification.
@@ -488,7 +488,11 @@ The list of common Command Arguments is extended to include the additional Comma
 | 1027 | **insert_rule** | Rule-ID | 0..1 | Specifies the identifier of the rule within a list, typically used in a top-down rule list |
 | 1028 | **global_id** | Global-ID | String | Specifies a globally unique part of a hierarchy |
 | 1029 | **friendly_name** | Friendly-Name | String | Specifies the name of the rule |
-| 1030 | **tags** | Tags | 
+| 1030 | **tags** | Tags | String | Specifies a network or instance tag |
+| 1031 | **disabled** | Disabled | Boolean | Specifies if a rule should be disabled (default is false) |
+| 1032 | **logged** | Logged | Boolean | Specifies if sfpf connection matches should be logged |
+| 1033 | **description** | Description | String | Specifies a short and human friendly description of a rule |
+| 1034 | **block_exploits** | TBD | String | If configured the SFPF will attempt to block known bad traffic |
 
 **_Type: Drop-Process (Enumerated)_**
 
@@ -506,11 +510,17 @@ The list of common Command Arguments is extended to include the additional Comma
 | 2 | **ingress** | Apply rules to incoming traffic only |
 | 3 | **egress** | Apply rules to outgoing traffic only |
 
-**_Type: Rule-ID_**
+**_Type: Rule-NAME_**
 
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Rule-ID** | Integer | Access rule identifier |
+| **Rule-NAME** | String | Access rule identifier consisting only of alphanumerics and hypens |
+
+**_Type: Cloud-CONNECTION_**
+
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Cloud-CONNECTION** | TBD | a tuple specifying source and destination, where these may be service accounts, network tags, CIDRs, or a mix thereof |
 
 **_Type: Friendly_Name_**
 
