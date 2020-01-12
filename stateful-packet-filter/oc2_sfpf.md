@@ -520,7 +520,7 @@ The list of common Command Arguments is extended to include the additional Comma
 
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Cloud-CONNECTION** | TBD | a five tuple specifying one or more sources and destinations, where these may be service accounts, network, host, or service tags, CIDRs, or a mix thereof along with a protocol and port or range of ports.
+| **Cloud-CONNECTION** | TBD | a five tuple in the order: source, source port, destination, destination port, protocol that specifies one or more sources and destinations, where these may be service accounts, network, host, or service tags, CIDRs, or a mix thereof along with a protocol and port or range of ports. Specifying an \* for both protocol and ports indicates that it should apply regardless of the IP number (e.g. 0.0.0.0/0, \*, test-app, \*, \*).
 
 **_Type: Friendly_Name_**
 
