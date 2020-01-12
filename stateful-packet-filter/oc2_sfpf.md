@@ -453,8 +453,7 @@ The list of common Targets is extended to include the additional Targets defined
 
 | ID | Name | Type | Description |
 | :--- | :--- | :--- | :--- |
-| 1024 | **rule_name** | Rule-NAME | Immutable identifier assigned when a rule is created. Also identifies a rule to be deleted. |
-| 1025 | **cloud_connection** | cloud-CONNECTION | A network connection as it pertains to public cloud providers |
+| 1024 | **cloud_connection** | cloud-CONNECTION | A network connection as it pertains to public cloud providers |
 
 ### 2.1.3 Command Arguments
 Arguments provide additional precision to a Command by including information such as how, when, or where a Command is to be executed. Table 2.1.3-1 summarizes the Command Arguments defined in Version 1.0 of the [[OpenC2-Lang-v1.0]](#openc2-lang-v10) as they relate to SFPF functionality. Table 2.1.3-2 summarizes the Command Arguments that are defined in this specification.
@@ -484,15 +483,16 @@ The list of common Command Arguments is extended to include the additional Comma
 | :--- | :--- | :--- | :--- | :--- |
 | 1024 | **drop_process** | Drop-Process | 0..1 | Specifies how to handle denied packets |
 | 1025 | **persistent** | Boolean | 0..1 | Normal operations assume any changes to a device are to be implemented persistently. Setting the persistent modifier to FALSE results in a change that is not persistent in the event of a reboot or restart |
-| 1026 | **direction** | Direction | 0..1 | Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both |
+| 1026 | **direction** | Direction | 0..1 | Specifies whether to apply rules to incoming and/or outgoing traffic from the perspective of the firewall. |
 | 1027 | **insert_rule** | Rule-ID | 0..1 | Specifies the identifier of the rule within a list, typically used in a top-down rule list |
-| 1028 | **global_id** | Global-ID | String | Specifies a globally unique part of a hierarchy |
-| 1029 | **friendly_name** | Friendly-Name | String | Specifies the name of the rule |
-| 1030 | **tags** | Tags | String | Specifies a network or instance tag |
-| 1031 | **disabled** | Disabled | Boolean | Specifies if a rule should be disabled (default is false) |
-| 1032 | **logged** | Logged | Boolean | Specifies if sfpf connection matches should be logged |
-| 1033 | **description** | Description | String | Specifies a short and human friendly description of a rule |
-| 1034 | **block_exploits** | TBD | String | If configured the SFPF will attempt to block known bad traffic |
+| 1028 | **rule_name** | Rule-NAME | Identifier assigned when a rule or tuple is created. Also identifies a rule or tuple to be deleted. |
+| 1029 | **group_name** | Group-NAME | String | Specifies the name of a set or list of rules|
+| 1030 | **priority** | Priority | Integer | Specifies the precedence of the rule |
+| 1031 | **tags** | Tags | String | Specifies a network or instance tag |
+| 1032 | **disabled** | Disabled | Boolean | Specifies if a rule should be disabled (default is false) |
+| 1033 | **logged** | Logged | Boolean | Specifies if sfpf connection matches should be logged |
+| 1034 | **description** | Description | String | Specifies a short and human friendly description of a rule |
+| 1035 | **block_exploits** | TBD | String | If configured the SFPF will attempt to block known bad traffic |
 
 **_Type: Drop-Process (Enumerated)_**
 
@@ -520,7 +520,7 @@ The list of common Command Arguments is extended to include the additional Comma
 
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Cloud-CONNECTION** | TBD | a tuple specifying source and destination, where these may be service accounts, network tags, CIDRs, or a mix thereof |
+| **Cloud-CONNECTION** | TBD | a five tuple specifying one or more sources and destinations, where these may be service accounts, network, host, or service tags, CIDRs, or a mix thereof along with a protocol and port or range of ports.
 
 **_Type: Friendly_Name_**
 
