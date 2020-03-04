@@ -6,16 +6,17 @@ it does not necessarily refer to a network-accessible resource.
 
 Standard actuator profile namespaces are defined by the OpenC2 Technical Committee. The OpenC2 TC Documentation Norms
 suggests naming conventions for TC work products. Namespace URIs should be based on this convention, omitting
-the webserver component "docs" and the filename:
+the filename and the "docs" domain component, and using "http:" as the scheme component.
 * Actuator Profiles: ap-\<function-shorthand\>
-* URL Example: docs.oasis-open.org/openc2/ap-av/v1.0/ap-av-v1.0.html
+* URL Example: https://docs.oasis-open.org/openc2/ap-av/v1.0/ap-av-v1.0.html
 * Profile Namespace: http://oasis-open.org/openc2/ap-av/v1.0
 
-Custom actuator profile namespaces are chosen by the profile sponsor and MUST NOT conflict with namespace URIs registered here.\
+Custom actuator profile namespaces are chosen by the profile sponsor and MUST NOT conflict with namespace URIs registered here.
 Profile sponsors MAY register Namespaces under http://oasis-open.org/openc2/cap but are not required to do so.
 
 Other specifications MAY refer to a Namespace using the ID or Name values shown here; actual values are defined by
-each referencing specification.
+each referencing specification. Property Names used to refer to a Namespace should follow OpenC2 naming conventions
+(lower case with underscore).
 
 | Namespace                                       |  ID  |   Name   | Description |
 | ----------------------------------------------- | ---- | -------- | ----------- |
