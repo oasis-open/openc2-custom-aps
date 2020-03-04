@@ -33,4 +33,4 @@ Specifications, including but not limited to Actuator Profiles, may refer to typ
 | http://oasis-open.org/openc2/lang/v1.0         | OpenC2 Language Specification, Committee Spec v1.0 |
 | http://oasis-open.org/openc2/lang/v1.0.1       | OpenC2 Language Specification, Committee Spec v1.0, Errata #1 |
 | http://oasis-open.org/openc2/lang/v1.1         | OpenC2 Language Profile, v1.1 |
-| http://oasis-open.org/openc2/types/v1.1        | OpenC2 Language Types, v1.1 |
+| http://oasis-open.org/openc2/types/v1.1        | OpenC2 Language Common Types, v1.1 |
