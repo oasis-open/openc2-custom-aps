@@ -38,7 +38,7 @@ Select a Namespace (unique name) for the profile schema. This name is in the for
 defined by JSON Schema, but it does not necessarily refer to a network-accessible resource.
 
 The OpenC2 TC maintains a namespace registry at
-https://github.com/oasis-open/openc2-custom-aps/blob/master/profile-registry.md. Profile
+https://github.com/oasis-open/openc2-custom-aps/blob/master/namespace-registry.md. Profile
 authors MUST NOT select a Namespace that is already registered, but there are no other
 restrictions on what URI a profile author may use.  The Namespace is the **$id** value
 of the profile's JSON Schema, and may be used in the **$ref** value of other JSON Schemas
