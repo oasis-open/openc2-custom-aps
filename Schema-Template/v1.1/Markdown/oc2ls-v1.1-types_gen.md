@@ -1,4 +1,3 @@
-<!-- Generated from schema\oc2ls-v1.1-types.jadn, Tue Oct 22 13:16:56 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -75,8 +74,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
-| 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
+| 1 | **** | IPv4-Addr | 1 | ipv4_addr:: IPv4 address as defined in [RFC0791] |
+| 2 | **** | Integer | 0..1 | prefix_length:: CIDR prefix-length. If omitted, refers to a single host address. |
 
 **_Type: IPv4-Connection (Record{1..*})_**
 
@@ -92,8 +91,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
-| 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
+| 1 | **** | IPv6-Addr | 1 | ipv6_addr:: IPv6 address as defined in [RFC8200] |
+| 2 | **** | Integer | 0..1 | prefix_length:: prefix length. If omitted, refers to a single host address |
 
 **_Type: IPv6-Connection (Record{1..*})_**
 
@@ -154,14 +153,15 @@
 | 2 | **profiles** | List of profiles supported by this Actuator |
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
+| 5 | **args** | List of supported Command Argumemnts |
 
 **_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC1321] |
-| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC6234] |
-| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [RFC6234] |
+| 1 | **md5** | Binary{16..16} /x | 0..1 | MD5 hash as defined in [RFC1321] |
+| 2 | **sha1** | Binary{20..20} /x | 0..1 | SHA1 hash as defined in [RFC6234] |
+| 3 | **sha256** | Binary{32..32} /x | 0..1 | SHA256 hash as defined in [RFC6234] |
 
 
 | Type Name | Type Definition | Description |
@@ -226,4 +226,4 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Command-ID** | String(%^\S{0,36}$%) | Command Identifier |
+| **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |

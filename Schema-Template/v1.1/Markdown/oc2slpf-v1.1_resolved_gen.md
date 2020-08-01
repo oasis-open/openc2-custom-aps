@@ -1,4 +1,3 @@
-<!-- Generated from schema\oc2slpf-v1.1_resolved.jadn, Tue Oct 22 13:30:57 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
@@ -46,13 +45,13 @@
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
 | 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
-| 1024 | **slpf/** | P-Target | 1 | Targets defined in this profile |
+| 1024 | **slpf/** | AP-Target | 1 | Targets defined in this profile |
 
 **_Type: Actuator (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1024 | **slpf** | P-Specifiers | 0..1 | Actuator Specifiers defined in this profile |
+| 1024 | **slpf/** | AP-Specifiers | 0..1 | Actuator Specifiers defined in this profile |
 
 **_Type: Args (Map{1..*})_**
 
@@ -62,7 +61,7 @@
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Command |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Command to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
-| 1024 | **slpf** | P-Args | 0..1 | Command Arguments defined in this profile |
+| 1024 | **slpf/** | AP-Args | 0..1 | Command Arguments defined in this profile |
 
 **_Type: Results (Map{1..*})_**
 
@@ -71,8 +70,9 @@
 | 1 | **versions** | Version unique | 0..10 | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | Namespace unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
-| 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1024 | **slpf** | P-Results | 0..1 | Results defined in this profile |
+| 4 | **rate_limit** | Number{0.0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 5 | **args** | Enumerated(Enum[Args]) | 0..* | List of supported Command Arguments |
+| 1024 | **slpf/** | AP-Results | 0..1 | Results defined in this profile |
 
 **_Type: Action-Targets (Map)_**
 
@@ -88,36 +88,36 @@
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
-| 9 | **features** |  |
+| 1 | **features** |  |
 
 **_Type: Allow-Deny-Targets (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
-| 13 | **ipv4_net** |  |
-| 14 | **ipv6_net** |  |
-| 15 | **ipv4_connection** |  |
-| 16 | **ipv6_connection** |  |
+| 1 | **ipv4_net** |  |
+| 2 | **ipv6_net** |  |
+| 3 | **ipv4_connection** |  |
+| 4 | **ipv6_connection** |  |
 
 **_Type: Update-Targets (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
-| 10 | **file** |  |
+| 1 | **file** |  |
 
 **_Type: Delete-Targets (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
-| 1024 | **slpf/rule_number** |  |
+| 1 | **slpf/rule_number** |  |
 
-**_Type: P-Target (Choice)_**
+**_Type: AP-Target (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **rule_number** | Rule-ID | 1 | Immutable identifier assigned when a rule is created. Identifies a rule to be deleted |
 
-**_Type: P-Specifiers (Map)_**
+**_Type: AP-Specifiers (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -126,7 +126,7 @@
 | 3 | **asset_id** | String | 0..1 | Unique identifier for a particular SLPF |
 | 4 | **asset_tuple** | String | 0..10 | Unique tuple identifier for a particular SLPF consisting of a list of up to 10 strings |
 
-**_Type: P-Args (Map{1..*})_**
+**_Type: AP-Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -135,7 +135,7 @@
 | 3 | **direction** | Direction | 0..1 | Specifies whether to apply rules to incoming or outgoing traffic. If omitted, rules are applied to both |
 | 4 | **insert_rule** | Rule-ID | 0..1 | Specifies the identifier of the rule within a list, typically used in a top-down rule list |
 
-**_Type: P-Results (Map)_**
+**_Type: AP-Results (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -194,8 +194,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
-| 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
+| 1 | **** | IPv4-Addr | 1 | ipv4_addr:: IPv4 address as defined in [RFC0791] |
+| 2 | **** | Integer | 0..1 | prefix_length:: CIDR prefix-length. If omitted, refers to a single host address. |
 
 **_Type: IPv4-Connection (Record{1..*})_**
 
@@ -211,8 +211,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
-| 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
+| 1 | **** | IPv6-Addr | 1 | ipv6_addr:: IPv6 address as defined in [RFC8200] |
+| 2 | **** | Integer | 0..1 | prefix_length:: prefix length. If omitted, refers to a single host address |
 
 **_Type: IPv6-Connection (Record{1..*})_**
 
@@ -242,14 +242,15 @@
 | 2 | **profiles** | List of profiles supported by this Actuator |
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
+| 5 | **args** | List of supported Command Argumemnts |
 
 **_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC1321] |
-| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC6234] |
-| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [RFC6234] |
+| 1 | **md5** | Binary{16..16} /x | 1 | MD5 hash as defined in [RFC1321] |
+| 2 | **sha1** | Binary{20..20} /x | 1 | SHA1 hash as defined in [RFC6234] |
+| 3 | **sha256** | Binary{32..32} /x | 1 | SHA256 hash as defined in [RFC6234] |
 
 
 | Type Name | Type Definition | Description |
@@ -297,4 +298,4 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Command-ID** | String(%^\S{0,36}$%) | Command Identifier |
+| **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |

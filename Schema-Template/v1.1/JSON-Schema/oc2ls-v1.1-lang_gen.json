@@ -1,10 +1,8 @@
-/* Generated from schema\oc2ls-v1.1-lang.jadn, Tue Oct 22 14:13:43 2019 */
-
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://oasis-open.org/openc2/oc2ls/v1.1",
   "title": "OpenC2 Language Profile",
-  "description": "Language Profile from the OpenC2 Language Specification version 1.0.1",
+  "description": "Language Profile from the OpenC2 Language Specification version 1.1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -25,6 +23,7 @@
         "action",
         "target"
       ],
+      "maxProperties": 100,
       "properties": {
         "action": {
           "$ref": "#/definitions/Action",
@@ -55,6 +54,7 @@
       "required": [
         "status"
       ],
+      "maxProperties": 100,
       "properties": {
         "status": {
           "$ref": "#/definitions/Status-Code",
@@ -62,7 +62,8 @@
         },
         "status_text": {
           "type": "string",
-          "description": "A free-form human-readable description of the Response status."
+          "description": "A free-form human-readable description of the Response status.",
+          "maxLength": 255
         },
         "results": {
           "$ref": "#/definitions/Results",
@@ -242,6 +243,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {}
     },
     "Args": {
@@ -249,6 +251,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "start_time": {
           "$ref": "#/definitions/Date-Time",
@@ -274,6 +277,7 @@
       "description": "Response Results",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "versions": {
           "type": "array",
@@ -302,8 +306,34 @@
         },
         "rate_limit": {
           "type": "number",
-          "description": "Maximum number of requests per minute supported by design or policy",
-          "minimum": 0
+          "description": "Maximum number of requests per minute supported by design or policy"
+        },
+        "args": {
+          "type": "array",
+          "description": "List of supported Command Arguments",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "description": "List of supported Command Arguments",
+            "oneOf": [
+              {
+                "const": "start_time",
+                "description": "The specific date/time to initiate the Command"
+              },
+              {
+                "const": "stop_time",
+                "description": "The specific date/time to terminate the Command"
+              },
+              {
+                "const": "duration",
+                "description": "The length of time for an Command to be in effect"
+              },
+              {
+                "const": "response_requested",
+                "description": "The type of Response required for the Command: none, ack, status, complete"
+              }
+            ]
+          }
         }
       }
     },
@@ -313,6 +343,7 @@
       "description": "Map of each action supported by this actuator to the list of targets applicable to that action",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "scan": {
           "$ref": "#/definitions/Targets"
@@ -379,10 +410,10 @@
     "Targets": {
       "title": "Targets",
       "type": "array",
-      "description": "List of Target fields",
+      "description": "List of Target types",
       "uniqueItems": true,
       "minItems": 1,
-      "maxItems": 100,
+      "maxItems": 0,
       "items": {
         "oneOf": [
           {
@@ -511,10 +542,12 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "mime_type": {
           "type": "string",
-          "description": "Permitted values specified in the IANA Media Types registry, [RFC6838]"
+          "description": "Permitted values specified in the IANA Media Types registry, [RFC6838]",
+          "maxLength": 255
         },
         "payload": {
           "$ref": "#/definitions/Payload",
@@ -531,6 +564,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "hostname": {
           "$ref": "#/definitions/Hostname",
@@ -542,7 +576,8 @@
         },
         "device_id": {
           "type": "string",
-          "description": "An identifier that refers to this device within an inventory or management system"
+          "description": "An identifier that refers to this device within an inventory or management system",
+          "maxLength": 255
         }
       }
     },
@@ -550,13 +585,15 @@
       "title": "Domain Name",
       "type": "string",
       "description": "[RFC1034], Section 3.5",
-      "format": "hostname"
+      "format": "hostname",
+      "maxLength": 255
     },
     "Email-Addr": {
       "title": "Email Addr",
       "type": "string",
       "description": "Email address - [RFC5322], Section 3.4.1",
-      "format": "email"
+      "format": "email",
+      "maxLength": 255
     },
     "Features": {
       "title": "Features",
@@ -573,14 +610,17 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "name": {
           "type": "string",
-          "description": "The name of the file as defined in the file system"
+          "description": "The name of the file as defined in the file system",
+          "maxLength": 255
         },
         "path": {
           "type": "string",
-          "description": "The absolute path to the location of the file in the file system"
+          "description": "The absolute path to the location of the file in the file system",
+          "maxLength": 255
         },
         "hashes": {
           "$ref": "#/definitions/Hashes",
@@ -592,13 +632,15 @@
       "title": "IDN Domain Name",
       "type": "string",
       "description": "Internationalized Domain Name - [RFC5890], Section 2.3.2.3",
-      "format": "idn-hostname"
+      "format": "idn-hostname",
+      "maxLength": 255
     },
     "IDN-Email-Addr": {
       "title": "IDN Email Addr",
       "type": "string",
       "description": "Internationalized email address - [RFC6531]",
-      "format": "idn-email"
+      "format": "idn-email",
+      "maxLength": 255
     },
     "IPv4-Net": {
       "title": "IPv4 Net",
@@ -612,6 +654,7 @@
       "description": "5-tuple that specifies a tcp/ip connection",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "src_addr": {
           "$ref": "#/definitions/IPv4-Net",
@@ -647,6 +690,7 @@
       "description": "5-tuple that specifies a tcp/ip connection",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "src_addr": {
           "$ref": "#/definitions/IPv6-Net",
@@ -674,19 +718,21 @@
       "title": "IRI",
       "type": "string",
       "description": "Internationalized Resource Identifier, [RFC3987]",
-      "format": "iri"
+      "format": "iri",
+      "maxLength": 255
     },
     "MAC-Addr": {
       "title": "MAC Addr",
       "type": "string",
       "description": "Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI]",
-      "pattern": "^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$"
+      "pattern": "^([0-9a-fA-F]{2}[:-]){5}[0-9A-Fa-f]{2}(([:-][0-9A-Fa-f]{2}){2})?$"
     },
     "Process": {
       "title": "Process",
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "pid": {
           "type": "integer",
@@ -695,11 +741,13 @@
         },
         "name": {
           "type": "string",
-          "description": "Name of the process"
+          "description": "Name of the process",
+          "maxLength": 255
         },
         "cwd": {
           "type": "string",
-          "description": "Current working directory of the process"
+          "description": "Current working directory of the process",
+          "maxLength": 255
         },
         "executable": {
           "$ref": "#/definitions/File",
@@ -711,7 +759,8 @@
         },
         "command_line": {
           "type": "string",
-          "description": "The full command line invocation used to start this process, including all arguments"
+          "description": "The full command line invocation used to start this process, including all arguments",
+          "maxLength": 255
         }
       }
     },
@@ -721,6 +770,7 @@
       "description": "A list of names that uniquely identify properties of an Actuator.",
       "uniqueItems": true,
       "minItems": 1,
+      "maxItems": 100,
       "items": {
         "type": "string"
       }
@@ -729,7 +779,8 @@
       "title": "URI",
       "type": "string",
       "description": "Uniform Resource Identifier, [RFC3986]",
-      "format": "uri"
+      "format": "uri",
+      "maxLength": 255
     },
     "Date-Time": {
       "title": "Date Time",
@@ -763,15 +814,25 @@
         {
           "const": "rate_limit",
           "description": "Maximum number of Commands per minute supported by design or policy"
+        },
+        {
+          "const": "args",
+          "description": "List of supported Command Argumemnts"
         }
       ]
     },
     "Hashes": {
       "title": "Hashes",
       "type": "object",
-      "description": "Cryptographic Hash values",
+      "description": "Cryptographic hash values",
       "additionalProperties": false,
+      "required": [
+        "md5",
+        "sha1",
+        "sha256"
+      ],
       "minProperties": 1,
+      "maxProperties": 100,
       "properties": {
         "md5": {
           "type": "string",
@@ -794,13 +855,15 @@
       "title": "Hostname",
       "type": "string",
       "description": "Internet host name as specified in [RFC1123]",
-      "format": "hostname"
+      "format": "hostname",
+      "maxLength": 255
     },
     "IDN-Hostname": {
       "title": "IDN Hostname",
       "type": "string",
       "description": "Internationalized Internet host name as specified in [RFC5890], Section 2.3.2.3",
-      "format": "idn-hostname"
+      "format": "idn-hostname",
+      "maxLength": 255
     },
     "IPv4-Addr": {
       "title": "IPv4 Addr",
@@ -887,18 +950,21 @@
     "Version": {
       "title": "Version",
       "type": "string",
-      "description": "Major.Minor version number"
+      "description": "Major.Minor version number",
+      "maxLength": 255
     },
     "Namespace": {
       "title": "Namespace",
       "type": "string",
       "description": "Unique name of an Actuator Profile",
-      "format": "uri"
+      "format": "uri",
+      "maxLength": 255
     },
     "Command-ID": {
       "title": "Command ID",
       "type": "string",
       "description": "Command Identifier",
+      "maxLength": 255,
       "pattern": "^\\S{0,36}$"
     }
   }

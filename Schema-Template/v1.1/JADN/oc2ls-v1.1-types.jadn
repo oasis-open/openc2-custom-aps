@@ -7,7 +7,6 @@
  },
 
  "types": [
-
   ["Status-Code", "Enumerated", ["="], "", [
     [102, "Processing", "an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it"],
     [200, "OK", "the Command has succeeded"],
@@ -33,11 +32,11 @@
     [3, "device_id", "String", ["[0"], "An identifier that refers to this device within an inventory or management system"]
   ]],
 
-  ["Domain-Name", "String", ["/hostname"], "[RFC1034], Section 3.5"],
+  ["Domain-Name", "String", ["/hostname"], "[RFC1034], Section 3.5", []],
 
-  ["Email-Addr", "String", ["/email"], "Email address - [RFC5322], Section 3.4.1"],
+  ["Email-Addr", "String", ["/email"], "Email address - [RFC5322], Section 3.4.1", []],
 
-  ["Features", "ArrayOf", ["*Feature", "{0", "}10", "q"], "An array of zero to ten names used to query an Actuator for its supported capabilities."],
+  ["Features", "ArrayOf", ["*Feature", "}10", "q"], "An array of zero to ten names used to query an Actuator for its supported capabilities.", []],
 
   ["File", "Map", ["{1"], "", [
     [1, "name", "String", ["[0"], "The name of the file as defined in the file system"],
@@ -45,9 +44,9 @@
     [3, "hashes", "Hashes", ["[0"], "One or more cryptographic hash codes of the file contents"]
   ]],
 
-  ["IDN-Domain-Name", "String", ["/idn-hostname"], "Internationalized Domain Name - [RFC5890], Section 2.3.2.3"],
+  ["IDN-Domain-Name", "String", ["/idn-hostname"], "Internationalized Domain Name - [RFC5890], Section 2.3.2.3", []],
 
-  ["IDN-Email-Addr", "String", ["/idn-email"], "Internationalized email address - [RFC6531]"],
+  ["IDN-Email-Addr", "String", ["/idn-email"], "Internationalized email address - [RFC6531]", []],
 
   ["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
     [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [RFC0791]"],
@@ -75,12 +74,12 @@
     [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10]"]
   ]],
 
-  ["IRI", "String", ["/iri"], "Internationalized Resource Identifier, [RFC3987]"],
+  ["IRI", "String", ["/iri"], "Internationalized Resource Identifier, [RFC3987]", []],
 
-  ["MAC-Addr", "Binary", ["/eui"], "Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI]"],
+  ["MAC-Addr", "Binary", ["/eui"], "Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI]", []],
 
   ["Process", "Map", ["{1"], "", [
-    [1, "pid", "Integer", ["[0", "{0"], "Process ID of the process"],
+    [1, "pid", "Integer", ["{0", "[0"], "Process ID of the process"],
     [2, "name", "String", ["[0"], "Name of the process"],
     [3, "cwd", "String", ["[0"], "Current working directory of the process"],
     [4, "executable", "File", ["[0"], "Executable that was executed to start the process"],
@@ -88,34 +87,35 @@
     [6, "command_line", "String", ["[0"], "The full command line invocation used to start this process, including all arguments"]
   ]],
 
-  ["Properties", "ArrayOf", ["*String", "{1", "q"], "A list of names that uniquely identify properties of an Actuator."],
+  ["Properties", "ArrayOf", ["*String", "{1", "q"], "A list of names that uniquely identify properties of an Actuator.", []],
 
-  ["URI", "String", ["/uri"], "Uniform Resource Identifier, [RFC3986]"],
+  ["URI", "String", ["/uri"], "Uniform Resource Identifier, [RFC3986]", []],
 
-  ["Date-Time", "Integer", ["{0"], "Date and Time"],
+  ["Date-Time", "Integer", ["{0"], "Date and Time", []],
 
-  ["Duration", "Integer", ["{0"], "A length of time"],
+  ["Duration", "Integer", ["{0"], "A length of time", []],
 
   ["Feature", "Enumerated", [], "Specifies the results to be returned from a query features Command", [
     [1, "versions", "List of OpenC2 Language versions supported by this Actuator"],
     [2, "profiles", "List of profiles supported by this Actuator"],
     [3, "pairs", "List of supported Actions and applicable Targets"],
-    [4, "rate_limit", "Maximum number of Commands per minute supported by design or policy"]
+    [4, "rate_limit", "Maximum number of Commands per minute supported by design or policy"],
+    [5, "args", "List of supported Command Argumemnts"]
   ]],
 
-  ["Hashes", "Map", ["{1"], "Cryptographic Hash values", [
-    [1, "md5", "Binary", ["[0", "/x"], "MD5 hash as defined in [RFC1321]"],
-    [2, "sha1", "Binary", ["[0", "/x"], "SHA1 hash as defined in [RFC6234]"],
-    [3, "sha256", "Binary", ["[0", "/x"], "SHA256 hash as defined in [RFC6234]"]
+  ["Hashes", "Map", ["{1"], "Cryptographic hash values", [
+    [1, "md5", "Binary", ["/x", "{16", "}16", "[0"], "MD5 hash as defined in [RFC1321]"],
+    [2, "sha1", "Binary", ["/x", "{20", "}20", "[0"], "SHA1 hash as defined in [RFC6234]"],
+    [3, "sha256", "Binary", ["/x", "{32", "}32", "[0"], "SHA256 hash as defined in [RFC6234]"]
   ]],
 
-  ["Hostname", "String", ["/hostname"], "Internet host name as specified in [RFC1123]"],
+  ["Hostname", "String", ["/hostname"], "Internet host name as specified in [RFC1123]", []],
 
-  ["IDN-Hostname", "String", ["/idn-hostname"], "Internationalized Internet host name as specified in [RFC5890], Section 2.3.2.3"],
+  ["IDN-Hostname", "String", ["/idn-hostname"], "Internationalized Internet host name as specified in [RFC5890], Section 2.3.2.3", []],
 
-  ["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]"],
+  ["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]", []],
 
-  ["IPv6-Addr", "Binary", ["/ipv6-addr"], "128 bit IPv6 address as defined in [RFC8200]"],
+  ["IPv6-Addr", "Binary", ["/ipv6-addr"], "128 bit IPv6 address as defined in [RFC8200]", []],
 
   ["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC5237]", [
     [1, "icmp", "Internet Control Message Protocol - [RFC0792]"],
@@ -129,7 +129,7 @@
     [2, "url", "URI", [], "MUST be a valid URL that resolves to the un-encoded content"]
   ]],
 
-  ["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]"],
+  ["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]", []],
 
   ["Response-Type", "Enumerated", [], "", [
     [0, "none", "No response"],
@@ -138,10 +138,10 @@
     [3, "complete", "Respond when all aspects of Command completed"]
   ]],
 
-  ["Version", "String", [], "Major.Minor version number"],
+  ["Version", "String", [], "Major.Minor version number", []],
 
-  ["Namespace", "String", ["/uri"], "Unique name of an Actuator Profile"],
+  ["Namespace", "String", ["/uri"], "Unique name of an Actuator Profile", []],
 
-  ["Command-ID", "String", ["%^\\S{0,36}$"], "Command Identifier"]
+  ["Command-ID", "String", ["%^\\S{0,36}$"], "Command Identifier", []]
  ]
 }

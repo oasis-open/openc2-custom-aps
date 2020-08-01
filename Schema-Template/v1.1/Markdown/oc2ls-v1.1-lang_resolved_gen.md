@@ -1,11 +1,9 @@
-<!-- Generated from schema\oc2ls-v1.1-lang_resolved.jadn, Tue Oct 22 13:30:57 2019-->
 ## Schema
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Language Profile |
 | **module:** | http://oasis-open.org/openc2/oc2ls/v1.1 |
-| **patch:** | 0-wd01 |
-| **description:** | Language Profile from the OpenC2 Language Specification version 1.0.1 |
+| **description:** | Language Profile from the OpenC2 Language Specification version 1.1 |
 | **exports:** | OpenC2-Command, OpenC2-Response |
 
 **_Type: OpenC2-Command (Record)_**
@@ -95,7 +93,8 @@
 | 1 | **versions** | Version unique | 0..10 | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | Namespace unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
-| 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 4 | **rate_limit** | Number{0.0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 5 | **args** | Enumerated(Enum[Args]) | 0..* | List of supported Command Arguments |
 
 
 | Type Name | Type Definition | Description |
@@ -105,7 +104,7 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(#Target){1..*} unique | List of Target fields |
+| **Targets** | ArrayOf(Pointer[Target]){1..0} unique | List of Target types |
 
 **_Type: Status-Code (Enumerated.ID)_**
 
@@ -175,8 +174,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv4-Addr | 1 | **ipv4_addr**::IPv4 address as defined in [RFC0791] |
-| 2 | Integer | 0..1 | **prefix_length**::CIDR prefix-length. If omitted, refers to a single host address. |
+| 1 | **** | IPv4-Addr | 1 | ipv4_addr:: IPv4 address as defined in [RFC0791] |
+| 2 | **** | Integer | 0..1 | prefix_length:: CIDR prefix-length. If omitted, refers to a single host address. |
 
 **_Type: IPv4-Connection (Record{1..*})_**
 
@@ -192,8 +191,8 @@
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv6-Addr | 1 | **ipv6_addr**::IPv6 address as defined in [RFC8200] |
-| 2 | Integer | 0..1 | **prefix_length**::prefix length. If omitted, refers to a single host address |
+| 1 | **** | IPv6-Addr | 1 | ipv6_addr:: IPv6 address as defined in [RFC8200] |
+| 2 | **** | Integer | 0..1 | prefix_length:: prefix length. If omitted, refers to a single host address |
 
 **_Type: IPv6-Connection (Record{1..*})_**
 
@@ -254,14 +253,15 @@
 | 2 | **profiles** | List of profiles supported by this Actuator |
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
+| 5 | **args** | List of supported Command Argumemnts |
 
 **_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC1321] |
-| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC6234] |
-| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [RFC6234] |
+| 1 | **md5** | Binary{16..16} /x | 1 | MD5 hash as defined in [RFC1321] |
+| 2 | **sha1** | Binary{20..20} /x | 1 | SHA1 hash as defined in [RFC6234] |
+| 3 | **sha256** | Binary{32..32} /x | 1 | SHA256 hash as defined in [RFC6234] |
 
 
 | Type Name | Type Definition | Description |
@@ -326,4 +326,4 @@
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Command-ID** | String(%^\S{0,36}$%) | Command Identifier |
+| **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |
