@@ -72,7 +72,7 @@
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator. |
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 
-**_Type: Actuator (Map{1..*})_**
+**_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |

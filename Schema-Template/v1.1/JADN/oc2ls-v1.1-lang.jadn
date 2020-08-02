@@ -69,7 +69,7 @@
     [19, "uri", "ls:URI", [], "A uniform resource identifier (URI)."]
   ]],
 
-  ["Actuator", "Map", ["{1"], "", []],
+  ["Actuator", "Choice", [], "", []],
 
   ["Args", "Map", ["{1"], "", [
     [1, "start_time", "ls:Date-Time", ["[0"], "The specific date/time to initiate the Command"],

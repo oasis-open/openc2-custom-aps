@@ -243,7 +243,7 @@
       "type": "object",
       "additionalProperties": false,
       "minProperties": 1,
-      "maxProperties": 100,
+      "maxProperties": 1,
       "properties": {}
     },
     "Args": {
@@ -340,7 +340,7 @@
     "Action-Targets": {
       "title": "Action Targets",
       "type": "object",
-      "description": "Map of each action supported by this actuator to the list of targets applicable to that action",
+      "description": "Map of all actions to all targets",
       "additionalProperties": false,
       "minProperties": 1,
       "maxProperties": 100,
@@ -410,7 +410,7 @@
     "Targets": {
       "title": "Targets",
       "type": "array",
-      "description": "List of Target types",
+      "description": "List of all Target types",
       "uniqueItems": true,
       "minItems": 1,
       "maxItems": 0,
@@ -826,11 +826,6 @@
       "type": "object",
       "description": "Cryptographic hash values",
       "additionalProperties": false,
-      "required": [
-        "md5",
-        "sha1",
-        "sha256"
-      ],
       "minProperties": 1,
       "maxProperties": 100,
       "properties": {
