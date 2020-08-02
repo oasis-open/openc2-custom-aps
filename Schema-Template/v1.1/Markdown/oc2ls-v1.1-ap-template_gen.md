@@ -79,7 +79,7 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 2000 | **xyz/** | AP-Specifiers | 1 | Profile-defined actuator specifiers |
+| 2000 | **xyz/** | AP-Specifiers | 0..1 | Profile-defined actuator specifiers |
 
 **_Type: Args (Map{1..*})_**
 
@@ -89,7 +89,7 @@
 | 2 | **stop_time** | ls:Date-Time | 0..1 | The specific date/time to terminate the Command |
 | 3 | **duration** | ls:Duration | 0..1 | The length of time for an Command to be in effect |
 | 4 | **response_requested** | ls:Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
-| 2000 | **xyz/** | AP-Args | 1 | Profile-defined command arguments |
+| 2000 | **xyz/** | AP-Args | 0..1 | Profile-defined command arguments |
 
 **_Type: Results (Map{1..*})_**
 
@@ -100,7 +100,7 @@
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0.0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 5 | **args** | Enumerated(Enum[Args]) | 0..* | List of supported Command Arguments |
-| 2000 | **xyz/** | AP-Results | 1 | Profile-defined response results |
+| 2000 | **xyz/** | AP-Results | 0..1 | Profile-defined response results |
 
 **_Type: Action-Targets (Map{1..*})_**
 
@@ -134,16 +134,16 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **foo** | String | 1 |  |
+| 1 | **foo** | String | 0..1 |  |
 
 **_Type: AP-Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **foo** | String | 1 |  |
+| 1 | **foo** | String | 0..1 |  |
 
 **_Type: AP-Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **foo** | String | 1 |  |
+| 1 | **foo** | String | 0..1 |  |
