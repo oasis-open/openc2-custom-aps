@@ -92,17 +92,17 @@
   ]],
 
   ["Action-Targets", "Map", ["{1"], "Map of each action supported by this actuator to the list of targets applicable to that action.", [
-    [3, "query", "Targets-query", ["q", "[0", "]10"], ""],
-    [15, "set", "Targets-set", ["q", "[0", "]10"], ""]
+    [3, "query", "Target-query", ["q", "]0"], ""],
+    [6, "deny", "Target-deny", ["q", "]0"], ""]
   ]],
 
-  ["Targets-query", "Enumerated", [], "All targets supported by this actuator's query command", [
+  ["Target-query", "Enumerated", [], "All targets supported by this actuator's query command", [
     [1, "features", ""],
     [2, "xyz/foo", ""],
     [3, "xyz/bar", ""]
   ]],
 
-  ["Targets-set", "Enumerated", [], "All targets supported by this actuator's set command", [
+  ["Target-deny", "Enumerated", [], "All targets supported by this actuator's deny command", [
     [1, "xyz/bar", ""]
   ]],
 
@@ -111,11 +111,11 @@
     [2, "bar", "String", [], ""]
   ]],
 
-  ["AP-Specifiers", "Map", [], "Profile-defined actuator specifiers", [
+  ["AP-Args", "Map", ["{1"], "Profile-defined command arguments", [
     [1, "foo", "String", ["[0"], ""]
   ]],
 
-  ["AP-Args", "Map", ["{1"], "Profile-defined command arguments", [
+  ["AP-Specifiers", "Map", [], "Profile-defined actuator specifiers", [
     [1, "foo", "String", ["[0"], ""]
   ]],
 

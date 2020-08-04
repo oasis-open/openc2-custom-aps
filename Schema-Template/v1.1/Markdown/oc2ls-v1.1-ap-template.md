@@ -106,10 +106,10 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 3 | **query** | Targets-query unique | 0..10 |  |
-| 15 | **set** | Targets-set unique | 0..10 |  |
+| 3 | **query** | Target-query unique | 1..* |  |
+| 6 | **deny** | Target-deny unique | 1..* |  |
 
-**_Type: Targets-query (Enumerated)_**
+**_Type: Target-query (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
@@ -117,7 +117,7 @@
 | 2 | **xyz/foo** |  |
 | 3 | **xyz/bar** |  |
 
-**_Type: Targets-set (Enumerated)_**
+**_Type: Target-deny (Enumerated)_**
 
 | ID | Name | Description |
 | ---: | :--- | :--- |
@@ -130,13 +130,13 @@
 | 1 | **foo** | String | 1 |  |
 | 2 | **bar** | String | 1 |  |
 
-**_Type: AP-Specifiers (Map)_**
+**_Type: AP-Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **foo** | String | 0..1 |  |
 
-**_Type: AP-Args (Map{1..*})_**
+**_Type: AP-Specifiers (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
