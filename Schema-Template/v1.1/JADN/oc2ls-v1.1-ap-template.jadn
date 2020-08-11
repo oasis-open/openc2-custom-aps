@@ -1,12 +1,15 @@
 {
  "info": {
-  "module": "http://oasis-open.org/openc2/xyz/v1.0",
+  "module": "https://oasis-open.org/openc2/xyz/v1.0",
   "title": "OpenC2 Actuator Profile Template",
   "description": "Adapted from the OpenC2 Language Profile version 1.1",
-  "comment": "Replace 'xyz' with property name chosen for the profile, delete unused actions/targets/args/results",
+  "comment": "Replace 'xyz' with property name chosen for the profile, delete unused actions/targets/args/specifiers/results",
   "exports": ["OpenC2-Command", "OpenC2-Response"],
   "imports": {
-   "ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1"
+   "ls": "https://oasis-open.org/openc2/oc2ls-types/v1.1",
+   "pf": "https://oasis-open.org/openc2/ap-slpf/v1.0",
+   "fw": "https://oasis-open.org/openc2/ap-sfpf/v1.0",
+   "bom": "https://oasis-open.org/openc2/ap-sbom/v1.0"
   }
  },
 
@@ -79,9 +82,9 @@
   ]],
 
   ["Actuator", "Choice", [], "Profile template: add new actuators, delete all that do not apply to this device", [
-    [1024, "slpf", "slpf:AP-Specifiers", ["<"], "Actuator specifiers defined in the Stateless Packet Filtering profile"],
-    [1025, "sfpf", "sfpf:AP-Specifiers", ["<"], "Actuator specifiers defined in the Stateful Packet Filtering profile"],
-    [1026, "sbom", "sbom:AP-Specifiers", ["<"], "Actuator specifiers defined in the Software Bill of Materials profile"],
+    [1024, "slpf", "pf:AP-Specifiers", ["<"], "Actuator specifiers defined in the Stateless Packet Filtering profile"],
+    [1025, "sfpf", "fw:AP-Specifiers", ["<"], "Actuator specifiers defined in the Stateful Packet Filtering profile"],
+    [1026, "sbom", "bom:AP-Specifiers", ["<"], "Actuator specifiers defined in the Software Bill of Materials profile"],
     [1027, "endp", "endp:AP-Specifiers", ["<"], "Actuator specifiers defined in the Endpoint profile"],
     [1028, "sdnc", "sdnc:AP-Specifiers", ["<"], "Actuator specifiers defined in the Software Defined Network Controller profile"],
     [1029, "emgw", "emgw:AP-Specifiers", ["<"], "Actuator specifiers defined in the Email Gateway profile"],

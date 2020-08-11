@@ -2,11 +2,11 @@
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Actuator Profile Template |
-| **module:** | http://oasis-open.org/openc2/xyz/v1.0 |
+| **module:** | https://oasis-open.org/openc2/xyz/v1.0 |
 | **description:** | Adapted from the OpenC2 Language Profile version 1.1 |
-| **imports:** | **ls**:&nbsp;http://oasis-open.org/openc2/oc2ls-types/v1.1 |
+| **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 **pf**:&nbsp;https://oasis-open.org/openc2/ap-slpf/v1.0 **fw**:&nbsp;https://oasis-open.org/openc2/ap-sfpf/v1.0 **bom**:&nbsp;https://oasis-open.org/openc2/ap-sbom/v1.0 |
 | **exports:** | OpenC2-Command, OpenC2-Response |
-| **comment:** | Replace 'xyz' with property name chosen for the profile, delete unused actions/targets/args/results |
+| **comment:** | Replace 'xyz' with property name chosen for the profile, delete unused actions/targets/args/specifiers/results |
 
 **_Type: OpenC2-Command (Record)_**
 
@@ -89,9 +89,9 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1024 | **slpf/** | slpf:AP-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
-| 1025 | **sfpf/** | sfpf:AP-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
-| 1026 | **sbom/** | sbom:AP-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
+| 1024 | **slpf/** | pf:AP-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
+| 1025 | **sfpf/** | fw:AP-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
+| 1026 | **sbom/** | bom:AP-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
 | 1027 | **endp/** | endp:AP-Specifiers | 1 | Actuator specifiers defined in the Endpoint profile |
 | 1028 | **sdnc/** | sdnc:AP-Specifiers | 1 | Actuator specifiers defined in the Software Defined Network Controller profile |
 | 1029 | **emgw/** | emgw:AP-Specifiers | 1 | Actuator specifiers defined in the Email Gateway profile |
