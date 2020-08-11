@@ -89,16 +89,16 @@
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1024 | **slpf** | slpf:SLPF-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
-| 1025 | **sfpf** | sfpf:SFPF-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
-| 1026 | **sbom** | sbom:SBOM-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
-| 1027 | **endp** | endp:ENDP-Specifiers | 1 | Actuator specifiers defined in the Endpoint profile |
-| 1028 | **sdnc** | sdnc:SDNC-Specifiers | 1 | Actuator specifiers defined in the Software Defined Network Controller profile |
-| 1029 | **emgw** | emgw:EMGW-Specifiers | 1 | Actuator specifiers defined in the Email Gateway profile |
-| 1030 | **ids** | ids:IDS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Detection System profile |
-| 1031 | **ips** | ips:IPS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Prevention System profile |
-| 1032 | **dlp** | dlp:DLP-Specifiers | 1 | Actuator specifiers defined in the Data Loss Prevention profile |
-| 1033 | **swg** | swg:SWG-Specifiers | 1 | Actuator specifiers defined in the Secure Web Gateway profile |
+| 1024 | **slpf/** | slpf:SLPF-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
+| 1025 | **sfpf/** | sfpf:SFPF-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
+| 1026 | **sbom/** | sbom:SBOM-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
+| 1027 | **endp/** | endp:ENDP-Specifiers | 1 | Actuator specifiers defined in the Endpoint profile |
+| 1028 | **sdnc/** | sdnc:SDNC-Specifiers | 1 | Actuator specifiers defined in the Software Defined Network Controller profile |
+| 1029 | **emgw/** | emgw:EMGW-Specifiers | 1 | Actuator specifiers defined in the Email Gateway profile |
+| 1030 | **ids/** | ids:IDS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Detection System profile |
+| 1031 | **ips/** | ips:IPS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Prevention System profile |
+| 1032 | **dlp/** | dlp:DLP-Specifiers | 1 | Actuator specifiers defined in the Data Loss Prevention profile |
+| 1033 | **swg/** | swg:SWG-Specifiers | 1 | Actuator specifiers defined in the Secure Web Gateway profile |
 | 2000 | **xyz/** | XYZ-Specifiers | 1 | Actuator specifiers defined in this profile |
 
 **_Type: Results (Map{1..*})_**
