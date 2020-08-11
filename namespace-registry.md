@@ -43,7 +43,7 @@ and incorporate them into a single schema. Authors can manually copy and paste d
 into a monolithic specification, but namespace resolution automates that process, eliminating redundancy
 and the potential for inconsistency.
 
-A namespace URI is only an identifier. For syntactic reasons it must have a scheme (http) but it
+A namespace URI is only an identifier. For syntactic reasons it must have a scheme (https) but it
 is not a network-accessible resource. 
 Referenced specifications do not need to be available online and implementations are not required to do
 namespace resolution at runtime, although dynamic namespace resolution may be appropriate for some use cases.
@@ -54,12 +54,12 @@ for corresponding concrete schemas.
 ## Registration Process
 OpenC2 TC Documentation Norms suggests
 [naming conventions](https://github.com/oasis-tcs/openc2-tc-ops/blob/master/Documentation-Norms.md#42-assign-work-product-name)
-for TC work products.  Namespace URIs should be based on this convention, omitting the filename and the "docs" domain component,
-and using "http" as the scheme component.
+for TC work products.  Namespace URIs should be based on this convention, omitting non-organization
+domain components ("docs") and the filename.
 
 * **Actuator Profile Name**: ap-\<function-shorthand\>
 * **Example Profile URL**: https://docs.oasis-open.org/openc2/ap-av/v1.0/ap-av-v1.0.html
-* **Example Namespace**: http://oasis-open.org/openc2/ap-av/v1.0
+* **Example Namespace**: https://oasis-open.org/openc2/ap-av/v1.0
 * **Example Schema URL**: https://oasis-open.org/openc2/ap-av/v1.0/schema.jadn
 
 Custom actuator profile namespaces are chosen by the profile author and MUST NOT conflict with namespace URIs registered here.
@@ -69,20 +69,20 @@ Custom profile authors MAY register Namespaces under http://oasis-open.org/openc
 **Last Update:** 14 July 2020
 | Specification | Namespace | Source |
 | ------------- | --------- | ------ |
-| OpenC2 Language Spec v1.0 CS01    | http://oasis-open.org/openc2/lang/v1.0        | https://github.com/oasis-tcs/openc2-oc2ls |
-| OpenC2 Language Spec v1.0 CS02    | http://oasis-open.org/openc2/lang/v1.0.1      | https://github.com/oasis-tcs/openc2-oc2ls |
-| OpenC2 Language Profile v1.1      | http://oasis-open.org/openc2/lang/v1.1        | Language SC - Work in progress |
-| OpenC2 Common Types v1.1          | http://oasis-open.org/openc2/types/v1.1       | Language SC - Work in progress |
-| Stateless Packet Filtering AP     | http://oasis-open.org/openc2/ap-slpf/v1.0     | https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter |
-| Stateful Packet Filtering AP      | http://oasis-open.org/openc2/ap-sfpf/v1.0     | https://github.com/oasis-tcs/openc2-ap-sfpf |
-| Software Bill of Materials AP     | http://oasis-open.org/openc2/ap-sbom/v1.0     | https://github.com/oasis-tcs/openc2-ap-sbom |
-| Intrusion Detection AP            | http://oasis-open.org/openc2/ap-ids/v1.0      | https://github.com/oasis-tcs/openc2-ap-ids Repo Exists |
-| Honeypot functions AP             | http://oasis-open.org/openc2/ap-honeypot/v1.0 | https://github.com/oasis-tcs/openc2-ap-honeypots Repo Exists |
-| Endpoint functions AP             |                                               | Proposed for LS |
-| Software-Defined Nework Control AP|                                               | Proposed for LS |
-| Email Gateway functions AP        |                                               | Proposed for LS |
-| Intrusion Prevention AP           |                                               | Proposed for LS |
-| Data Loss Prevention AP           |                                               | Proposed for LS |
-| Secure Web Gateway AP             |                                               | Proposed for LS |
-| Hello-world API HTTP CAP          | http://oasis-open.org/openc2/custom/haha/v1.0 | Example: Custom AP namespaces may be registered |
-| Hello-world API MQTT CAP          | http://acme.com/openc2-profiles/hama/v1.0     | Example: Custom AP namespaces are chosen by their authors |
+| OpenC2 Language Spec v1.0 CS01    | https://oasis-open.org/openc2/lang/v1.0        | https://github.com/oasis-tcs/openc2-oc2ls |
+| OpenC2 Language Spec v1.0 CS02    | https://oasis-open.org/openc2/lang/v1.0.1      | https://github.com/oasis-tcs/openc2-oc2ls |
+| OpenC2 Language Profile v1.1      | https://oasis-open.org/openc2/lang/v1.1        | Language SC - Work in progress |
+| OpenC2 Common Types v1.1          | https://oasis-open.org/openc2/types/v1.1       | Language SC - Work in progress |
+| Stateless Packet Filtering AP     | https://oasis-open.org/openc2/ap-slpf/v1.0     | https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter |
+| Stateful Packet Filtering AP      | https://oasis-open.org/openc2/ap-sfpf/v1.0     | https://github.com/oasis-tcs/openc2-ap-sfpf |
+| Software Bill of Materials AP     | https://oasis-open.org/openc2/ap-sbom/v1.0     | https://github.com/oasis-tcs/openc2-ap-sbom |
+| Intrusion Detection AP            | https://oasis-open.org/openc2/ap-ids/v1.0      | https://github.com/oasis-tcs/openc2-ap-ids Repo Exists |
+| Honeypot functions AP             | https://oasis-open.org/openc2/ap-honeypot/v1.0 | https://github.com/oasis-tcs/openc2-ap-honeypots Repo Exists |
+| Endpoint functions AP             |                                                | Proposed for LS |
+| Software-Defined Nework Control AP|                                                | Proposed for LS |
+| Email Gateway functions AP        |                                                | Proposed for LS |
+| Intrusion Prevention AP           |                                                | Proposed for LS |
+| Data Loss Prevention AP           |                                                | Proposed for LS |
+| Secure Web Gateway AP             |                                                | Proposed for LS |
+| Hello-world API HTTP CAP          | https://oasis-open.org/openc2/custom/haha/v1.0 | Example: Custom AP namespaces may be registered |
+| Hello-world API MQTT CAP          | https://acme.com/openc2-profiles/hama/v1.0     | Example: Custom AP namespaces are chosen by their authors |
