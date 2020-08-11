@@ -73,7 +73,7 @@
 | 18 | **process** | ls:Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | ls:Properties | 1 | Data attribute associated with an Actuator. |
 | 19 | **uri** | ls:URI | 1 | A uniform resource identifier (URI). |
-| 2000 | **xyz/** | AP-Target | 1 | Profile-defined targets |
+| 2000 | **xyz/** | XYZ-Target | 1 | Profile-defined targets |
 
 **_Type: Args (Map{1..*})_**
 
@@ -83,24 +83,34 @@
 | 2 | **stop_time** | ls:Date-Time | 0..1 | The specific date/time to terminate the Command |
 | 3 | **duration** | ls:Duration | 0..1 | The length of time for an Command to be in effect |
 | 4 | **response_requested** | ls:Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
-| 2000 | **xyz/** | AP-Args | 0..1 | Profile-defined command arguments |
+| 2000 | **xyz/** | XYZ-Args | 0..1 | Profile-defined command arguments |
 
 **_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 2000 | **xyz/** | AP-Specifiers | 1 | Profile-defined actuator specifiers |
+| 1024 | **slpf** | slpf:SLPF-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
+| 1025 | **sfpf** | sfpf:SFPF-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
+| 1026 | **sbom** | sbom:SBOM-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
+| 1027 | **endp** | endp:ENDP-Specifiers | 1 | Actuator specifiers defined in the Endpoint profile |
+| 1028 | **sdnc** | sdnc:SDNC-Specifiers | 1 | Actuator specifiers defined in the Software Defined Network Controller profile |
+| 1029 | **emgw** | emgw:EMGW-Specifiers | 1 | Actuator specifiers defined in the Email Gateway profile |
+| 1030 | **ids** | ids:IDS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Detection System profile |
+| 1031 | **ips** | ips:IPS-Specifiers | 1 | Actuator specifiers defined in the Intrusion Prevention System profile |
+| 1032 | **dlp** | dlp:DLP-Specifiers | 1 | Actuator specifiers defined in the Data Loss Prevention profile |
+| 1033 | **swg** | swg:SWG-Specifiers | 1 | Actuator specifiers defined in the Secure Web Gateway profile |
+| 2000 | **xyz/** | XYZ-Specifiers | 1 | Actuator specifiers defined in this profile |
 
 **_Type: Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **versions** | ls:Version unique | 0..10 | List of OpenC2 language versions supported by this Actuator |
-| 2 | **profiles** | ls:Namespace unique | 0..* | List of profiles supported by this Actuator |
+| 2 | **profiles** | ls:FieldName unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0.0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 5 | **args** | Enumerated(Enum[Args]) | 0..* | List of supported Command Arguments |
-| 2000 | **xyz/** | AP-Results | 0..1 | Profile-defined response results |
+| 2000 | **xyz/** | XYZ-Results | 0..1 | Profile-defined response results |
 
 **_Type: Action-Targets (Map)_**
 
@@ -123,26 +133,26 @@
 | ---: | :--- | :--- |
 | 1 | **xyz/bar** |  |
 
-**_Type: AP-Target (Choice)_**
+**_Type: XYZ-Target (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **foo** | String | 1 |  |
 | 2 | **bar** | String | 1 |  |
 
-**_Type: AP-Args (Map{1..*})_**
+**_Type: XYZ-Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **foo** | String | 0..1 |  |
 
-**_Type: AP-Specifiers (Map)_**
+**_Type: XYZ-Specifiers (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **foo** | String | 0..1 |  |
 
-**_Type: AP-Results (Map{1..*})_**
+**_Type: XYZ-Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |

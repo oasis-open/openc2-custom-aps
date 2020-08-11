@@ -1,5 +1,5 @@
 {
- "meta": {
+ "info": {
   "module": "http://oasis-open.org/openc2/xyz/v1.0",
   "title": "OpenC2 Actuator Profile Template",
   "description": "Adapted from the OpenC2 Language Profile version 1.1",
@@ -67,7 +67,7 @@
     [18, "process", "ls:Process", [], "Common properties of an instance of a computer program as executed on an operating system."],
     [25, "properties", "ls:Properties", [], "Data attribute associated with an Actuator."],
     [19, "uri", "ls:URI", [], "A uniform resource identifier (URI)."],
-    [2000, "xyz", "AP-Target", ["<"], "Profile-defined targets"]
+    [2000, "xyz", "XYZ-Target", ["<"], "Profile-defined targets"]
   ]],
 
   ["Args", "Map", ["{1"], "", [
@@ -75,20 +75,30 @@
     [2, "stop_time", "ls:Date-Time", ["[0"], "The specific date/time to terminate the Command"],
     [3, "duration", "ls:Duration", ["[0"], "The length of time for an Command to be in effect"],
     [4, "response_requested", "ls:Response-Type", ["[0"], "The type of Response required for the Command: none, ack, status, complete"],
-    [2000, "xyz", "AP-Args", ["[0", "<"], "Profile-defined command arguments"]
+    [2000, "xyz", "XYZ-Args", ["[0", "<"], "Profile-defined command arguments"]
   ]],
 
-  ["Actuator", "Choice", [], "", [
-    [2000, "xyz", "AP-Specifiers", ["<"], "Profile-defined actuator specifiers"]
+  ["Actuator", "Choice", [], "Profile template: add new actuators, delete all that do not apply to this device", [
+    [1024, "slpf", "slpf:SLPF-Specifiers", [], "Actuator specifiers defined in the Stateless Packet Filtering profile"],
+    [1025, "sfpf", "sfpf:SFPF-Specifiers", [], "Actuator specifiers defined in the Stateful Packet Filtering profile"],
+    [1026, "sbom", "sbom:SBOM-Specifiers", [], "Actuator specifiers defined in the Software Bill of Materials profile"],
+    [1027, "endp", "endp:ENDP-Specifiers", [], "Actuator specifiers defined in the Endpoint profile"],
+    [1028, "sdnc", "sdnc:SDNC-Specifiers", [], "Actuator specifiers defined in the Software Defined Network Controller profile"],
+    [1029, "emgw", "emgw:EMGW-Specifiers", [], "Actuator specifiers defined in the Email Gateway profile"],
+    [1030, "ids", "ids:IDS-Specifiers", [], "Actuator specifiers defined in the Intrusion Detection System profile"],
+    [1031, "ips", "ips:IPS-Specifiers", [], "Actuator specifiers defined in the Intrusion Prevention System profile"],
+    [1032, "dlp", "dlp:DLP-Specifiers", [], "Actuator specifiers defined in the Data Loss Prevention profile"],
+    [1033, "swg", "swg:SWG-Specifiers", [], "Actuator specifiers defined in the Secure Web Gateway profile"],
+    [2000, "xyz", "XYZ-Specifiers", ["<"], "Actuator specifiers defined in this profile"]
   ]],
 
   ["Results", "Map", ["{1"], "Response Results", [
     [1, "versions", "ls:Version", ["q", "[0", "]10"], "List of OpenC2 language versions supported by this Actuator"],
-    [2, "profiles", "ls:Namespace", ["q", "[0", "]0"], "List of profiles supported by this Actuator"],
+    [2, "profiles", "ls:FieldName", ["q", "[0", "]0"], "List of profiles supported by this Actuator"],
     [3, "pairs", "Action-Targets", ["[0"], "List of targets applicable to each supported Action"],
     [4, "rate_limit", "Number", ["y0.0", "[0"], "Maximum number of requests per minute supported by design or policy"],
     [5, "args", "Enumerated", ["#Args", "[0", "]0"], "List of supported Command Arguments"],
-    [2000, "xyz", "AP-Results", ["[0", "<"], "Profile-defined response results"]
+    [2000, "xyz", "XYZ-Results", ["[0", "<"], "Profile-defined response results"]
   ]],
 
   ["Action-Targets", "Map", [], "Map of each action supported by this actuator to the list of targets applicable to that action.", [
@@ -106,20 +116,20 @@
     [1, "xyz/bar", ""]
   ]],
 
-  ["AP-Target", "Choice", [], "Profile-defined targets", [
+  ["XYZ-Target", "Choice", [], "Profile-defined targets", [
     [1, "foo", "String", [], ""],
     [2, "bar", "String", [], ""]
   ]],
 
-  ["AP-Args", "Map", ["{1"], "Profile-defined command arguments", [
+  ["XYZ-Args", "Map", ["{1"], "Profile-defined command arguments", [
     [1, "foo", "String", ["[0"], ""]
   ]],
 
-  ["AP-Specifiers", "Map", [], "Profile-defined actuator specifiers", [
+  ["XYZ-Specifiers", "Map", [], "Profile-defined actuator specifiers", [
     [1, "foo", "String", ["[0"], ""]
   ]],
 
-  ["AP-Results", "Map", ["{1"], "Profile-defined response results", [
+  ["XYZ-Results", "Map", ["{1"], "Profile-defined response results", [
     [1, "foo", "String", ["[0"], ""]
   ]]
  ]
