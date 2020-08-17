@@ -2,29 +2,11 @@
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Actuator Profile Template |
-| **module:** | https://oasis-open.org/openc2/xyz/v1.0 |
-| **description:** | Adapted from the OpenC2 Language Profile version 1.1 |
+| **module:** | https://oasis-open.org/openc2/profile-template/v1.1 |
+| **description:** | Template for creating OpenC2 v1.1 actuator profiles |
 | **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 |
-| **exports:** | OpenC2-Command, OpenC2-Response |
+| **exports:** | AP-Target, AP-Args, AP-Specifiers, AP-Results |
 | **comment:** | Delete actions/targets/args/specifiers/results not used by this profile |
-
-**_Type: OpenC2-Command (Record)_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb'). |
-| 2 | **target** | Target | 1 | The object of the Action. The Action is performed on the Target. |
-| 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
-| 4 | **actuator** | Actuator | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
-| 5 | **command_id** | ls:Command-ID | 0..1 | An identifier of this Command. |
-
-**_Type: OpenC2-Response (Record)_**
-
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 1 | **status** | ls:Status-Code | 1 | An integer status code. |
-| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status. |
-| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **_Type: Action (Enumerated)_**
 
