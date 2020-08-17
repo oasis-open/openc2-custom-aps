@@ -4,9 +4,9 @@
 | **title:** | OpenC2 Actuator Profile Template |
 | **module:** | https://oasis-open.org/openc2/xyz/v1.0 |
 | **description:** | Adapted from the OpenC2 Language Profile version 1.1 |
-| **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 **pf**:&nbsp;https://oasis-open.org/openc2/ap-slpf/v1.0 **fw**:&nbsp;https://oasis-open.org/openc2/ap-sfpf/v1.0 **bom**:&nbsp;https://oasis-open.org/openc2/ap-sbom/v1.0 |
+| **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 |
 | **exports:** | OpenC2-Command, OpenC2-Response |
-| **comment:** | Replace 'xyz' with property name chosen for the profile, delete unused actions/targets/args/specifiers/results |
+| **comment:** | Delete actions/targets/args/specifiers/results not used by this profile |
 
 **_Type: OpenC2-Command (Record)_**
 
@@ -73,7 +73,7 @@
 | 18 | **process** | ls:Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | ls:Properties | 1 | Data attribute associated with an Actuator. |
 | 19 | **uri** | ls:URI | 1 | A uniform resource identifier (URI). |
-| 2000 | **xyz/** | AP-Target | 1 | Profile-defined targets |
+| 0 | **ap_name/** | AP-Target | 1 | Profile-defined targets |
 
 **_Type: Args (Map{1..*})_**
 
@@ -83,23 +83,13 @@
 | 2 | **stop_time** | ls:Date-Time | 0..1 | The specific date/time to terminate the Command |
 | 3 | **duration** | ls:Duration | 0..1 | The length of time for an Command to be in effect |
 | 4 | **response_requested** | ls:Response-Type | 0..1 | The type of Response required for the Command: none, ack, status, complete |
-| 2000 | **xyz/** | AP-Args | 0..1 | Profile-defined command arguments |
+| 0 | **ap_name/** | AP-Args | 0..1 | Profile-defined command arguments |
 
 **_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1024 | **slpf/** | pf:AP-Specifiers | 1 | Actuator specifiers defined in the Stateless Packet Filtering profile |
-| 1025 | **sfpf/** | fw:AP-Specifiers | 1 | Actuator specifiers defined in the Stateful Packet Filtering profile |
-| 1026 | **sbom/** | bom:AP-Specifiers | 1 | Actuator specifiers defined in the Software Bill of Materials profile |
-| 1027 | **endp/** | endp:AP-Specifiers | 1 | Actuator specifiers defined in the Endpoint profile |
-| 1028 | **sdnc/** | sdnc:AP-Specifiers | 1 | Actuator specifiers defined in the Software Defined Network Controller profile |
-| 1029 | **emgw/** | emgw:AP-Specifiers | 1 | Actuator specifiers defined in the Email Gateway profile |
-| 1030 | **ids/** | ids:AP-Specifiers | 1 | Actuator specifiers defined in the Intrusion Detection System profile |
-| 1031 | **ips/** | ips:AP-Specifiers | 1 | Actuator specifiers defined in the Intrusion Prevention System profile |
-| 1032 | **dlp/** | dlp:AP-Specifiers | 1 | Actuator specifiers defined in the Data Loss Prevention profile |
-| 1033 | **swg/** | swg:AP-Specifiers | 1 | Actuator specifiers defined in the Secure Web Gateway profile |
-| 2000 | **xyz/** | AP-Specifiers | 1 | Actuator specifiers defined in this profile |
+| 0 | **ap_name/** | AP-Specifiers | 1 | Actuator specifiers defined in this profile |
 
 **_Type: Results (Map{1..*})_**
 
@@ -110,28 +100,12 @@
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0.0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 5 | **args** | Enumerated(Enum[Args]) | 0..* | List of supported Command Arguments |
-| 2000 | **xyz/** | AP-Results | 0..1 | Profile-defined response results |
+| 0 | **ap_name/** | AP-Results | 0..1 | Profile-defined response results |
 
-**_Type: Action-Targets (Map)_**
 
-| ID | Name | Type | # | Description |
-| ---: | :--- | :--- | ---: | :--- |
-| 3 | **query** | Target-query unique | 1..* |  |
-| 6 | **deny** | Target-deny unique | 1..* |  |
-
-**_Type: Target-query (Enumerated)_**
-
-| ID | Name | Description |
-| ---: | :--- | :--- |
-| 1 | **features** |  |
-| 2 | **xyz/foo** |  |
-| 3 | **xyz/bar** |  |
-
-**_Type: Target-deny (Enumerated)_**
-
-| ID | Name | Description |
-| ---: | :--- | :--- |
-| 1 | **xyz/bar** |  |
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Pointer[Target]) | Targets applicable to each action supported by this device |
 
 **_Type: AP-Target (Choice)_**
 
