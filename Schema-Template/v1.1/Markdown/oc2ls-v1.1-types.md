@@ -2,8 +2,8 @@
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Language Common Types |
-| **module:** | http://oasis-open.org/openc2/oc2ls-types/v1.1 |
-| **patch:** | 0-wd01 |
+| **package:** | http://oasis-open.org/openc2/oc2ls-types/v1.1 |
+| **version:** | 0-wd01 |
 | **description:** | Common Types from the OpenC2 Language Specification version 1.1.  These definitions are referenced by or copied into Profiles |
 
 **_Type: Status-Code (Enumerated.ID)_**

@@ -2,11 +2,11 @@
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Device Schema Template |
-| **module:** | https://oasis-open.org/openc2/device-template/v1.1 |
+| **package:** | https://oasis-open.org/openc2/device-template/v1.1 |
 | **description:** | Template for creating OpenC2 v1.1 device schemas supporting one or more actuator profiles |
-| **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 **nsid1**:&nbsp;https://oasis-open.org/ap_module1 **nsid2**:&nbsp;https://oasis-open.org/ap_module2 **nsid3**:&nbsp;https://oasis-open.org/ap_module3 |
+| **namespaces:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 **nsid1**:&nbsp;https://oasis-open.org/ap_package1 **nsid2**:&nbsp;https://oasis-open.org/ap_package2 **nsid3**:&nbsp;https://oasis-open.org/ap_package3 |
 | **exports:** | OpenC2-Command, OpenC2-Response |
-| **comment:** | Add all APs to imports and Target/Args/Specifiers/Results lists, delete unused fields |
+| **comment:** | Add all APs to namespaces and Target/Args/Specifiers/Results lists, delete unused fields |
 
 **_Type: OpenC2-Command (Record)_**
 

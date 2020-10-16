@@ -1,15 +1,15 @@
 {
  "info": {
-  "module": "https://oasis-open.org/openc2/device-template/v1.1",
+  "package": "https://oasis-open.org/openc2/device-template/v1.1",
   "title": "OpenC2 Device Schema Template",
   "description": "Template for creating OpenC2 v1.1 device schemas supporting one or more actuator profiles",
-  "comment": "Add all APs to imports and Target/Args/Specifiers/Results lists, delete unused fields",
+  "comment": "Add all APs to namespaces and Target/Args/Specifiers/Results lists, delete unused fields",
   "exports": ["OpenC2-Command", "OpenC2-Response"],
-  "imports": {
+  "namespaces": {
    "ls": "https://oasis-open.org/openc2/oc2ls-types/v1.1",
-   "nsid1": "https://oasis-open.org/ap_module1",
-   "nsid2": "https://oasis-open.org/ap_module2",
-   "nsid3": "https://oasis-open.org/ap_module3"
+   "nsid1": "https://oasis-open.org/ap_package1",
+   "nsid2": "https://oasis-open.org/ap_package2",
+   "nsid3": "https://oasis-open.org/ap_package3"
   }
  },
 

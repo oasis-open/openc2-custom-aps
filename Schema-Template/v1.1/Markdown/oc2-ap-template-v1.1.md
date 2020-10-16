@@ -2,9 +2,9 @@
 | . | . |
 | ---: | :--- |
 | **title:** | OpenC2 Actuator Profile Template |
-| **module:** | https://oasis-open.org/openc2/profile-template/v1.1 |
+| **package:** | https://oasis-open.org/openc2/profile-template/v1.1 |
 | **description:** | Template for creating OpenC2 v1.1 actuator profiles |
-| **imports:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 |
+| **namespaces:** | **ls**:&nbsp;https://oasis-open.org/openc2/oc2ls-types/v1.1 |
 | **exports:** | AP-Target, AP-Args, AP-Specifiers, AP-Results |
 | **comment:** | Delete actions/targets/args/specifiers/results not used by this profile |
 

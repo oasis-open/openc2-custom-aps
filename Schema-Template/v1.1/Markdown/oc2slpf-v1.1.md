@@ -2,10 +2,10 @@
 | . | . |
 | ---: | :--- |
 | **title:** | Stateless Packet Filtering Profile |
-| **module:** | http://oasis-open.org/openc2/oc2slpf/v1.1 |
-| **patch:** | 0-wd01 |
+| **package:** | http://oasis-open.org/openc2/oc2slpf/v1.1 |
+| **version:** | 0-wd01 |
 | **description:** | Data definitions for Stateless Packet Filtering (SLPF) functions |
-| **imports:** | **ls**:&nbsp;http://oasis-open.org/openc2/oc2ls-types/v1.1 |
+| **namespaces:** | **ls**:&nbsp;http://oasis-open.org/openc2/oc2ls-types/v1.1 |
 | **exports:** | OpenC2-Command, OpenC2-Response |
 
 **_Type: OpenC2-Command (Record)_**

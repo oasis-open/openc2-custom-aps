@@ -1,5 +1,5 @@
 # Profile Schemas
-This folder contains three published schema modules:
+This folder contains three published schema packages:
 1. Language Profile
     * published in the Language Specification
     * copied into all Actuator Profiles as the initial template

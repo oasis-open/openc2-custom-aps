@@ -1,11 +1,11 @@
 {
- "meta": {
-  "module": "http://oasis-open.org/openc2/oc2ls/v1.1",
-  "patch": "0-wd01",
+ "info": {
+  "package": "http://oasis-open.org/openc2/oc2ls/v1.1",
+  "version": "0-wd01",
   "title": "OpenC2 Language Profile",
   "description": "Language Profile from the OpenC2 Language Specification version 1.1",
   "exports": ["OpenC2-Command", "OpenC2-Response"],
-  "imports": {
+  "namespaces": {
    "ls": "http://oasis-open.org/openc2/oc2ls-types/v1.1"
   }
  },
